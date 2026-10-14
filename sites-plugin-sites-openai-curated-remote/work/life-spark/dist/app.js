@@ -10,6 +10,41 @@ const ideas=[
 {id:8,title:'看一场随机的电影',icon:'🎬',type:'connect',time:120,cost:150,desc:'不看预告，把两个小时交给运气。',steps:['约一位朋友，一个人去也很好。','随机选一部正在上映的片子。','散场后聊聊彼此最喜欢的一刻。']}
 ];
 
+const sites=[
+{cat:'web',name:'知乎',icon:'💬',desc:'问答社区，找生活经验',url:'https://www.zhihu.com'},
+{cat:'web',name:'少数派',icon:'💡',desc:'高效工作与品质生活',url:'https://sspai.com'},
+{cat:'web',name:'下厨房',icon:'🍳',desc:'家常菜谱与烘焙灵感',url:'https://www.xiachufang.com'},
+{cat:'web',name:'WikiHow 中文',icon:'📘',desc:'生活百科与实用技巧',url:'https://zh.wikihow.com'},
+{cat:'web',name:'中国大学 MOOC',icon:'🎓',desc:'名校免费公开课',url:'https://www.icourse163.org'},
+{cat:'web',name:'哔哩哔哩',icon:'📺',desc:'学习、兴趣与纪录片视频',url:'https://www.bilibili.com'},
+{cat:'web',name:'站酷',icon:'🎨',desc:'设计与创意灵感社区',url:'https://www.zcool.com.cn'},
+{cat:'web',name:'穷游网',icon:'✈️',desc:'旅行攻略与游记',url:'https://www.qyer.com'},
+{cat:'app',name:'小宇宙',icon:'🎙️',desc:'中文播客，通勤好伴侣',url:'https://www.xiaoyuzhoufm.com'},
+{cat:'app',name:'潮汐',icon:'🌊',desc:'睡眠、专注与冥想声音',url:'https://tide.fm'},
+{cat:'app',name:'多邻国',icon:'🦉',desc:'游戏化学外语，每天几分钟',url:'https://www.duolingo.com'},
+{cat:'app',name:'Keep',icon:'🏃',desc:'在家就能开始的训练',url:'https://keep.com'},
+{cat:'app',name:'幕布',icon:'🗂️',desc:'大纲式笔记与思维导图',url:'https://mubu.com'},
+{cat:'app',name:'形色',icon:'🌸',desc:'拍照识花，认识身边的植物',url:'https://www.xingseapp.com'},
+{cat:'app',name:'滴答清单',icon:'✅',desc:'待办清单与日程管理',url:'https://www.dida365.com'},
+{cat:'app',name:'白描',icon:'📄',desc:'图片文字识别与扫描',url:'https://baimiaoapp.com'},
+{cat:'tool',name:'Canva 可画',icon:'🖌️',desc:'海报与社媒图片设计',url:'https://www.canva.cn'},
+{cat:'tool',name:'DeepL',icon:'🌐',desc:'高质量机器翻译',url:'https://www.deepl.com'},
+{cat:'tool',name:'TinyPNG',icon:'🖼️',desc:'在线图片压缩',url:'https://tinypng.com'},
+{cat:'tool',name:'石墨文档',icon:'📝',desc:'在线协作文档与表格',url:'https://shimo.im'},
+{cat:'tool',name:'Photopea',icon:'🎭',desc:'浏览器里的免费 Photoshop',url:'https://www.photopea.com'},
+{cat:'tool',name:'Remove.bg',icon:'✂️',desc:'一键抠图去背景',url:'https://www.remove.bg'},
+{cat:'tool',name:'Convertio',icon:'🔄',desc:'文件格式在线转换',url:'https://convertio.co'},
+{cat:'tool',name:'草料二维码',icon:'🔳',desc:'二维码生成器',url:'https://cli.im'},
+{cat:'media',name:'豆瓣读书',icon:'📚',desc:'找书、评分与书评',url:'https://book.douban.com'},
+{cat:'media',name:'豆瓣电影',icon:'🎬',desc:'电影评分与影评',url:'https://movie.douban.com'},
+{cat:'media',name:'微信读书',icon:'📖',desc:'手机阅读与听书',url:'https://weread.qq.com'},
+{cat:'media',name:'网易云音乐',icon:'🎵',desc:'音乐与歌单',url:'https://music.163.com'},
+{cat:'media',name:'猫眼电影',icon:'🍿',desc:'电影资讯与购票',url:'https://www.maoyan.com'},
+{cat:'media',name:'喜马拉雅',icon:'📻',desc:'音频、播客与有声书',url:'https://www.ximalaya.com'},
+{cat:'media',name:'得到',icon:'🎧',desc:'知识课程与听书',url:'https://www.dedao.cn'},
+{cat:'media',name:'QQ 音乐',icon:'🎼',desc:'在线音乐与歌单',url:'https://y.qq.com'}
+];
+
 let saved=[];
 try{saved=JSON.parse(localStorage.getItem('sparkSaved')||'[]');if(!Array.isArray(saved))saved=[]}catch{}
 
@@ -37,7 +72,7 @@ function save(id){
 function render(){
   const list=ideas.filter(i=>filter==='all'||(filter==='saved'?saved.includes(i.id):i.type===filter));
   $('#count').textContent=saved.length;
-  $('#cards').innerHTML=list.length?list.map(i=>`<article class="card"><div class="art" aria-hidden="true">${ideaArt(i.id)}</div><div class="cardbody"><span class="meta">${timeText(i)} · ${costText(i)}</span><h3>${i.title}</h3><p>${i.desc}</p><div class="actions"><button class="save" data-view="${i.id}">查看行动清单</button><button class="save" data-save="${i.id}" aria-pressed="${saved.includes(i.id)}">${saved.includes(i.id)?'♥ 已收藏':'♡ 收藏'}</button></div></div></article>`).join(''):'<p class="empty">还没有收藏。先在灵感卡片上点一下“收藏”，以后可以回来找。</p>';
+  $('#cards').innerHTML=list.length?list.map(i=>`<article class="tile"><div class="tile-icon" aria-hidden="true"><div class="tile-badges"><b>${timeText(i)}</b><b>${costText(i)}</b></div>${ideaArt(i.id)}</div><div class="tile-body"><h3>${i.title}</h3><p>${i.desc}</p><div class="actions"><button class="save" data-view="${i.id}">查看行动清单 ↗</button><button class="save" data-save="${i.id}" aria-pressed="${saved.includes(i.id)}">${saved.includes(i.id)?'♥ 已收藏':'♡ 收藏'}</button></div></div></article>`).join(''):'<p class="empty">还没有收藏。先在灵感卡片上点一下“收藏”，以后可以回来找。</p>';
   document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
 }
 
@@ -131,6 +166,12 @@ document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.da
 
 $('#savedLink').onclick=()=>{filter='saved';render()};
 
+$('#modeToggle').onclick=()=>{
+  const next=document.documentElement.dataset.mode==='dark'?'light':'dark';
+  document.documentElement.dataset.mode=next;
+  try{localStorage.setItem('sparkMode',next)}catch{}
+};
+
 const questions=['突然多出一小时，你更想……','什么时刻让你觉得今天很值得？','下个周末，你想给自己安排……'];
 const answers=[['一个人慢慢喝杯茶','走一条没走过的小路','找朋友聊聊天'],['终于安静地做完一件小事','发现一个以前没注意的细节','和喜欢的人一起笑了'],['舒服的独处时光','没有目的地的小探索','一场轻松的小聚会']];
 let q=0,scores=[0,0,0];
@@ -150,6 +191,26 @@ function quiz(){
   $('#quizbox').innerHTML=`<span class="meta">第 ${q+1} / 3 题</span><h3>${questions[q]}</h3><div class="quizopts">${answers[q].map((a,n)=>`<button data-answer="${n}">${a}</button>`).join('')}</div>`;
   document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{scores[+b.dataset.answer]++;q++;quiz()});
 }
+
+const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media']};
+const siteTile=s=>`<a class="site" href="${s.url}" target="_blank" rel="noopener"><span class="site-icon" aria-hidden="true">${s.icon}</span><span class="site-text"><b class="site-name">${s.name}</b><i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a>`;
+
+function renderSites(q){
+  q=(q||'').trim().toLowerCase();
+  let total=0;
+  for(const cat in SITE_CATS){
+    const list=sites.filter(s=>s.cat===cat&&(!q||(s.name+s.desc).toLowerCase().includes(q)));
+    const [el,panel]=SITE_CATS[cat];
+    $(el).innerHTML=list.map(siteTile).join('');
+    $(panel).hidden=!list.length;
+    total+=list.length;
+  }
+  $('#noHit').hidden=total>0;
+}
+
+renderSites();
+$('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;renderSites(v)};
+$('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
 
 render();
 quiz();
