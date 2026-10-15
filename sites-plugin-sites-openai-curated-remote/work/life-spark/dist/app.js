@@ -20,7 +20,7 @@ const sites=[
 {cat:'web',key:'zcool',name:'站酷',desc:'设计与创意灵感社区',url:'https://www.zcool.com.cn',ico:'zcool.png'},
 {cat:'web',key:'qyer',name:'穷游网',desc:'旅行攻略与游记',url:'https://www.qyer.com',ico:'qyer.png'},
 {cat:'web',key:'guokr',name:'果壳',desc:'科学趣闻与生活科普',url:'https://www.guokr.com',ico:'guokr.png'},
-{cat:'web',key:'qdaily',name:'好奇心日报',desc:'商业与文化新鲜事',url:'https://www.qdaily.com',ico:'qdaily.png'},
+{cat:'web',key:'hupu',name:'虎扑',desc:'体育资讯与步行街社区',url:'https://www.hupu.com',ico:'hupu.png'},
 {cat:'app',key:'xiaoyuzhou',name:'小宇宙',desc:'中文播客，通勤好伴侣',url:'https://www.xiaoyuzhoufm.com',ico:'xiaoyuzhou.png',tag:'推荐'},
 {cat:'app',key:'tide',name:'潮汐',desc:'睡眠、专注与冥想声音',url:'https://tide.fm',ico:'tide.png'},
 {cat:'app',key:'duolingo',name:'多邻国',desc:'游戏化学外语，每天几分钟',url:'https://www.duolingo.com',ico:'duolingo.png'},
@@ -49,8 +49,38 @@ const sites=[
 {cat:'media',key:'ximalaya',name:'喜马拉雅',desc:'音频、播客与有声书',url:'https://www.ximalaya.com',ico:'ximalaya.png'},
 {cat:'media',key:'dedao',name:'得到',desc:'知识课程与听书',url:'https://www.dedao.cn',ico:'dedao.png'},
 {cat:'media',key:'yqq',name:'QQ 音乐',desc:'在线音乐与歌单',url:'https://y.qq.com',ico:'yqq.png'},
-{cat:'media',key:'doubanmusic',name:'豆瓣音乐',desc:'音乐人、乐评与唱片',url:'https://music.douban.com',ico:'doubanmusic.png'},
-{cat:'media',key:'woducao',name:'网易蜗牛读书',desc:'每天免费读一小时',url:'https://du.163.com',ico:'woducao.png'}
+{cat:'media',key:'iqiyi',name:'爱奇艺',desc:'热门剧集、综艺与电影',url:'https://www.iqiyi.com',ico:'iqiyi.png'},
+{cat:'media',key:'tencentvideo',name:'腾讯视频',desc:'剧集、综艺与纪录片',url:'https://v.qq.com',ico:'tencentvideo.png'},
+{cat:'shop',key:'taobao',name:'淘宝',desc:'综合网购，百货一站买齐',url:'https://www.taobao.com',ico:'taobao.png'},
+{cat:'shop',key:'jd',name:'京东',desc:'家电数码，自营物流快',url:'https://www.jd.com',ico:'jd.png'},
+{cat:'shop',key:'pinduoduo',name:'拼多多',desc:'好货便宜，百亿补贴',url:'https://www.pinduoduo.com',ico:'pinduoduo.png'},
+{cat:'shop',key:'meituan',name:'美团',desc:'外卖、美食与酒店团购',url:'https://www.meituan.com',ico:'meituan.png'},
+{cat:'shop',key:'vip',name:'唯品会',desc:'品牌特卖，折扣正品',url:'https://www.vip.com',ico:'vip.png'},
+{cat:'shop',key:'smzdm',name:'什么值得买',desc:'消费决策社区，值不值先看看',url:'https://www.smzdm.com',ico:'smzdm.png',tag:'推荐'},
+{cat:'shop',key:'goofish',name:'闲鱼',desc:'二手闲置，捡漏与回血',url:'https://www.goofish.com',ico:'goofish.png'},
+{cat:'shop',key:'eleme',name:'饿了么',desc:'点外卖，送药送菜上门',url:'https://www.ele.me',ico:'eleme.png'},
+{cat:'shop',key:'ali1688',name:'1688',desc:'批发源头，工厂价进货',url:'https://www.1688.com',ico:'ali1688.png'},
+{cat:'shop',key:'dewu',name:'得物',desc:'潮流单品，先鉴定后发货',url:'https://www.dewu.com',ico:'dewu.png'},
+{cat:'core',key:'weixin',name:'微信',desc:'聊天、朋友圈与公众号',url:'https://weixin.qq.com',ico:'weixin.png'},
+{cat:'core',key:'alipay',name:'支付宝',desc:'支付与生活服务',url:'https://www.alipay.com',ico:'alipay.png'},
+{cat:'core',key:'douyin',name:'抖音',desc:'短视频记录生活',url:'https://www.douyin.com',ico:'douyin.png'},
+{cat:'core',key:'qq',name:'QQ',desc:'老牌即时通讯',url:'https://im.qq.com',ico:'qq.png'},
+{cat:'core',key:'amap',name:'高德地图',desc:'导航出行与路线规划',url:'https://www.amap.com',ico:'amap.png'},
+{cat:'core',key:'baidumap',name:'百度地图',desc:'导航与地点查询',url:'https://map.baidu.com',ico:'baidumap.png'},
+{cat:'core',key:'weibo',name:'微博',desc:'热点吃瓜第一线',url:'https://weibo.com',ico:'weibo.png'},
+{cat:'core',key:'baidu',name:'百度',desc:'中文搜索入口',url:'https://www.baidu.com',ico:'baidu.png'},
+{cat:'core',key:'xiaohongshu',name:'小红书',desc:'生活方式种草社区',url:'https://www.xiaohongshu.com',ico:'xiaohongshu.png',tag:'推荐'},
+{cat:'core',key:'news163',name:'网易新闻',desc:'有态度的新闻资讯',url:'https://www.163.com',ico:'news163.png'},
+{cat:'ai',key:'deepseek',name:'DeepSeek',desc:'深度思考的国产大模型',url:'https://www.deepseek.com',ico:'deepseek.png',tag:'推荐'},
+{cat:'ai',key:'doubao',name:'豆包',desc:'字节跳动的 AI 助手',url:'https://www.doubao.com',ico:'doubao.png'},
+{cat:'ai',key:'kimi',name:'Kimi',desc:'长文本阅读与写作',url:'https://kimi.moonshot.cn',ico:'kimi.png'},
+{cat:'ai',key:'tongyi',name:'通义千问',desc:'阿里的全能 AI 助手',url:'https://tongyi.aliyun.com',ico:'tongyi.png'},
+{cat:'ai',key:'nano',name:'纳米 AI 搜索',desc:'360 的 AI 搜索',url:'https://www.n.cn',ico:'nano.png'},
+{cat:'ai',key:'yiyan',name:'文心一言',desc:'百度的 AI 助手',url:'https://yiyan.baidu.com',ico:'yiyan.png'},
+{cat:'ai',key:'chatglm',name:'智谱清言',desc:'清华系的 AI 助手',url:'https://chatglm.cn',ico:'chatglm.png'},
+{cat:'ai',key:'yuanbao',name:'腾讯元宝',desc:'腾讯的 AI 助手',url:'https://yuanbao.tencent.com',ico:'yuanbao.png'},
+{cat:'ai',key:'xinghuo',name:'讯飞星火',desc:'语音与认知大模型',url:'https://xinghuo.xfyun.cn',ico:'xinghuo.png'},
+{cat:'ai',key:'metaso',name:'秘塔 AI 搜索',desc:'学术级 AI 搜索',url:'https://metaso.cn',ico:'metaso.png'}
 ];
 
 let saved=[];
@@ -200,7 +230,7 @@ function quiz(){
   document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{scores[+b.dataset.answer]++;q++;quiz()});
 }
 
-const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media']};
+const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media'],shop:['#tiles-shop','#nav-shop'],core:['#tiles-core','#nav-core'],ai:['#tiles-ai','#nav-ai']};
 const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
 const hotCount=s=>hotMap[s.key]||0;
 const siteTile=s=>{
@@ -222,7 +252,7 @@ function renderSites(q){
 }
 
 function renderHeroCats(){
-  $('#heroApplist').innerHTML=[['web','好用网站','#nav-web'],['app','实用 App','#nav-app'],['tool','在线工具','#nav-tool'],['media','书影音','#nav-media']].map(([c,n,h])=>{
+  $('#heroApplist').innerHTML=[['web','好用网站','#nav-web'],['app','实用 App','#nav-app'],['tool','在线工具','#nav-tool'],['media','书影音','#nav-media'],['shop','购物省钱','#nav-shop'],['core','国民应用','#nav-core'],['ai','AI 助手','#nav-ai']].map(([c,n,h])=>{
     const s=sites.find(x=>x.cat===c);
     return `<a class="hap" href="${h}"><span class="hap-ico"><b>${n[0]}</b><img src="assets/favicons/${s.ico}" alt="" onerror="this.remove()"></span><b>${n}</b><i>${sites.filter(x=>x.cat===c).length} 个入口</i></a>`;
   }).join('');
@@ -260,7 +290,7 @@ const spy=new IntersectionObserver(es=>{
     document.querySelectorAll('.cchip').forEach(b=>b.classList.toggle('active',b.dataset.target===en.target.id));
   });
 },{rootMargin:'-35% 0px -55% 0px'});
-['navs','nav-web','nav-app','nav-tool','nav-media'].forEach(id=>spy.observe(document.getElementById(id)));
+['navs','nav-web','nav-app','nav-tool','nav-media','nav-shop','nav-core','nav-ai'].forEach(id=>spy.observe(document.getElementById(id)));
 
 render();
 quiz();

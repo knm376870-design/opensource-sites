@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="生活灵感实验室 · 把无聊玩出花">
 <meta name="twitter:description" content="选好时间和心情，抽一张马上能玩的生活灵感卡。">
 <meta name="twitter:image" content="og-image.jpg">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 <div class="window">
@@ -55,19 +55,19 @@
   <div class="hero-shot">
     <div class="shot-head" aria-hidden="true"><i></i><i></i><i></i><b>life.lab</b></div>
     <div class="hero-applist" id="heroApplist"></div>
-    <span class="shot-chip">40 个精选入口<strong>一键直达</strong></span>
+    <span class="shot-chip">70 个精选入口<strong>一键直达</strong></span>
   </div>
 </section>
 
 <section class="panel search-panel" id="navs">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">生活导航</span><h2>搜一搜，找点好东西。</h2><p class="muted">收录 40 个精选条目：好用网站、实用 App、在线工具与书影音，点磁贴直达。</p></div>
+    <div><span class="section-kicker">生活导航</span><h2>搜一搜，找点好东西。</h2><p class="muted">收录 70 个精选条目：好用网站、实用 App、在线工具、书影音、购物省钱、国民应用与 AI 助手，点磁贴直达。</p></div>
     <button class="secondary" id="randSite">随机逛一个 ↗</button>
   </div>
   <label class="searchbox">
     <span class="search-ic" aria-hidden="true">⌕</span>
-    <input id="search" type="text" placeholder="试试搜：菜谱、播客、翻译、电影…" autocomplete="off" aria-label="搜索导航条目">
+    <input id="search" type="text" placeholder="试试搜：菜谱、外卖、AI、电影…" autocomplete="off" aria-label="搜索导航条目">
     <button id="searchClear" class="search-clear" type="button" hidden>✕</button>
   </label>
   <div class="catbar" role="group" aria-label="分类快捷筛选">
@@ -76,6 +76,9 @@
     <button class="cchip" data-target="nav-app">实用 App</button>
     <button class="cchip" data-target="nav-tool">在线工具</button>
     <button class="cchip" data-target="nav-media">书影音</button>
+    <button class="cchip" data-target="nav-shop">购物省钱</button>
+    <button class="cchip" data-target="nav-core">国民应用</button>
+    <button class="cchip" data-target="nav-ai">AI 助手</button>
   </div>
   <p class="no-hit" id="noHit" hidden>没找到相关条目，换个词试试？</p>
 </section>
@@ -110,6 +113,30 @@
     <div><span class="section-kicker">精神食粮入口</span><h2>书影音 <span class="panel-count">10 个</span></h2><p>找书、听歌、看片的入口，都在这里。</p></div>
   </div>
   <div class="tiles" id="tiles-media"></div>
+</section>
+
+<section class="panel nav-panel" id="nav-shop">
+  <div class="panel-head">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div><span class="section-kicker">买前先逛这里</span><h2>购物省钱 <span class="panel-count">10 个</span></h2><p>国民电商与折扣入口，比价、领券再下单。</p></div>
+  </div>
+  <div class="tiles" id="tiles-shop"></div>
+</section>
+
+<section class="panel nav-panel" id="nav-core">
+  <div class="panel-head">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div><span class="section-kicker">装机必备</span><h2>国民应用 <span class="panel-count">10 个</span></h2><p>月活最高的国民级应用，手机里总有一两个。</p></div>
+  </div>
+  <div class="tiles" id="tiles-core"></div>
+</section>
+
+<section class="panel nav-panel" id="nav-ai">
+  <div class="panel-head">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div><span class="section-kicker">遇到问题问它们</span><h2>AI 助手 <span class="panel-count">10 个</span></h2><p>国产大模型与 AI 搜索，写东西、查资料都好用。</p></div>
+  </div>
+  <div class="tiles" id="tiles-ai"></div>
 </section>
 
 <section id="planner" class="lab panel">
@@ -176,6 +203,6 @@
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="art.js?v=6"></script>
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>
