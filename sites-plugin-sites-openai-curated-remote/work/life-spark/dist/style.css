@@ -1,8 +1,9 @@
 /* ============================================================
-   生活灵感实验室 · v7 窗口玻璃风
-   设计基调：OneNav/Eddy 式窗口框 + 暗色玻璃拟态，
+   生活灵感实验室 · v9 安静蓝灰风
+   设计基调：OneNav/Eddy 式窗口框 + 玻璃拟态，
    灰白/暗黑双模式自动切换（跟随系统，可手动切换），
-   灵感卡做成图标磁贴网格。
+   灵感卡做成图标磁贴网格，导航站使用真实网站 logo 磁贴。
+   主色：安静蓝 #3f6ff0，去掉紫色/荧光装饰。
    ============================================================ */
 
 :root{
@@ -17,18 +18,15 @@
   --ink:#1c2027;
   --ink-2:#565d68;
   --ink-3:#8b93a1;
-  --accent:#7b5ce8;
-  --accent-2:#9a7cf4;
-  --accent-soft:rgba(123,92,232,.12);
-  --lemon:#f2e56f;
-  --lemon-2:#e6d456;
-  --peach:#ffb48c;
+  --accent:#3f6ff0;
+  --accent-2:#5f8bf5;
+  --accent-soft:rgba(63,111,240,.1);
   --glass:rgba(255,255,255,.72);
   --glass-2:rgba(255,255,255,.85);
-  --glow:radial-gradient(600px 380px at 12% -4%,rgba(123,92,232,.14),transparent 62%);
+  --glow:radial-gradient(600px 380px at 12% -4%,rgba(63,111,240,.12),transparent 62%);
   --shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.07);
   --shadow-lg:0 24px 64px rgba(16,24,40,.16);
-  --shadow-accent:0 8px 22px rgba(123,92,232,.35);
+  --shadow-accent:0 8px 22px rgba(63,111,240,.3);
 }
 [data-mode="dark"]{
   color-scheme:dark;
@@ -42,18 +40,15 @@
   --ink:#e8ebf0;
   --ink-2:#a6aebc;
   --ink-3:#7d8695;
-  --accent:#8f7bff;
-  --accent-2:#a794ff;
-  --accent-soft:rgba(143,123,255,.18);
-  --lemon:#e9df7a;
-  --lemon-2:#d8cc5a;
-  --peach:#ffb48c;
+  --accent:#6b93ff;
+  --accent-2:#87a8ff;
+  --accent-soft:rgba(107,147,255,.16);
   --glass:rgba(25,29,36,.72);
   --glass-2:rgba(35,40,50,.9);
-  --glow:radial-gradient(600px 380px at 12% -4%,rgba(143,123,255,.2),transparent 62%);
+  --glow:radial-gradient(600px 380px at 12% -4%,rgba(107,147,255,.16),transparent 62%);
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   --shadow-lg:0 24px 64px rgba(0,0,0,.5);
-  --shadow-accent:0 8px 22px rgba(143,123,255,.4);
+  --shadow-accent:0 8px 22px rgba(107,147,255,.35);
 }
 
 *{box-sizing:border-box}
@@ -178,14 +173,6 @@ h1{
   width:max-content;
 }
 .outlined{color:var(--accent)}
-@supports ((-webkit-background-clip:text) or (background-clip:text)){
-  .outlined{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-}
 .intro{font-size:15px;color:var(--ink-2);margin:0 0 30px;line-height:2.1}
 .hero-actions{display:flex;align-items:center;gap:26px}
 .primary{
@@ -203,14 +190,10 @@ h1{
   box-shadow:var(--shadow-accent);
 }
 .primary>span{font-size:20px;line-height:1}
-.primary:hover{box-shadow:0 12px 30px rgba(123,92,232,.45)}
+.primary:hover{box-shadow:0 12px 30px rgba(63,111,240,.45)}
 .text-link{font-size:13.5px;color:var(--ink-2);border-bottom:1px solid var(--line-2);padding:8px 0;transition:color .2s,border-color .2s}
 .text-link:hover{color:var(--accent);border-color:var(--accent)}
 .text-link span{margin-left:8px}
-.hero-bottom{display:flex;align-items:center;gap:10px;margin-top:30px}
-.mini-smile{font-size:24px;color:var(--accent);line-height:1}
-.hero-bottom small{font-size:12.5px;color:var(--ink-3)}
-
 /* ---------- Hero 窗口卡片 ---------- */
 .hero-shot{
   position:relative;
@@ -235,8 +218,11 @@ h1{
 .shot-head b{margin-left:8px;font-size:11px;color:var(--ink-3);font-weight:500}
 .hero-applist{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px}
 .hap{display:flex;flex-direction:column;text-align:left;padding:18px 16px;border:1px solid var(--line);border-radius:12px;background:var(--win-2);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.hap>span{font-size:30px;line-height:1}
-.hap b{font-size:13.5px;font-weight:600;margin-top:10px}
+.hap b{font-size:13.5px;font-weight:600}
+.hap-ico{display:grid;place-items:center;width:38px;height:38px;margin-bottom:10px}
+.hap-ico>*{grid-area:1/1}
+.hap-ico b{font-size:16px;color:var(--accent);font-weight:700}
+.hap-ico img{width:38px;height:38px;padding:6px;background:var(--card-2);border-radius:10px;object-fit:contain}
 .hap i{font-size:11px;color:var(--ink-3);font-style:normal}
 .hap:hover{transform:translateY(-3px);border-color:var(--accent-2);box-shadow:var(--shadow-lg)}
 .shot-chip{
@@ -253,28 +239,6 @@ h1{
 }
 .shot-chip strong{display:block;font-size:14px;color:var(--accent)}
 
-/* ---------- 走马灯丝带 ---------- */
-.ribbon{
-  background:var(--win-2);
-  border:1px solid var(--line);
-  overflow:hidden;
-  border-radius:12px;
-  margin:0 0 8px;
-}
-.ribbon-track{display:flex;width:max-content;animation:ribbon 32s linear infinite}
-.ribbon-group{
-  display:flex;
-  align-items:center;
-  gap:48px;
-  padding:14px 48px 14px 0;
-  white-space:nowrap;
-  font-size:14px;
-  font-weight:600;
-  color:var(--ink-2);
-}
-.ribbon b{font-size:22px;color:var(--accent);font-weight:400}
-@keyframes ribbon{to{transform:translateX(-50%)}}
-
 /* ---------- 面板（窗口卡片通用） ---------- */
 .panel{
   background:var(--card);
@@ -285,9 +249,9 @@ h1{
   position:relative;
   box-shadow:var(--shadow);
 }
-.panel-head{display:flex;align-items:flex-start;gap:18px}
+.panel-head{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
 .panel-head .win-dots{margin-top:9px}
-.panel-head>div{flex:1}
+.panel-head>div{flex:1;min-width:200px}
 .section-kicker{
   font-size:12px;
   letter-spacing:2px;
@@ -298,7 +262,6 @@ h1{
 }
 .panel h2{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
 .panel p{color:var(--ink-2);font-size:13.5px;margin:0}
-.lab-symbol{font-size:52px;line-height:1;margin-right:10px;transform:rotate(-10deg);color:var(--accent)}
 
 /* ---------- 表单 ---------- */
 .formrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:18px;align-items:end;margin-top:30px}
@@ -346,7 +309,6 @@ select:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);
 .section{padding:84px 0}
 h2{font-size:32px;font-weight:800;letter-spacing:-.5px;line-height:1.4;margin:0 0 12px}
 .sectionhead{display:flex;justify-content:space-between;align-items:center;gap:22px;margin-bottom:26px}
-.heading-star{font-size:30px;color:var(--peach);margin-left:12px;display:inline-block;vertical-align:middle}
 .muted{color:var(--ink-3);font-size:13.5px;margin:8px 0 0}
 .meta{font-size:11.5px;color:var(--accent);letter-spacing:.5px}
 
@@ -424,34 +386,18 @@ h2{font-size:32px;font-weight:800;letter-spacing:-.5px;line-height:1.4;margin:0 
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:52px;
-  background:linear-gradient(135deg,#7b5ce8 0%,#9678f3 58%,#ad93fb 100%);
+  background:linear-gradient(135deg,#3f6ff0 0%,#6b8df6 58%,#8fa8fa 100%);
   color:#fff;
   border:none;
   border-radius:16px;
   padding:52px 48px;
   box-shadow:var(--shadow-lg);
 }
-[data-mode="dark"] .quiz{background:linear-gradient(135deg,#2b2547 0%,#372c5e 58%,#463a7a 100%);border:1px solid rgba(143,123,255,.28)}
-.quiz .section-kicker{color:#dcd2ff}
+[data-mode="dark"] .quiz{background:linear-gradient(135deg,#1e2b4d 0%,#273c6b 58%,#2e4680 100%);border:1px solid rgba(107,147,255,.28)}
+.quiz .section-kicker{color:#dbe7ff}
 .quiz h2{font-size:40px;line-height:1.3;margin:16px 0 18px;letter-spacing:-1px}
-.quiz-copy>p{font-size:14px;color:#e7defe;line-height:2.1}
-.quiz-copy>small{font-size:11px;color:#cfc4f5;display:block;margin-top:20px}
-.color-friends{display:flex;margin-top:22px}
-.color-friends span{
-  font-family:Arial,sans-serif;
-  font-weight:700;
-  font-size:34px;
-  line-height:1;
-  display:grid;
-  place-items:center;
-  width:58px;height:58px;
-  border-radius:15px;
-  color:#3d2f77;
-  background:#cfe3ff;
-  box-shadow:0 6px 16px rgba(43,26,120,.22);
-}
-.color-friends span:nth-child(2){background:var(--lemon);margin-left:-7px}
-.color-friends span:nth-child(3){background:var(--peach);margin-left:-7px}
+.quiz-copy>p{font-size:14px;color:#e3ecff;line-height:2.1}
+.quiz-copy>small{font-size:11px;color:#b8c9f0;display:block;margin-top:20px}
 #quizbox{
   align-self:center;
   background:var(--card);
@@ -526,13 +472,9 @@ footer{
 .footer-title{
   font-size:clamp(23px,3.4vw,38px);
   font-weight:800;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   padding-bottom:24px;
   letter-spacing:-.5px;
 }
-.footer-title>span{color:var(--lemon-2);font-size:46px;line-height:1}
 .footer-bottom{
   display:flex;
   justify-content:space-between;
@@ -591,14 +533,23 @@ footer{
 .search-clear:hover{border-color:var(--accent);color:var(--accent)}
 .no-hit{padding:22px;text-align:center;color:var(--ink-3);font-size:13px;margin:0}
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:26px}
-.site{display:flex;align-items:center;gap:13px;padding:14px 15px;border:1px solid var(--line);border-radius:13px;background:var(--card);box-shadow:var(--shadow);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.site{display:flex;align-items:center;gap:13px;padding:14px 15px;border:1px solid var(--line);border-radius:13px;background:var(--card);box-shadow:var(--shadow);position:relative;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .site:hover{transform:translateY(-3px);border-color:var(--accent-2);box-shadow:var(--shadow-lg)}
-.site-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:11px;background:var(--accent-soft);font-size:22px;flex:none}
+.site-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:11px;background:var(--accent-soft);flex:none}
+.site-icon>*{grid-area:1/1}
+.site-icon b{font-size:16px;font-weight:700;color:var(--accent)}
+.site-icon img{width:34px;height:34px;padding:4px;background:var(--card-2);border-radius:9px;object-fit:contain}
 .site-text{flex:1;min-width:0}
 .site-name{display:block;font-size:13.5px;font-weight:600;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .site-desc{display:block;font-size:11px;color:var(--ink-3);font-style:normal;line-height:1.5;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .site-go{margin-left:auto;color:var(--ink-3);font-size:14px;flex:none}
 .site:hover .site-go{color:var(--accent)}
+.catbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cchip{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);font-size:12.5px;font-weight:500}
+.cchip:hover{border-color:var(--accent-2);color:var(--ink)}
+.cchip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.site-hot{position:absolute;top:-7px;right:-6px;background:var(--accent);color:#fff;font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px;box-shadow:var(--shadow)}
+.site-badge{display:inline-block;font-style:normal;font-size:10px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:2px}
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:26px}
 .toolbar .tabs{margin:0}
 
@@ -636,20 +587,15 @@ footer{
   .hero-shot{max-width:520px}
   .shot-chip{margin:0 12px 12px}
   .hap{padding:14px}
-  .hap>span{font-size:26px}
-  .ribbon-group{gap:32px;padding:12px 32px 12px 0;font-size:12.5px}
-  .ribbon b{font-size:18px}
   .panel{padding:26px 20px;margin-top:40px}
   .panel h2{font-size:25px}
   .panel p{font-size:12.5px}
-  .lab-symbol{font-size:44px;margin-right:0}
   .formrow{grid-template-columns:1fr;gap:16px}
   .formrow select{font-size:13px;padding:14px}
   .formrow .primary{grid-column:auto;max-width:none;justify-self:stretch;margin:3px 0;padding:15px}
   .section{padding:56px 0}
   .sectionhead{align-items:start;flex-direction:column;gap:16px}
   .sectionhead h2{font-size:26px}
-  .heading-star{font-size:26px;margin-left:8px}
   .sectionhead .secondary{font-size:11px;padding:11px 15px}
   .tabs{display:flex;width:100%;overflow-x:auto}
   .tab{font-size:11px;padding:8px 13px;white-space:nowrap}
@@ -661,7 +607,6 @@ footer{
   .save{font-size:11px}
   .quiz{grid-template-columns:1fr;gap:28px;padding:30px 24px}
   .quiz h2{font-size:34px}
-  .color-friends span{width:54px;height:54px;font-size:30px}
   #quizbox{padding:24px}
   .quizopts button{font-size:13px;padding:15px 14px}
   .products{grid-template-columns:1fr;gap:16px}
@@ -669,7 +614,6 @@ footer{
   .product p{font-size:13.5px}
   .products-note{font-size:10.5px}
   .footer-title{font-size:23px;padding-bottom:22px}
-  .footer-title>span{font-size:36px}
   footer{padding:28px 22px 22px}
   .footer-bottom{flex-wrap:wrap;gap:15px}
   .footer-bottom>span{order:3;flex-basis:100%}
@@ -693,7 +637,6 @@ footer{
   .hero-actions{gap:12px}
   .hero-actions .primary{font-size:12px}
   .sectionhead h2{font-size:24px}
-  .heading-star{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

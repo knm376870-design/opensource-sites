@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="粉彩手绘插画：太阳下的快乐桌面，有耳机、咖啡杯与盆栽">
   <!-- 背景 -->
-  <rect width="800" height="800" fill="#f2edfd"/>
+  <rect width="800" height="800" fill="#eef3fd"/>
   <!-- 太阳与光晕环 -->
-  <circle cx="628" cy="132" r="126" fill="none" stroke="#e0d6f4" stroke-width="2" opacity=".7"/>
-  <circle cx="628" cy="132" r="104" fill="none" stroke="#e0d6f4" stroke-width="2"/>
+  <circle cx="628" cy="132" r="126" fill="none" stroke="#dae4f8" stroke-width="2" opacity=".7"/>
+  <circle cx="628" cy="132" r="104" fill="none" stroke="#dae4f8" stroke-width="2"/>
   <circle cx="628" cy="132" r="86" fill="#f6ec8a"/>
   <!-- 漂浮星芒 -->
   <g transform="translate(150 140) scale(.48) rotate(15)">
     <path d="M0 -50L9 -15L38 -38L15 -9L50 0L15 9L38 38L9 15L0 50L-9 15L-38 38L-15 9L-50 0L-15 -9L-38 -38L-9 -15Z" fill="#ffb48c"/>
   </g>
   <g transform="translate(320 86) scale(.34) rotate(-10)">
-    <path d="M0 -50L9 -15L38 -38L15 -9L50 0L15 9L38 38L9 15L0 50L-9 15L-38 38L-15 9L-50 0L-15 -9L-38 -38L-9 -15Z" fill="#9a7cf4"/>
+    <path d="M0 -50L9 -15L38 -38L15 -9L50 0L15 9L38 38L9 15L0 50L-9 15L-38 38L-15 9L-50 0L-15 -9L-38 -38L-9 -15Z" fill="#6b8df6"/>
   </g>
   <g transform="translate(500 108) scale(.26) rotate(20)">
     <path d="M0 -50L9 -15L38 -38L15 -9L50 0L15 9L38 38L9 15L0 50L-9 15L-38 38L-15 9L-50 0L-15 -9L-38 -38L-9 -15Z" fill="#e8d95f"/>
@@ -23,31 +23,31 @@
   <rect x="0" y="570" width="800" height="230" fill="#ffe9dc"/>
   <rect x="0" y="570" width="800" height="18" fill="#ffddc6"/>
   <!-- 地面投影 -->
-  <ellipse cx="400" cy="586" rx="170" ry="16" fill="#8b6adf" opacity=".13"/>
-  <ellipse cx="250" cy="584" rx="70" ry="12" fill="#8b6adf" opacity=".13"/>
-  <ellipse cx="664" cy="602" rx="64" ry="11" fill="#8b6adf" opacity=".13"/>
+  <ellipse cx="400" cy="586" rx="170" ry="16" fill="#5f7fd9" opacity=".13"/>
+  <ellipse cx="250" cy="584" rx="70" ry="12" fill="#5f7fd9" opacity=".13"/>
+  <ellipse cx="664" cy="602" rx="64" ry="11" fill="#5f7fd9" opacity=".13"/>
   <!-- 耳机 -->
-  <path d="M250 436C250 306 550 306 550 436" stroke="#565071" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <path d="M250 436C250 306 550 306 550 436" stroke="#4a5878" stroke-width="30" fill="none" stroke-linecap="round"/>
   <rect x="205" y="424" width="95" height="148" rx="36" fill="#cfd9ff"/>
-  <rect x="226" y="446" width="53" height="104" rx="20" fill="#f6f2ff"/>
+  <rect x="226" y="446" width="53" height="104" rx="20" fill="#f2f6ff"/>
   <rect x="500" y="424" width="95" height="148" rx="36" fill="#cfd9ff"/>
-  <rect x="521" y="446" width="53" height="104" rx="20" fill="#f6f2ff"/>
+  <rect x="521" y="446" width="53" height="104" rx="20" fill="#f2f6ff"/>
   <!-- 音符弧线 -->
-  <path d="M552 330q16 -12 32 0" stroke="#7b5ce8" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/>
-  <path d="M598 312q16 -12 32 0" stroke="#7b5ce8" stroke-width="7" fill="none" stroke-linecap="round" opacity=".45"/>
+  <path d="M552 330q16 -12 32 0" stroke="#3f6ff0" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/>
+  <path d="M598 312q16 -12 32 0" stroke="#3f6ff0" stroke-width="7" fill="none" stroke-linecap="round" opacity=".45"/>
   <!-- 咖啡杯 -->
   <g transform="translate(190 466) rotate(-5)">
-    <path d="M40 2q-10 -18 4 -34" stroke="#b9a6e8" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <path d="M62 -4q12 -20 -2 -38" stroke="#b9a6e8" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <path d="M82 0q-10 -14 6 -26" stroke="#b9a6e8" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M40 2q-10 -18 4 -34" stroke="#a4b8ef" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M62 -4q12 -20 -2 -38" stroke="#a4b8ef" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M82 0q-10 -14 6 -26" stroke="#a4b8ef" stroke-width="8" fill="none" stroke-linecap="round"/>
     <ellipse cx="60" cy="8" rx="46" ry="16" fill="#fff8ea"/>
     <ellipse cx="60" cy="9" rx="32" ry="10" fill="#a97c50"/>
-    <path d="M106 34q36 4 32 46q-3 34 -30 38" fill="none" stroke="#cdb6ff" stroke-width="14" stroke-linecap="round"/>
-    <rect x="14" y="8" width="92" height="104" rx="20" fill="#cdb6ff"/>
-    <circle cx="42" cy="62" r="5" fill="#6b5bd6"/>
-    <circle cx="78" cy="62" r="5" fill="#6b5bd6"/>
-    <path d="M46 82q14 15 28 0" stroke="#6b5bd6" stroke-width="5" fill="none" stroke-linecap="round"/>
-    <ellipse cx="60" cy="112" rx="58" ry="14" fill="#dcc9ff"/>
+    <path d="M106 34q36 4 32 46q-3 34 -30 38" fill="none" stroke="#b8c8ff" stroke-width="14" stroke-linecap="round"/>
+    <rect x="14" y="8" width="92" height="104" rx="20" fill="#b8c8ff"/>
+    <circle cx="42" cy="62" r="5" fill="#4f6fd6"/>
+    <circle cx="78" cy="62" r="5" fill="#4f6fd6"/>
+    <path d="M46 82q14 15 28 0" stroke="#4f6fd6" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="112" rx="58" ry="14" fill="#ccd9ff"/>
   </g>
   <!-- 盆栽 -->
   <g transform="translate(610 496) rotate(3)">

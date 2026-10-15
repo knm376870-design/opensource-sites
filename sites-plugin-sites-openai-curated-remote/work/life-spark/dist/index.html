@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#7b5ce8">
+<meta name="theme-color" content="#3f6ff0">
 <meta name="description" content="把无聊玩出花：按你的时间和心情，抽一张生活灵感卡。趣味测试、实用清单、收藏与分享。">
 <title>生活灵感实验室 · 把无聊玩出花</title>
 <script>try{var m=localStorage.getItem('sparkMode')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.mode=m}catch(e){document.documentElement.dataset.mode='light'}</script>
@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="生活灵感实验室 · 把无聊玩出花">
 <meta name="twitter:description" content="选好时间和心情，抽一张马上能玩的生活灵感卡。">
 <meta name="twitter:image" content="og-image.jpg">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <div class="window">
@@ -51,46 +51,39 @@
       <button class="primary" id="start">抽我的今日灵感 <span aria-hidden="true">↗</span></button>
       <a class="text-link" href="#quiz">先测测我的颜色 <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="hero-bottom"><span class="mini-smile" aria-hidden="true">☺</span><small>不必做大事。今天，有一点开心就很好。</small></div>
   </div>
   <div class="hero-shot">
     <div class="shot-head" aria-hidden="true"><i></i><i></i><i></i><b>life.lab</b></div>
-    <div class="hero-applist">
-      <a class="hap" href="#nav-web"><span aria-hidden="true">🌐</span><b>好用网站</b><i>8 个入口</i></a>
-      <a class="hap" href="#nav-app"><span aria-hidden="true">📱</span><b>实用 App</b><i>8 个入口</i></a>
-      <a class="hap" href="#nav-tool"><span aria-hidden="true">🛠️</span><b>在线工具</b><i>8 个入口</i></a>
-      <a class="hap" href="#nav-media"><span aria-hidden="true">🎬</span><b>书影音</b><i>8 个入口</i></a>
-    </div>
-    <span class="shot-chip">32 个精选入口<strong>一键直达</strong></span>
+    <div class="hero-applist" id="heroApplist"></div>
+    <span class="shot-chip">40 个精选入口<strong>一键直达</strong></span>
   </div>
 </section>
-
-<div class="ribbon" aria-hidden="true">
-  <div class="ribbon-track">
-    <div class="ribbon-group"><span>走一条新路</span><b>✳</b><span>听一首好歌</span><b>✳</b><span>发现小快乐</span><b>✳</b><span>做点没做过的事</span><b>✳</b></div>
-    <div class="ribbon-group"><span>走一条新路</span><b>✳</b><span>听一首好歌</span><b>✳</b><span>发现小快乐</span><b>✳</b><span>做点没做过的事</span><b>✳</b></div>
-  </div>
-</div>
 
 <section class="panel search-panel" id="navs">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">生活导航</span><h2>搜一搜，找点好东西。</h2><p class="muted">收录好用网站、实用 App、在线工具与书影音入口，点磁贴直达。</p></div>
-    <span class="lab-symbol" aria-hidden="true">⌕</span>
+    <div><span class="section-kicker">生活导航</span><h2>搜一搜，找点好东西。</h2><p class="muted">收录 40 个精选条目：好用网站、实用 App、在线工具与书影音，点磁贴直达。</p></div>
+    <button class="secondary" id="randSite">随机逛一个 ↗</button>
   </div>
   <label class="searchbox">
     <span class="search-ic" aria-hidden="true">⌕</span>
     <input id="search" type="text" placeholder="试试搜：菜谱、播客、翻译、电影…" autocomplete="off" aria-label="搜索导航条目">
     <button id="searchClear" class="search-clear" type="button" hidden>✕</button>
   </label>
+  <div class="catbar" role="group" aria-label="分类快捷筛选">
+    <button class="cchip active" data-target="navs">全部</button>
+    <button class="cchip" data-target="nav-web">好用网站</button>
+    <button class="cchip" data-target="nav-app">实用 App</button>
+    <button class="cchip" data-target="nav-tool">在线工具</button>
+    <button class="cchip" data-target="nav-media">书影音</button>
+  </div>
   <p class="no-hit" id="noHit" hidden>没找到相关条目，换个词试试？</p>
 </section>
 
 <section class="panel nav-panel" id="nav-web">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">常逛的好地方</span><h2>好用网站 <span class="panel-count">8 个</span></h2><p>生活与学习常去的几个地方。</p></div>
-    <span class="lab-symbol" aria-hidden="true">🌐</span>
+    <div><span class="section-kicker">常逛的好地方</span><h2>好用网站 <span class="panel-count">10 个</span></h2><p>生活与学习常去的几个地方。</p></div>
   </div>
   <div class="tiles" id="tiles-web"></div>
 </section>
@@ -98,8 +91,7 @@
 <section class="panel nav-panel" id="nav-app">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">手机里的日常</span><h2>实用 App <span class="panel-count">8 个</span></h2><p>值得装的日常小应用，下载后慢慢用。</p></div>
-    <span class="lab-symbol" aria-hidden="true">📱</span>
+    <div><span class="section-kicker">手机里的日常</span><h2>实用 App <span class="panel-count">10 个</span></h2><p>值得装的日常小应用，下载后慢慢用。</p></div>
   </div>
   <div class="tiles" id="tiles-app"></div>
 </section>
@@ -107,8 +99,7 @@
 <section class="panel nav-panel" id="nav-tool">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">打开浏览器就能用</span><h2>在线工具 <span class="panel-count">8 个</span></h2><p>不用安装，收藏起来随时打开的效率工具。</p></div>
-    <span class="lab-symbol" aria-hidden="true">🛠️</span>
+    <div><span class="section-kicker">打开浏览器就能用</span><h2>在线工具 <span class="panel-count">10 个</span></h2><p>不用安装，收藏起来随时打开的效率工具。</p></div>
   </div>
   <div class="tiles" id="tiles-tool"></div>
 </section>
@@ -116,8 +107,7 @@
 <section class="panel nav-panel" id="nav-media">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">精神食粮入口</span><h2>书影音 <span class="panel-count">8 个</span></h2><p>找书、听歌、看片的入口，都在这里。</p></div>
-    <span class="lab-symbol" aria-hidden="true">🎬</span>
+    <div><span class="section-kicker">精神食粮入口</span><h2>书影音 <span class="panel-count">10 个</span></h2><p>找书、听歌、看片的入口，都在这里。</p></div>
   </div>
   <div class="tiles" id="tiles-media"></div>
 </section>
@@ -126,7 +116,6 @@
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
     <div><span class="section-kicker">你的灵感，现场开签</span><h2>今天想怎么玩？</h2><p>选好时间和心情，下一件有意思的事就在这里。</p></div>
-    <span class="lab-symbol" aria-hidden="true">↝</span>
   </div>
   <div class="formrow">
     <label><span>有多少空闲时间</span><select id="time"><option value="15">15 分钟，透口气</option><option value="60" selected>1 小时，换换心情</option><option value="120">半天，认真玩一下</option></select></label>
@@ -140,8 +129,7 @@
 <section class="panel" id="ideas">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">小事，也能很好玩</span><h2>灵感游乐场 <span class="heading-star" aria-hidden="true">✷</span></h2><p class="muted">挑一个有感觉的，给今天加点料。</p></div>
-    <span class="lab-symbol" aria-hidden="true">✳</span>
+    <div><span class="section-kicker">小事，也能很好玩</span><h2>灵感游乐场</h2><p class="muted">挑一个有感觉的，给今天加点料。</p></div>
   </div>
   <div class="toolbar">
     <div class="tabs" role="group" aria-label="灵感分类">
@@ -161,7 +149,6 @@
     <span class="section-kicker">三道题，发现另一个自己</span>
     <h2>你今天，<br>是哪种颜色？</h2>
     <p>安静的蓝，好奇的黄，还是快乐的绿？<br>每种心情，都有自己的玩法。</p>
-    <div class="color-friends" aria-hidden="true"><span>☺</span><span>☺</span><span>☺</span></div>
     <small>轻松小测试，仅供娱乐，没有标准答案。</small>
   </div>
   <div id="quizbox" aria-live="polite"></div>
@@ -181,14 +168,14 @@
 </section>
 
 <footer>
-  <div class="footer-title">日常，值得玩一下。<span aria-hidden="true">✳</span></div>
+  <div class="footer-title">日常，值得玩一下。</div>
   <div class="footer-bottom"><div class="footer-brand"><img src="assets/hero-illustration.svg" alt="粉彩手绘插画：太阳下的快乐桌面" width="52" height="52" loading="lazy"><strong>生活灵感实验室</strong></div><span>收藏仅保存在当前浏览器。</span><a href="#">回到顶部 ↑</a></div>
 </footer>
 
 </main>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="art.js?v=5"></script>
-<script src="app.js?v=6"></script>
+<script src="art.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

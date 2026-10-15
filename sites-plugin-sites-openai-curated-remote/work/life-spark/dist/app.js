@@ -11,38 +11,46 @@ const ideas=[
 ];
 
 const sites=[
-{cat:'web',name:'知乎',icon:'💬',desc:'问答社区，找生活经验',url:'https://www.zhihu.com'},
-{cat:'web',name:'少数派',icon:'💡',desc:'高效工作与品质生活',url:'https://sspai.com'},
-{cat:'web',name:'下厨房',icon:'🍳',desc:'家常菜谱与烘焙灵感',url:'https://www.xiachufang.com'},
-{cat:'web',name:'WikiHow 中文',icon:'📘',desc:'生活百科与实用技巧',url:'https://zh.wikihow.com'},
-{cat:'web',name:'中国大学 MOOC',icon:'🎓',desc:'名校免费公开课',url:'https://www.icourse163.org'},
-{cat:'web',name:'哔哩哔哩',icon:'📺',desc:'学习、兴趣与纪录片视频',url:'https://www.bilibili.com'},
-{cat:'web',name:'站酷',icon:'🎨',desc:'设计与创意灵感社区',url:'https://www.zcool.com.cn'},
-{cat:'web',name:'穷游网',icon:'✈️',desc:'旅行攻略与游记',url:'https://www.qyer.com'},
-{cat:'app',name:'小宇宙',icon:'🎙️',desc:'中文播客，通勤好伴侣',url:'https://www.xiaoyuzhoufm.com'},
-{cat:'app',name:'潮汐',icon:'🌊',desc:'睡眠、专注与冥想声音',url:'https://tide.fm'},
-{cat:'app',name:'多邻国',icon:'🦉',desc:'游戏化学外语，每天几分钟',url:'https://www.duolingo.com'},
-{cat:'app',name:'Keep',icon:'🏃',desc:'在家就能开始的训练',url:'https://keep.com'},
-{cat:'app',name:'幕布',icon:'🗂️',desc:'大纲式笔记与思维导图',url:'https://mubu.com'},
-{cat:'app',name:'形色',icon:'🌸',desc:'拍照识花，认识身边的植物',url:'https://www.xingseapp.com'},
-{cat:'app',name:'滴答清单',icon:'✅',desc:'待办清单与日程管理',url:'https://www.dida365.com'},
-{cat:'app',name:'白描',icon:'📄',desc:'图片文字识别与扫描',url:'https://baimiaoapp.com'},
-{cat:'tool',name:'Canva 可画',icon:'🖌️',desc:'海报与社媒图片设计',url:'https://www.canva.cn'},
-{cat:'tool',name:'DeepL',icon:'🌐',desc:'高质量机器翻译',url:'https://www.deepl.com'},
-{cat:'tool',name:'TinyPNG',icon:'🖼️',desc:'在线图片压缩',url:'https://tinypng.com'},
-{cat:'tool',name:'石墨文档',icon:'📝',desc:'在线协作文档与表格',url:'https://shimo.im'},
-{cat:'tool',name:'Photopea',icon:'🎭',desc:'浏览器里的免费 Photoshop',url:'https://www.photopea.com'},
-{cat:'tool',name:'Remove.bg',icon:'✂️',desc:'一键抠图去背景',url:'https://www.remove.bg'},
-{cat:'tool',name:'Convertio',icon:'🔄',desc:'文件格式在线转换',url:'https://convertio.co'},
-{cat:'tool',name:'草料二维码',icon:'🔳',desc:'二维码生成器',url:'https://cli.im'},
-{cat:'media',name:'豆瓣读书',icon:'📚',desc:'找书、评分与书评',url:'https://book.douban.com'},
-{cat:'media',name:'豆瓣电影',icon:'🎬',desc:'电影评分与影评',url:'https://movie.douban.com'},
-{cat:'media',name:'微信读书',icon:'📖',desc:'手机阅读与听书',url:'https://weread.qq.com'},
-{cat:'media',name:'网易云音乐',icon:'🎵',desc:'音乐与歌单',url:'https://music.163.com'},
-{cat:'media',name:'猫眼电影',icon:'🍿',desc:'电影资讯与购票',url:'https://www.maoyan.com'},
-{cat:'media',name:'喜马拉雅',icon:'📻',desc:'音频、播客与有声书',url:'https://www.ximalaya.com'},
-{cat:'media',name:'得到',icon:'🎧',desc:'知识课程与听书',url:'https://www.dedao.cn'},
-{cat:'media',name:'QQ 音乐',icon:'🎼',desc:'在线音乐与歌单',url:'https://y.qq.com'}
+{cat:'web',key:'zhihu',name:'知乎',desc:'问答社区，找生活经验',url:'https://www.zhihu.com',ico:'zhihu.png'},
+{cat:'web',key:'sspai',name:'少数派',desc:'高效工作与品质生活',url:'https://sspai.com',ico:'sspai.png',tag:'推荐'},
+{cat:'web',key:'xiachufang',name:'下厨房',desc:'家常菜谱与烘焙灵感',url:'https://www.xiachufang.com',ico:'xiachufang.png'},
+{cat:'web',key:'wikihow',name:'WikiHow 中文',desc:'生活百科与实用技巧',url:'https://zh.wikihow.com',ico:'wikihow.png'},
+{cat:'web',key:'icourse',name:'中国大学 MOOC',desc:'名校免费公开课',url:'https://www.icourse163.org',ico:'icourse.png'},
+{cat:'web',key:'bilibili',name:'哔哩哔哩',desc:'学习、兴趣与纪录片视频',url:'https://www.bilibili.com',ico:'bilibili.png',tag:'推荐'},
+{cat:'web',key:'zcool',name:'站酷',desc:'设计与创意灵感社区',url:'https://www.zcool.com.cn',ico:'zcool.png'},
+{cat:'web',key:'qyer',name:'穷游网',desc:'旅行攻略与游记',url:'https://www.qyer.com',ico:'qyer.png'},
+{cat:'web',key:'guokr',name:'果壳',desc:'科学趣闻与生活科普',url:'https://www.guokr.com',ico:'guokr.png'},
+{cat:'web',key:'qdaily',name:'好奇心日报',desc:'商业与文化新鲜事',url:'https://www.qdaily.com',ico:'qdaily.png'},
+{cat:'app',key:'xiaoyuzhou',name:'小宇宙',desc:'中文播客，通勤好伴侣',url:'https://www.xiaoyuzhoufm.com',ico:'xiaoyuzhou.png',tag:'推荐'},
+{cat:'app',key:'tide',name:'潮汐',desc:'睡眠、专注与冥想声音',url:'https://tide.fm',ico:'tide.png'},
+{cat:'app',key:'duolingo',name:'多邻国',desc:'游戏化学外语，每天几分钟',url:'https://www.duolingo.com',ico:'duolingo.png'},
+{cat:'app',key:'keep',name:'Keep',desc:'在家就能开始的训练',url:'https://keep.com',ico:'keep.png',tag:'推荐'},
+{cat:'app',key:'mubu',name:'幕布',desc:'大纲式笔记与思维导图',url:'https://mubu.com',ico:'mubu.png'},
+{cat:'app',key:'xingse',name:'形色',desc:'拍照识花，认识身边的植物',url:'https://www.xingseapp.com',ico:'xingse.png'},
+{cat:'app',key:'dida',name:'滴答清单',desc:'待办清单与日程管理',url:'https://www.dida365.com',ico:'dida.png'},
+{cat:'app',key:'baimiao',name:'白描',desc:'图片文字识别与扫描',url:'https://baimiaoapp.com',ico:'baimiao.png'},
+{cat:'app',key:'feishu',name:'飞书',desc:'在线文档与协作办公',url:'https://www.feishu.cn',ico:'feishu.png'},
+{cat:'app',key:'boohee',name:'薄荷健康',desc:'饮食记录与健康管理',url:'https://www.boohee.com',ico:'boohee.png'},
+{cat:'tool',key:'canva',name:'Canva 可画',desc:'海报与社媒图片设计',url:'https://www.canva.cn',ico:'canva.png',tag:'推荐'},
+{cat:'tool',key:'deepl',name:'DeepL',desc:'高质量机器翻译',url:'https://www.deepl.com',ico:'deepl.png'},
+{cat:'tool',key:'tinypng',name:'TinyPNG',desc:'在线图片压缩',url:'https://tinypng.com',ico:'tinypng.png',tag:'推荐'},
+{cat:'tool',key:'shimo',name:'石墨文档',desc:'在线协作文档与表格',url:'https://shimo.im',ico:'shimo.png'},
+{cat:'tool',key:'photopea',name:'Photopea',desc:'浏览器里的免费 Photoshop',url:'https://www.photopea.com',ico:'photopea.png'},
+{cat:'tool',key:'removebg',name:'Remove.bg',desc:'一键抠图去背景',url:'https://www.remove.bg',ico:'removebg.png'},
+{cat:'tool',key:'convertio',name:'Convertio',desc:'文件格式在线转换',url:'https://convertio.co',ico:'convertio.png'},
+{cat:'tool',key:'cliim',name:'草料二维码',desc:'二维码生成器',url:'https://cli.im',ico:'cliim.png'},
+{cat:'tool',key:'wenshushu',name:'文叔叔',desc:'大文件传输',url:'https://www.wenshushu.cn',ico:'wenshushu.png'},
+{cat:'tool',key:'xiezuocat',name:'秘塔写作猫',desc:'AI 写作助手',url:'https://xiezuocat.com',ico:'xiezuocat.png'},
+{cat:'media',key:'doubanbook',name:'豆瓣读书',desc:'找书、评分与书评',url:'https://book.douban.com',ico:'doubanbook.png',tag:'推荐'},
+{cat:'media',key:'doubanmovie',name:'豆瓣电影',desc:'电影评分与影评',url:'https://movie.douban.com',ico:'doubanmovie.png',tag:'推荐'},
+{cat:'media',key:'weread',name:'微信读书',desc:'手机阅读与听书',url:'https://weread.qq.com',ico:'weread.png'},
+{cat:'media',key:'music163',name:'网易云音乐',desc:'音乐与歌单',url:'https://music.163.com',ico:'music163.png'},
+{cat:'media',key:'maoyan',name:'猫眼电影',desc:'电影资讯与购票',url:'https://www.maoyan.com',ico:'maoyan.png'},
+{cat:'media',key:'ximalaya',name:'喜马拉雅',desc:'音频、播客与有声书',url:'https://www.ximalaya.com',ico:'ximalaya.png'},
+{cat:'media',key:'dedao',name:'得到',desc:'知识课程与听书',url:'https://www.dedao.cn',ico:'dedao.png'},
+{cat:'media',key:'yqq',name:'QQ 音乐',desc:'在线音乐与歌单',url:'https://y.qq.com',ico:'yqq.png'},
+{cat:'media',key:'doubanmusic',name:'豆瓣音乐',desc:'音乐人、乐评与唱片',url:'https://music.douban.com',ico:'doubanmusic.png'},
+{cat:'media',key:'woducao',name:'网易蜗牛读书',desc:'每天免费读一小时',url:'https://du.163.com',ico:'woducao.png'}
 ];
 
 let saved=[];
@@ -109,7 +117,7 @@ function download(i){
   c.width=1080;c.height=1350;
   const x=c.getContext('2d');
   x.fillStyle='#faf8f3';x.fillRect(0,0,1080,1350);
-  x.fillStyle='#7b5ce8';x.fillRect(0,0,1080,120);
+  x.fillStyle='#3f6ff0';x.fillRect(0,0,1080,120);
   x.fillStyle='#fff';x.font='bold 40px sans-serif';x.fillText('生活灵感实验室',90,80);
   x.fillStyle='#26222e';x.font='bold 44px sans-serif';x.fillText(i.title,90,205);
   const finish=()=>{
@@ -126,7 +134,7 @@ function download(i){
   };
   const img=new Image();
   img.onload=()=>{
-    x.fillStyle='#f1edfc';x.fillRect(90,250,900,520);
+    x.fillStyle='#eef3ff';x.fillRect(90,250,900,520);
     x.drawImage(img,100,260,880,500);
     finish();
   };
@@ -193,7 +201,12 @@ function quiz(){
 }
 
 const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media']};
-const siteTile=s=>`<a class="site" href="${s.url}" target="_blank" rel="noopener"><span class="site-icon" aria-hidden="true">${s.icon}</span><span class="site-text"><b class="site-name">${s.name}</b><i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a>`;
+const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
+const hotCount=s=>hotMap[s.key]||0;
+const siteTile=s=>{
+  const c=hotCount(s);
+  return `<a class="site${c>=2?' hot':''}" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}"><span class="site-icon"><b>${s.name[0]}</b><img src="assets/favicons/${s.ico}" alt="" loading="lazy" onerror="this.remove()"></span>${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a>`;
+};
 
 function renderSites(q){
   q=(q||'').trim().toLowerCase();
@@ -208,9 +221,46 @@ function renderSites(q){
   $('#noHit').hidden=total>0;
 }
 
+function renderHeroCats(){
+  $('#heroApplist').innerHTML=[['web','好用网站','#nav-web'],['app','实用 App','#nav-app'],['tool','在线工具','#nav-tool'],['media','书影音','#nav-media']].map(([c,n,h])=>{
+    const s=sites.find(x=>x.cat===c);
+    return `<a class="hap" href="${h}"><span class="hap-ico"><b>${n[0]}</b><img src="assets/favicons/${s.ico}" alt="" onerror="this.remove()"></span><b>${n}</b><i>${sites.filter(x=>x.cat===c).length} 个入口</i></a>`;
+  }).join('');
+}
+
+function hot(s){hotMap[s.key]=(hotMap[s.key]||0)+1;try{localStorage.setItem('sparkHot',JSON.stringify(hotMap))}catch{}}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-site]');
+  if(t){
+    const s=sites.find(x=>x.key===t.dataset.site);
+    if(s){
+      hot(s);
+      if(hotCount(s)>=2){
+        t.classList.add('hot');
+        if(!t.querySelector('.site-hot'))t.querySelector('.site-icon').insertAdjacentHTML('afterend','<span class="site-hot">常逛</span>');
+      }
+    }
+  }
+});
+
 renderSites();
+renderHeroCats();
 $('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;renderSites(v)};
 $('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
+$('#randSite').onclick=()=>{
+  const s=sites[Math.floor(Math.random()*sites.length)];
+  hot(s);
+  toast('正在打开：'+s.name);
+  window.open(s.url,'_blank','noopener');
+};
+document.querySelectorAll('.cchip').forEach(b=>b.onclick=()=>{document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth'})});
+const spy=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(!en.isIntersecting)return;
+    document.querySelectorAll('.cchip').forEach(b=>b.classList.toggle('active',b.dataset.target===en.target.id));
+  });
+},{rootMargin:'-35% 0px -55% 0px'});
+['navs','nav-web','nav-app','nav-tool','nav-media'].forEach(id=>spy.observe(document.getElementById(id)));
 
 render();
 quiz();
