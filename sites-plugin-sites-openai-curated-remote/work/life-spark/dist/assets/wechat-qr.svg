@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+<rect width="300" height="300" rx="18" fill="#ffffff"/>
+<g fill="#1c2027">
+<path d="M36 36h84v84H36zm12 12v60h60V48z"/>
+<rect x="60" y="60" width="36" height="36"/>
+<path d="M180 36h84v84h-84zm12 12v60h60V48z"/>
+<rect x="204" y="60" width="36" height="36"/>
+<path d="M36 180h84v84H36zm12 12v60h60V192z"/>
+<rect x="60" y="204" width="36" height="36"/>
+</g>
+<g fill="#3f6ff0">
+<rect x="138" y="42" width="10" height="10"/><rect x="162" y="42" width="10" height="10"/><rect x="138" y="66" width="10" height="10"/><rect x="162" y="66" width="10" height="10"/><rect x="138" y="90" width="10" height="10"/><rect x="162" y="114" width="10" height="10"/><rect x="234" y="42" width="10" height="10"/><rect x="258" y="42" width="10" height="10"/><rect x="234" y="66" width="10" height="10"/><rect x="258" y="90" width="10" height="10"/><rect x="234" y="114" width="10" height="10"/><rect x="258" y="114" width="10" height="10"/>
+<rect x="42" y="138" width="10" height="10"/><rect x="66" y="138" width="10" height="10"/><rect x="90" y="162" width="10" height="10"/><rect x="114" y="138" width="10" height="10"/><rect x="42" y="162" width="10" height="10"/><rect x="66" y="186" width="10" height="10"/><rect x="114" y="186" width="10" height="10"/><rect x="42" y="210" width="10" height="10"/><rect x="90" y="210" width="10" height="10"/><rect x="138" y="138" width="10" height="10"/><rect x="162" y="162" width="10" height="10"/><rect x="138" y="186" width="10" height="10"/><rect x="162" y="210" width="10" height="10"/><rect x="114" y="234" width="10" height="10"/><rect x="42" y="258" width="10" height="10"/><rect x="66" y="258" width="10" height="10"/><rect x="90" y="234" width="10" height="10"/><rect x="114" y="258" width="10" height="10"/><rect x="138" y="234" width="10" height="10"/><rect x="162" y="258" width="10" height="10"/>
+<rect x="186" y="138" width="10" height="10"/><rect x="210" y="138" width="10" height="10"/><rect x="234" y="162" width="10" height="10"/><rect x="258" y="162" width="10" height="10"/><rect x="186" y="162" width="10" height="10"/><rect x="210" y="186" width="10" height="10"/><rect x="234" y="186" width="10" height="10"/><rect x="258" y="210" width="10" height="10"/><rect x="186" y="210" width="10" height="10"/><rect x="210" y="234" width="10" height="10"/><rect x="234" y="234" width="10" height="10"/><rect x="258" y="258" width="10" height="10"/><rect x="186" y="258" width="10" height="10"/><rect x="210" y="258" width="10" height="10"/>
+</g>
+<text x="150" y="288" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#8b93a1">公众号二维码 · 占位</text>
+</svg>

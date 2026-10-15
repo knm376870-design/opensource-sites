@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="生活灵感实验室 · 把无聊玩出花">
 <meta name="twitter:description" content="选好时间和心情，抽一张马上能玩的生活灵感卡。">
 <meta name="twitter:image" content="og-image.jpg">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 <div class="window">
@@ -64,6 +64,18 @@
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
     <div><span class="section-kicker">生活导航</span><h2>搜一搜，找点好东西。</h2><p class="muted">收录 70 个精选条目：好用网站、实用 App、在线工具、书影音、购物省钱、国民应用与 AI 助手，点磁贴直达。</p></div>
     <button class="secondary" id="randSite">随机逛一个 ↗</button>
+  </div>
+  <form class="searchbox supersearch" id="superForm" autocomplete="off">
+    <span class="search-ic" aria-hidden="true">⌕</span>
+    <input id="superQ" type="text" placeholder="全网搜索：百度 / 必应 / 搜狗 / 小红书 / 知乎…" aria-label="全网搜索关键词">
+    <button class="super-go" type="submit">搜全网 ↗</button>
+  </form>
+  <div class="engine" role="group" aria-label="选择搜索引擎">
+    <button class="engine-chip active" type="button" data-engine="baidu">百度</button>
+    <button class="engine-chip" type="button" data-engine="bing">必应</button>
+    <button class="engine-chip" type="button" data-engine="sogou">搜狗</button>
+    <button class="engine-chip" type="button" data-engine="xiaohongshu">小红书</button>
+    <button class="engine-chip" type="button" data-engine="zhihu">知乎</button>
   </div>
   <label class="searchbox">
     <span class="search-ic" aria-hidden="true">⌕</span>
@@ -121,6 +133,33 @@
     <div><span class="section-kicker">买前先逛这里</span><h2>购物省钱 <span class="panel-count">10 个</span></h2><p>国民电商与折扣入口，比价、领券再下单。</p></div>
   </div>
   <div class="tiles" id="tiles-shop"></div>
+</section>
+
+<section class="panel nav-panel" id="nav-save">
+  <div class="panel-head">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div><span class="section-kicker">买前先领券</span><h2>省钱专区</h2><p class="muted">从官方入口进店，比价、领券再下单；专属联盟优惠持续接入中。</p></div>
+  </div>
+  <div class="save-cards">
+    <!-- 变现绑定点 1：淘宝客。拿到 PID 后把下面 href 换成联盟推广链接（替换 __TBK_PID__） -->
+    <a class="save-card" href="https://www.taobao.com/" target="_blank" rel="noopener">
+      <span class="save-ico"><b>淘</b><img src="assets/favicons/taobao.png" alt="" loading="lazy" onerror="this.remove()"></span>
+      <span class="save-text"><b>淘宝省钱</b><i>淘宝官方首页</i></span>
+      <em class="save-badge">联盟筹备中</em>
+    </a>
+    <!-- 变现绑定点 2：京东联盟。拿到推广位后把下面 href 换成联盟推广链接（替换 __TBK_PID__） -->
+    <a class="save-card" href="https://www.jd.com/" target="_blank" rel="noopener">
+      <span class="save-ico"><b>京</b><img src="assets/favicons/jd.png" alt="" loading="lazy" onerror="this.remove()"></span>
+      <span class="save-text"><b>京东好券</b><i>京东官方首页</i></span>
+      <em class="save-badge">联盟筹备中</em>
+    </a>
+    <!-- 变现绑定点 3：美团联盟 / 外卖红包。拿到推广链接后把下面 href 换掉（替换 __TBK_PID__） -->
+    <a class="save-card" href="https://www.meituan.com/" target="_blank" rel="noopener">
+      <span class="save-ico"><b>团</b><img src="assets/favicons/meituan.png" alt="" loading="lazy" onerror="this.remove()"></span>
+      <span class="save-text"><b>外卖红包</b><i>美团官方首页</i></span>
+      <em class="save-badge">联盟筹备中</em>
+    </a>
+  </div>
 </section>
 
 <section class="panel nav-panel" id="nav-core">
@@ -196,6 +235,7 @@
 
 <footer>
   <div class="footer-title">日常，值得玩一下。</div>
+  <div class="footer-links"><a href="about.html">关于我们</a><a href="friends.html">友情链接</a><a href="submit.html">提交收录</a><a href="ad.html">广告合作</a></div>
   <div class="footer-bottom"><div class="footer-brand"><img src="assets/hero-illustration.svg" alt="粉彩手绘插画：太阳下的快乐桌面" width="52" height="52" loading="lazy"><strong>生活灵感实验室</strong></div><span>收藏仅保存在当前浏览器。</span><a href="#">回到顶部 ↑</a></div>
 </footer>
 
@@ -203,6 +243,6 @@
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="art.js?v=6"></script>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#3f6ff0">
+<meta name="description" content="关于生活灵感实验室：把无聊玩出花，一个纯静态的生活灵感导航站。">
+<title>关于我们 · 生活灵感实验室</title>
+<script>try{var m=localStorage.getItem('sparkMode')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.mode=m}catch(e){document.documentElement.dataset.mode='light'}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<link rel="stylesheet" href="style.css?v=11">
+</head>
+<body>
+<div class="window">
+
+<nav>
+  <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  <a class="brand" href="index.html"><span aria-hidden="true">✳</span><div>生活灵感<br><b>实验室</b></div></a>
+  <div class="links"><a href="index.html#navs">生活导航</a><a href="index.html#ideas">灵感游乐场</a><a href="index.html#quiz">测测我的颜色</a></div>
+  <div class="nav-right">
+    <button id="modeToggle" class="mode-toggle" aria-label="切换明暗模式">
+      <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 13.6A8.4 8.4 0 0 1 10.4 3.8a8.4 8.4 0 1 0 9.8 9.8Z"/></svg>
+    </button>
+    <a class="nav-go" href="index.html#planner">开始玩 <span aria-hidden="true">↗</span></a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="page-head">
+  <a class="back-link" href="index.html">← 回到首页</a>
+  <h1 class="page-title">关于我们</h1>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div><span class="section-kicker">生活灵感实验室</span><h2>把无聊，玩出花。</h2><p class="muted">一个纯静态的生活灵感导航站：生活导航、灵感卡、趣味测试。没有账号、没有跟踪，收藏只存在你自己的浏览器里。</p></div>
+  </div>
+  <div class="qr-cards">
+    <div class="qr-card">
+      <!-- 变现绑定点：替换 assets/wechat-qr.svg 为真实公众号二维码 PNG（__OWNER_WECHAT_QR__） -->
+      <img src="assets/wechat-qr.svg" alt="微信公众号二维码占位图" width="150" height="150" loading="lazy">
+      <b>公众号 · 生活灵感实验室</b>
+      <p>更多灵感与更新，扫码关注。</p>
+    </div>
+    <div class="qr-card">
+      <!-- 变现绑定点：替换 assets/alipay-qr.svg 为真实赞赏收款码 PNG（__OWNER_WECHAT_QR__） -->
+      <img src="assets/alipay-qr.svg" alt="赞赏码占位图" width="150" height="150" loading="lazy">
+      <b>请我喝杯咖啡 ☕</b>
+      <p>如果这个站点帮到了你，欢迎赞赏支持。</p>
+    </div>
+  </div>
+  <p class="notice">二维码为占位图，正式版会替换为真实公众号与收款码。</p>
+</section>
+
+<footer>
+  <div class="footer-title">日常，值得玩一下。</div>
+  <div class="footer-links"><a href="about.html">关于我们</a><a href="friends.html">友情链接</a><a href="submit.html">提交收录</a><a href="ad.html">广告合作</a></div>
+  <div class="footer-bottom"><div class="footer-brand"><img src="assets/hero-illustration.svg" alt="粉彩手绘插画：太阳下的快乐桌面" width="52" height="52" loading="lazy"><strong>生活灵感实验室</strong></div><span>收藏仅保存在当前浏览器。</span><a href="#">回到顶部 ↑</a></div>
+</footer>
+
+</main>
+</div>
+<script>document.getElementById('modeToggle').onclick=function(){var d=document.documentElement.dataset.mode,m=d==='dark'?'light':'dark';document.documentElement.dataset.mode=m;try{localStorage.setItem('sparkMode',m)}catch(e){}};</script>
+</body>
+</html>

@@ -277,6 +277,10 @@ renderSites();
 renderHeroCats();
 $('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;renderSites(v)};
 $('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
+const ENGINES={baidu:'https://www.baidu.com/s?wd=',bing:'https://cn.bing.com/search?q=',sogou:'https://www.sogou.com/web?query=',xiaohongshu:'https://www.xiaohongshu.com/search_result?keyword=',zhihu:'https://www.zhihu.com/search?type=content&q='};
+let curEngine='baidu';
+document.querySelectorAll('.engine-chip').forEach(b=>b.onclick=()=>{curEngine=b.dataset.engine;document.querySelectorAll('.engine-chip').forEach(x=>x.classList.toggle('active',x===b))});
+$('#superForm').onsubmit=e=>{e.preventDefault();const q=$('#superQ').value.trim();if(!q)return;window.open(ENGINES[curEngine]+encodeURIComponent(q),'_blank','noopener')};
 $('#randSite').onclick=()=>{
   const s=sites[Math.floor(Math.random()*sites.length)];
   hot(s);
