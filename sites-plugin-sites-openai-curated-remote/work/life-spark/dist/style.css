@@ -1047,3 +1047,35 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 .study-desk{order:-2}
 .hero{order:-1}
 @media(max-width:760px){.search-panel{padding-top:46px}}
+
+/* ---------- v18 俄语夜航 ---------- */
+[data-mode="dark"]{
+  --bg:#09121c;
+  --win:#0d1722;
+  --win-2:#111d2a;
+  --card:#142231;
+  --card-2:#182838;
+  --line:#263748;
+  --line-2:#3a5065;
+  --ink:#eef4f9;
+  --ink-2:#b7c4d1;
+  --ink-3:#8291a1;
+  --accent:#94bde2;
+  --accent-2:#b8d7f1;
+  --accent-soft:rgba(148,189,226,.12);
+  --ru-red:#ef6b78;
+  --glass:rgba(13,23,34,.94);
+  --glass-2:rgba(20,34,49,.96);
+}
+[data-mode="dark"] body{background:#09121c}
+[data-mode="dark"] nav{background:rgba(13,23,34,.94)}
+[data-mode="dark"] nav::after{content:"";position:absolute;left:50%;bottom:-1px;width:26px;height:2px;background:var(--ru-red);transform:translateX(-50%)}
+[data-mode="dark"] .search-panel{border-bottom-color:var(--line-2)}
+[data-mode="dark"] .searchbox,[data-mode="dark"] .supersearch{color:var(--ink)}
+[data-mode="dark"] .engine-chip.active,[data-mode="dark"] .cchip.active,[data-mode="dark"] .supersearch .super-go{background:var(--accent);color:#09121c}
+[data-mode="dark"] .catbar{background:#101b28;border-color:var(--line)}
+[data-mode="dark"] .site:hover{background:#111f2d}
+[data-mode="dark"] .site-icon,[data-mode="dark"] .hap-ico{background:#142231}
+[data-mode="dark"] .site-icon img,[data-mode="dark"] .hap-ico img{background:#eef3f7}
+[data-mode="dark"] .study-phrase{border-left-color:var(--ru-red)}
+[data-mode="dark"] ::selection{background:rgba(148,189,226,.24)}
