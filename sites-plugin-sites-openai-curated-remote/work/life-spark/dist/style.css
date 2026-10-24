@@ -1079,3 +1079,6 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 [data-mode="dark"] .site-icon img,[data-mode="dark"] .hap-ico img{background:#eef3f7}
 [data-mode="dark"] .study-phrase{border-left-color:var(--ru-red)}
 [data-mode="dark"] ::selection{background:rgba(148,189,226,.24)}
+
+/* ---------- v19 俄语求职 ---------- */
+.job-safety{margin:24px 0 0;padding:16px 18px;border-left:2px solid var(--ru-red);background:var(--win-2);color:var(--ink-3);font-size:11.5px;line-height:1.75}

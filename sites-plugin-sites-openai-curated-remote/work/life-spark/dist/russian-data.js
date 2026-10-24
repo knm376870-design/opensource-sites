@@ -90,5 +90,26 @@ window.RUSSIAN_SITES=[
   {cat:'app',key:'bab-la',name:'bab.la',desc:'俄英词典、例句、短语和动词变位',url:'https://en.bab.la/dictionary/russian-english'},
   {cat:'app',key:'tatoeba',name:'Tatoeba',desc:'用大量社区双语句子查看真实表达',url:'https://tatoeba.org/en/'},
   {cat:'app',key:'verbix',name:'Verbix 俄语变位',desc:'输入俄语动词查看完整人称与时态变化',url:'https://www.verbix.com/russian/'},
-  {cat:'app',key:'cooljugator',name:'Cooljugator',desc:'俄语动词变位表、重音和例句',url:'https://cooljugator.com/ru'}
+  {cat:'app',key:'cooljugator',name:'Cooljugator',desc:'俄语动词变位表、重音和例句',url:'https://cooljugator.com/ru'},
+
+  {cat:'job',key:'boss-russian',name:'BOSS直聘 · 俄语',desc:'搜索国内俄语翻译、外贸、运营与海外市场岗位',url:'https://www.zhipin.com/web/geek/job?query=%E4%BF%84%E8%AF%AD',tag:'中国招聘'},
+  {cat:'job',key:'liepin-russian',name:'猎聘 · 俄语职位',desc:'面向有经验人才的俄语、外贸与国际业务岗位',url:'https://www.liepin.com/zpeyu/',tag:'中国招聘'},
+  {cat:'job',key:'zhaopin-russian',name:'智联招聘 · 俄语',desc:'查找俄语翻译、教师、跨境电商和驻外岗位',url:'https://sou.zhaopin.com/?kw=%E4%BF%84%E8%AF%AD',tag:'中国招聘'},
+  {cat:'job',key:'51job',name:'前程无忧',desc:'用“俄语、俄罗斯、独联体”等关键词搜索国内职位',url:'https://www.51job.com/'},
+  {cat:'job',key:'iguopin',name:'国聘',desc:'查询国企、央企和公共部门的俄语及国际业务岗位',url:'https://www.iguopin.com/'},
+  {cat:'job',key:'hh-ru',name:'HeadHunter · hh.ru',desc:'俄罗斯大型招聘平台，可按城市、行业和语言筛选',url:'https://hh.ru/search/vacancy?text=%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9',tag:'俄罗斯招聘'},
+  {cat:'job',key:'trudvsem',name:'Работа России',desc:'俄罗斯官方就业与人才服务平台',url:'https://trudvsem.ru/',tag:'官方平台'},
+  {cat:'job',key:'superjob',name:'SuperJob',desc:'俄罗斯综合招聘、薪资信息与职业服务',url:'https://www.superjob.ru/'},
+  {cat:'job',key:'rabota-ru',name:'Работа.ру',desc:'俄罗斯全职、兼职与服务行业职位搜索',url:'https://www.rabota.ru/'},
+  {cat:'job',key:'avito-jobs',name:'Avito Работа',desc:'俄罗斯本地岗位、兼职和区域招聘信息',url:'https://www.avito.ru/rossiya/vakansii'},
+  {cat:'job',key:'habr-career',name:'Хабр Карьера',desc:'俄罗斯技术、产品、设计与远程数字岗位',url:'https://career.habr.com/vacancies'},
+  {cat:'job',key:'profi-ru',name:'Профи',desc:'在俄罗斯寻找家教、翻译和各类专业服务订单',url:'https://profi.ru/'},
+  {cat:'job',key:'gorodrabot',name:'ГородРабот',desc:'聚合俄罗斯各地区职位并提供薪资趋势参考',url:'https://gorodrabot.ru/'},
+  {cat:'job',key:'linkedin-jobs',name:'LinkedIn Jobs',desc:'搜索 Russian、CIS、localization 与国际业务职位',url:'https://www.linkedin.com/jobs/search/?keywords=Russian',tag:'国际职位'},
+  {cat:'job',key:'indeed-russian',name:'Indeed · Russian',desc:'搜索全球需要俄语能力的现场与远程职位',url:'https://www.indeed.com/jobs?q=russian'},
+  {cat:'job',key:'jooble-ru',name:'Jooble Россия',desc:'聚合俄罗斯与远程职位，可按地区和关键词筛选',url:'https://ru.jooble.org/'},
+  {cat:'job',key:'proz-jobs',name:'ProZ.com Jobs',desc:'翻译、口译、字幕和本地化专业项目市场',url:'https://www.proz.com/language-jobs/',tag:'翻译接单'},
+  {cat:'job',key:'upwork-russian',name:'Upwork · Russian',desc:'查找俄语翻译、配音、研究与本地化远程项目',url:'https://www.upwork.com/freelance-jobs/translation-english-russian/',tag:'远程自由职业'},
+  {cat:'job',key:'translatorscafe',name:'TranslatorsCafe',desc:'翻译行业职位板、语言服务商目录和术语交流',url:'https://www.translatorscafe.com/cafe/JobBoard.asp'},
+  {cat:'job',key:'smartcat-marketplace',name:'Smartcat Marketplace',desc:'翻译与本地化人才市场，可展示技能并承接项目',url:'https://www.smartcat.com/marketplace/'}
 ];
