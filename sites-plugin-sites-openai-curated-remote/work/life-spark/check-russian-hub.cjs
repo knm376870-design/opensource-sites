@@ -19,9 +19,13 @@ assert(html.includes('russian-data.js?v=1')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=15')&&css.includes('v13 俄语星球'),'expect premium layout with v15 resource icons');
+assert(html.includes('style.css?v=16')&&css.includes('v13 俄语星球'),'expect premium layout with v16 growth features');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
 assert(app.includes('www.google.com/s2/favicons')&&app.includes("siteIcon(s,'hap-ico')")&&css.includes('v15 资源品牌图标'),'expect branded icons with resilient fallbacks');
+assert(html.includes('manifest.webmanifest')&&html.includes('rel="canonical"')&&html.includes('application/ld+json'),'expect PWA and search metadata');
+assert(html.includes('id="sharePhrase"')&&html.includes('id="studyStreak"')&&app.includes('navigator.share')&&app.includes('russianStudyHistory'),'expect shareable daily study streak');
+assert(app.includes("serviceWorker.register('./sw.js')"),'expect offline service worker registration');
+for(const file of ['manifest.webmanifest','sw.js','robots.txt','sitemap.xml','pwa-192.png','pwa-512.png'])assert(fs.existsSync('dist/'+file),file);
 for(const file of ['assets/pangyi/icon-128.png','assets/pangyi/candidate-window.png'])assert(fs.existsSync('dist/'+file),file);
 console.log('Passed: Russian hub identity, 85 HTTPS resources including 25 dictionaries, legal-resource disclosure, Pangyi prominence, original tools and accessibility hooks.');

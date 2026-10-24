@@ -3,26 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#3f6ff0">
+<meta name="theme-color" content="#173653">
 <meta name="description" content="面向中文用户的俄语学习与国际交流平台：课程、词典、听力、语伴、社交软件、公开资料和学习工具。">
+<meta name="keywords" content="俄语学习,俄语词典,俄语翻译,俄语入门,俄语资源,找语伴,旁译输入法">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/">
 <title>俄语星球 · 学俄语，也认识更大的世界</title>
 <script>try{var m=localStorage.getItem('sparkMode')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.mode=m}catch(e){document.documentElement.dataset.mode='light'}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="俄语星球">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="俄语星球">
 <meta property="og:title" content="俄语星球 · 学俄语，也认识更大的世界">
 <meta property="og:description" content="精选俄语课程、词典翻译、语言交流、全球社交、公开资料与学习工具。">
-<meta property="og:image" content="og-image.jpg">
+<meta property="og:url" content="https://knm376870-design.github.io/opensource-sites/">
+<meta property="og:image" content="https://knm376870-design.github.io/opensource-sites/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="俄语星球 · 学俄语，也认识更大的世界">
 <meta name="twitter:description" content="从第一句 Привет，到找到真正聊得来的朋友。">
-<meta name="twitter:image" content="og-image.jpg">
-<link rel="stylesheet" href="style.css?v=15">
+<meta name="twitter:image" content="https://knm376870-design.github.io/opensource-sites/og-image.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"俄语星球","url":"https://knm376870-design.github.io/opensource-sites/","description":"面向中文用户的俄语学习与国际交流平台","inLanguage":"zh-CN","publisher":{"@type":"Organization","name":"俄语星球"}}</script>
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 <div class="window">
@@ -49,6 +58,7 @@
     <p class="intro">从第一句 Привет，到真正听懂、开口、交朋友。<br>课程、词典、语伴和工具，都替你整理在这里。</p>
     <div class="hero-actions">
       <button class="primary" id="start">浏览俄语资源 <span aria-hidden="true">↗</span></button>
+      <button class="secondary install-app" id="installApp" type="button" hidden>安装到设备</button>
       <a class="text-link" href="#pangyi">认识旁译输入法 <span aria-hidden="true">↗</span></a>
     </div>
   </div>
@@ -127,13 +137,14 @@
     <p class="phrase-note" id="phraseNote">适合提醒自己：语言学习不需要一次完成很多。</p>
     <div class="study-actions">
       <button class="secondary" id="speakPhrase" type="button">听俄语发音</button>
+      <button class="secondary" id="sharePhrase" type="button">分享今日俄语</button>
       <button class="text-button" id="nextPhrase" type="button">换一句</button>
     </div>
   </div>
   <div class="study-plan">
     <div class="study-plan-head">
       <div><span class="section-kicker">每天 20 分钟</span><h3>今天完成这四件小事</h3></div>
-      <strong id="studyProgress">0 / 4</strong>
+      <div class="study-stats"><strong id="studyStreak">连续 0 天</strong><strong id="studyProgress">0 / 4</strong></div>
     </div>
     <span class="study-meter" aria-hidden="true"><i id="studyMeter"></i></span>
     <div class="study-tasks" role="group" aria-label="今日俄语学习任务">

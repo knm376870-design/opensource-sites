@@ -318,17 +318,34 @@ const DAILY_PHRASES=[
 const studyNow=new Date();
 const studyDay=[studyNow.getFullYear(),String(studyNow.getMonth()+1).padStart(2,'0'),String(studyNow.getDate()).padStart(2,'0')].join('-');
 const studyKey='russianStudy:'+studyDay;
+const studyHistoryKey='russianStudyHistory';
 let phraseOffset=0;
 let studyDone=[];
+let studyHistory=[];
 try{studyDone=JSON.parse(localStorage.getItem(studyKey)||'[]');if(!Array.isArray(studyDone))studyDone=[]}catch{}
+try{studyHistory=JSON.parse(localStorage.getItem(studyHistoryKey)||'[]');if(!Array.isArray(studyHistory))studyHistory=[]}catch{}
+const localDay=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+function studyStreak(){
+  const done=new Set(studyHistory);
+  const cursor=new Date();
+  if(!done.has(localDay(cursor)))cursor.setDate(cursor.getDate()-1);
+  let count=0;
+  while(done.has(localDay(cursor))){count++;cursor.setDate(cursor.getDate()-1)}
+  return count;
+}
 function renderPhrase(){
   const base=Math.floor(new Date(studyDay+'T00:00:00Z').getTime()/86400000);
   const p=DAILY_PHRASES[(base+phraseOffset)%DAILY_PHRASES.length];
   $('#study-title').textContent=p.ru;$('#phraseZh').textContent=p.zh;$('#phraseNote').textContent=p.note;
 }
 function renderStudy(){
+  if(studyDone.length===4&&!studyHistory.includes(studyDay)){
+    studyHistory=[...studyHistory,studyDay].slice(-366);
+    try{localStorage.setItem(studyHistoryKey,JSON.stringify(studyHistory))}catch{}
+  }
   document.querySelectorAll('[data-study-task]').forEach(b=>{const on=studyDone.includes(b.dataset.studyTask);b.classList.toggle('done',on);b.setAttribute('aria-pressed',on)});
   $('#studyProgress').textContent=`${studyDone.length} / 4`;
+  $('#studyStreak').textContent=`连续 ${studyStreak()} 天`;
   $('#studyMeter').style.width=(studyDone.length*25)+'%';
   $('#studySaved').textContent=studyDone.length===4?'今天的学习完成了。做得很好，明天再继续。':'完成情况只保存在当前浏览器。';
 }
@@ -341,6 +358,26 @@ $('#speakPhrase').onclick=()=>{
   if(!('speechSynthesis' in window)){toast('当前浏览器不支持语音朗读');return}
   window.speechSynthesis.cancel();const u=new window.SpeechSynthesisUtterance($('#study-title').textContent);u.lang='ru-RU';u.rate=.82;window.speechSynthesis.speak(u);
 };
+$('#sharePhrase').onclick=async()=>{
+  const ru=$('#study-title').textContent;
+  const zh=$('#phraseZh').textContent;
+  const text=`今日俄语：${ru}\n${zh}\n\n和我一起在俄语星球每天学一点。`;
+  const url='https://knm376870-design.github.io/opensource-sites/#study-desk';
+  try{
+    if(navigator.share){await navigator.share({title:'俄语星球 · 今日俄语',text,url});return}
+    await navigator.clipboard.writeText(`${text}\n${url}`);toast('今日俄语已复制，可以分享给朋友');
+  }catch(e){if(e.name!=='AbortError')window.prompt('复制下面的内容分享给朋友',`${text}\n${url}`)}
+};
+
+let installPrompt;
+const installButton=$('#installApp');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;installButton.hidden=false});
+installButton.onclick=async()=>{
+  if(!installPrompt)return;
+  installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.hidden=true;
+};
+window.addEventListener('appinstalled',()=>{installButton.hidden=true;toast('俄语星球已安装到设备')});
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 
 render();
 quiz();
