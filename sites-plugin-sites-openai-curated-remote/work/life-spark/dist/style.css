@@ -1040,3 +1040,10 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 .study-stats strong{font:400 18px/1 Georgia,serif;color:var(--ru-red)}
 .study-stats #studyStreak{padding-right:16px;border-right:1px solid var(--line);font:600 11px/1.2 system-ui,sans-serif;color:var(--ink-2)}
 @media(max-width:460px){.study-plan-head{align-items:flex-start;flex-direction:column}.study-stats{width:100%;justify-content:space-between}.study-actions{gap:10px}.study-actions .secondary{padding:9px 12px}}
+
+/* ---------- v17 资源库优先首页 ---------- */
+.wrap{display:flex;flex-direction:column}
+.search-panel{order:-3;margin-top:0}
+.study-desk{order:-2}
+.hero{order:-1}
+@media(max-width:760px){.search-panel{padding-top:46px}}
