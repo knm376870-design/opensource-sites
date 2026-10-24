@@ -111,5 +111,22 @@ window.RUSSIAN_SITES=[
   {cat:'job',key:'proz-jobs',name:'ProZ.com Jobs',desc:'翻译、口译、字幕和本地化专业项目市场',url:'https://www.proz.com/language-jobs/',tag:'翻译接单'},
   {cat:'job',key:'upwork-russian',name:'Upwork · Russian',desc:'查找俄语翻译、配音、研究与本地化远程项目',url:'https://www.upwork.com/freelance-jobs/translation-english-russian/',tag:'远程自由职业'},
   {cat:'job',key:'translatorscafe',name:'TranslatorsCafe',desc:'翻译行业职位板、语言服务商目录和术语交流',url:'https://www.translatorscafe.com/cafe/JobBoard.asp'},
-  {cat:'job',key:'smartcat-marketplace',name:'Smartcat Marketplace',desc:'翻译与本地化人才市场，可展示技能并承接项目',url:'https://www.smartcat.com/marketplace/'}
+  {cat:'job',key:'smartcat-marketplace',name:'Smartcat Marketplace',desc:'翻译与本地化人才市场，可展示技能并承接项目',url:'https://www.smartcat.com/marketplace/'},
+
+  {cat:'parttime',key:'yandex-smena',name:'Яндекс Смена',desc:'按地点、时间和班次寻找零售、仓储等临时工作',url:'https://smena.yandex.ru/',tag:'灵活班次'},
+  {cat:'parttime',key:'mygig',name:'MyGig',desc:'选择附近短期班次，覆盖商店、仓库、餐饮和活动执行',url:'https://mygig.ru/',tag:'灵活班次'},
+  {cat:'parttime',key:'qugo',name:'Qugo',desc:'面向自由执行者的短期任务、电子合同和平台结算',url:'https://qugo.ru/'},
+  {cat:'parttime',key:'platforma-work',name:'Платформа',desc:'查找零售、物流、生产与清洁类灵活班次',url:'https://platforma.work/'},
+  {cat:'parttime',key:'youdo',name:'YouDo',desc:'承接家教、翻译、设计、跑腿和生活服务类任务',url:'https://youdo.com/',tag:'任务接单'},
+  {cat:'parttime',key:'kwork',name:'Kwork',desc:'出售翻译、写作、设计和数字服务，按项目远程接单',url:'https://kwork.ru/',tag:'线上兼职'},
+  {cat:'parttime',key:'flru',name:'FL.ru',desc:'俄语自由职业项目、比赛与远程兼职职位',url:'https://www.fl.ru/'},
+  {cat:'parttime',key:'workzilla',name:'Workzilla',desc:'适合入门者的小型线上任务、文案、数据和翻译项目',url:'https://work-zilla.com/'},
+  {cat:'parttime',key:'freelance-ru',name:'Freelance.ru',desc:'设计、开发、文字、翻译与远程项目市场',url:'https://freelance.ru/'},
+  {cat:'parttime',key:'etxt',name:'eTXT',desc:'俄语写作、校对、翻译、内容编辑与文本类订单',url:'https://www.etxt.ru/'},
+  {cat:'parttime',key:'pomogatel',name:'Помогатель',desc:'寻找家教、陪护、助理和家庭服务类兼职',url:'https://pomogatel.ru/',tag:'家教服务'},
+  {cat:'parttime',key:'dostavista-courier',name:'Достависта',desc:'自行选择时间和路线的同城配送兼职',url:'https://couriers.dostavista.ru/',tag:'配送兼职'},
+  {cat:'parttime',key:'yandex-pro',name:'Яндекс Про',desc:'查看配送、出行及本地服务合作机会与城市条件',url:'https://pro.yandex.ru/'},
+  {cat:'parttime',key:'futuretoday',name:'FutureToday',desc:'面向大学生和毕业生的实习、管培生与校园招聘',url:'https://fut.ru/',tag:'学生实习'},
+  {cat:'parttime',key:'changellenge',name:'Changellenge',desc:'实习、商业案例赛、职业活动和青年人才项目',url:'https://changellenge.com/'},
+  {cat:'parttime',key:'hh-parttime',name:'HeadHunter · Подработка',desc:'直接浏览兼职、小时工、周末和灵活排班职位',url:'https://hh.ru/vacancies/podrabotka'}
 ];

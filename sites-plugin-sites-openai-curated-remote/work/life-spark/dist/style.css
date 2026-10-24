@@ -1082,3 +1082,11 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 
 /* ---------- v19 俄语求职 ---------- */
 .job-safety{margin:24px 0 0;padding:16px 18px;border-left:2px solid var(--ru-red);background:var(--win-2);color:var(--ink-3);font-size:11.5px;line-height:1.75}
+
+/* ---------- v20 留学生兼职 ---------- */
+.parttime-rules{margin-top:28px;padding:22px 24px;border:1px solid var(--line);border-left:3px solid var(--accent);background:var(--win-2)}
+.parttime-rules strong{display:block;margin-bottom:7px;font-size:13px;color:var(--ink)}
+.parttime-rules p{max-width:940px;margin:0;color:var(--ink-2);font-size:12px;line-height:1.8}
+.parttime-rules a{display:inline-block;margin-top:10px;border-bottom:1px solid var(--accent);color:var(--accent);font-size:11.5px}
+.parttime-rules small{display:block;margin-top:12px;color:var(--ru-red);font-size:10.5px;line-height:1.7}
+@media(max-width:760px){.parttime-rules{padding:18px}}

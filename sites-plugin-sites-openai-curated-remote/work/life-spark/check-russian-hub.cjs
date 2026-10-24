@@ -6,20 +6,20 @@ const data=fs.readFileSync('dist/russian-data.js','utf8');
 const box={window:{}};vm.createContext(box);vm.runInContext(data,box);
 const sites=box.window.RUSSIAN_SITES;
 assert(Array.isArray(sites),'resource data must be an array');
-assert.equal(sites.length,105,'expect 105 curated resources');
-for(const cat of ['web','app','tool','media','job','shop','core','ai']){
-  assert.equal(sites.filter(x=>x.cat===cat).length,cat==='app'?25:cat==='job'?20:10,cat+' resource count');
+assert.equal(sites.length,121,'expect 121 curated resources');
+for(const cat of ['web','app','tool','media','job','parttime','shop','core','ai']){
+  assert.equal(sites.filter(x=>x.cat===cat).length,cat==='app'?25:cat==='job'?20:cat==='parttime'?16:10,cat+' resource count');
 }
 assert.equal(new Set(sites.map(x=>x.key)).size,sites.length,'resource keys must be unique');
 assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS');
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
 assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
-assert(html.includes('russian-data.js?v=2')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=9'),'resource data must load before app');
-for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
+assert(html.includes('russian-data.js?v=3')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=9'),'resource data must load before app');
+for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=19')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=20')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -30,4 +30,5 @@ assert(app.includes("serviceWorker.register('./sw.js')"),'expect offline service
 for(const file of ['manifest.webmanifest','sw.js','robots.txt','sitemap.xml','pwa-192.png','pwa-512.png'])assert(fs.existsSync('dist/'+file),file);
 for(const file of ['assets/pangyi/icon-128.png','assets/pangyi/candidate-window.png'])assert(fs.existsSync('dist/'+file),file);
 assert(sites.filter(x=>x.cat==='job').every(x=>x.url.startsWith('https://'))&&html.includes('核验招聘方身份'),'expect safe HTTPS employment resources');
-console.log('Passed: Russian hub identity, 105 HTTPS resources including 25 dictionaries and 20 employment links, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');
+assert(sites.filter(x=>x.cat==='parttime').length===16&&html.includes('studyinrussia.ru/en/education')&&html.includes('免工作许可'),'expect student part-time resources with official eligibility guidance');
+console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');
