@@ -4,39 +4,39 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#3f6ff0">
-<meta name="description" content="把无聊玩出花：按你的时间和心情，抽一张生活灵感卡。趣味测试、实用清单、收藏与分享。">
-<title>生活灵感实验室 · 把无聊玩出花</title>
+<meta name="description" content="面向中文用户的俄语学习与国际交流平台：课程、词典、听力、语伴、社交软件、公开资料和学习工具。">
+<title>俄语星球 · 学俄语，也认识更大的世界</title>
 <script>try{var m=localStorage.getItem('sparkMode')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.mode=m}catch(e){document.documentElement.dataset.mode='light'}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="生活灵感实验室">
-<meta property="og:title" content="生活灵感实验室 · 把无聊玩出花">
-<meta property="og:description" content="选好时间和心情，抽一张马上能玩的生活灵感卡。趣味测试、行动清单、收藏与分享。">
+<meta property="og:site_name" content="俄语星球">
+<meta property="og:title" content="俄语星球 · 学俄语，也认识更大的世界">
+<meta property="og:description" content="精选俄语课程、词典翻译、语言交流、全球社交、公开资料与学习工具。">
 <meta property="og:image" content="og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="生活灵感实验室 · 把无聊玩出花">
-<meta name="twitter:description" content="选好时间和心情，抽一张马上能玩的生活灵感卡。">
+<meta name="twitter:title" content="俄语星球 · 学俄语，也认识更大的世界">
+<meta name="twitter:description" content="从第一句 Привет，到找到真正聊得来的朋友。">
 <meta name="twitter:image" content="og-image.jpg">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 <div class="window">
 
 <nav>
   <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-  <a class="brand" href="#"><span aria-hidden="true">✳</span><div>生活灵感<br><b>实验室</b></div></a>
-  <div class="links"><a href="#navs">生活导航</a><a href="#ideas">灵感游乐场</a><a href="#quiz">测测我的颜色</a><a href="#ideas" id="savedLink">我的收藏 <b id="count">0</b></a></div>
+  <a class="brand" href="#"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
+  <div class="links"><a href="#navs">资源库</a><a class="pangyi-nav" href="#pangyi"><i aria-hidden="true"></i>旁译</a><a href="#study-desk">今日学习</a><a href="#nav-media">找语伴</a><a href="#ideas" id="savedLink">我的收藏 <b id="count">0</b></a></div>
   <div class="nav-right">
     <button id="modeToggle" class="mode-toggle" aria-label="切换明暗模式">
       <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-width="1.8" stroke-linecap="round"/></svg>
       <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 13.6A8.4 8.4 0 0 1 10.4 3.8a8.4 8.4 0 1 0 9.8 9.8Z"/></svg>
     </button>
-    <a class="nav-go" href="#planner">开始玩 <span aria-hidden="true">↗</span></a>
+    <a class="nav-go" href="#navs">开始学习 <span aria-hidden="true">↗</span></a>
   </div>
 </nav>
 
@@ -44,61 +44,112 @@
 
 <section class="hero">
   <div class="hero-copy">
-    <span class="tag"><i></i>今天也值得，好好玩一下</span>
-    <h1>把无聊，<br><span class="outlined">玩出花。</span></h1>
-    <p class="intro">日常不缺好玩的事，只差一点新想法。<br>给我们一个心情，抽一张马上能玩的生活灵感卡。</p>
+    <span class="tag"><i></i>Для тех, кто учит русский</span>
+    <h1>学俄语，<br><span class="outlined">去交流。</span></h1>
+    <p class="intro">从第一句 Привет，到真正听懂、开口、交朋友。<br>课程、词典、语伴和工具，都替你整理在这里。</p>
     <div class="hero-actions">
-      <button class="primary" id="start">抽我的今日灵感 <span aria-hidden="true">↗</span></button>
-      <a class="text-link" href="#quiz">先测测我的颜色 <span aria-hidden="true">↗</span></a>
+      <button class="primary" id="start">浏览俄语资源 <span aria-hidden="true">↗</span></button>
+      <a class="text-link" href="#pangyi">认识旁译输入法 <span aria-hidden="true">↗</span></a>
     </div>
   </div>
   <div class="hero-shot">
-    <div class="shot-head" aria-hidden="true"><i></i><i></i><i></i><b>life.lab</b></div>
+    <div class="shot-head" aria-hidden="true"><i></i><i></i><i></i><b>russian.world</b></div>
     <div class="hero-applist" id="heroApplist"></div>
-    <span class="shot-chip">70 个精选入口<strong>一键直达</strong></span>
+    <span class="shot-chip">85 个精选入口<strong>持续维护</strong></span>
   </div>
+</section>
+
+<section class="pangyi-feature" id="pangyi" aria-labelledby="pangyi-title">
+  <div class="pangyi-copy">
+    <div class="pangyi-brandline">
+      <img src="assets/pangyi/icon-128.png" alt="" width="52" height="52" loading="lazy">
+      <div><span>本站作者的开源作品</span><strong>旁译 Pangyi</strong></div>
+    </div>
+    <h2 id="pangyi-title">敲拼音，<br>顺手看懂俄语。</h2>
+    <p>旁译是一款面向中俄语言学习者的 Windows 输入法。中文候选旁直接显示俄语释义，把查词融进聊天、写作和每一次输入。</p>
+    <ul class="pangyi-points" aria-label="旁译特点">
+      <li>免费开源</li><li>完全离线</li><li>无广告</li><li>Windows 10 / 11</li>
+    </ul>
+    <div class="pangyi-actions">
+      <a class="primary" href="https://github.com/knm376870-design/pangyi" target="_blank" rel="noopener">了解并下载 <span aria-hidden="true">↗</span></a>
+      <span>当前版本 v4.16.0</span>
+    </div>
+  </div>
+  <figure class="pangyi-preview">
+    <div class="pangyi-previewbar"><span></span><span></span><span></span><b>真实候选窗</b></div>
+    <img src="assets/pangyi/candidate-window.png" alt="旁译输入 pengyou 时，中文候选词旁显示俄语释义" width="644" height="134" loading="lazy">
+    <figcaption><code>pengyou</code><span aria-hidden="true">→</span><b>朋友</b><span>друг, друзья</span></figcaption>
+  </figure>
 </section>
 
 <section class="panel search-panel" id="navs">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">生活导航</span><h2>搜一搜，找点好东西。</h2><p class="muted">收录 70 个精选条目：好用网站、实用 App、在线工具、书影音、购物省钱、国民应用与 AI 助手，点磁贴直达。</p></div>
-    <button class="secondary" id="randSite">随机逛一个 ↗</button>
+    <div><span class="section-kicker">俄语资源库</span><h2>按目标，找到真正有用的入口。</h2><p class="muted">收录 85 个经过筛选的课程、词典、听力、语伴、社交平台、公开资料与学习工具。</p></div>
+    <button class="secondary" id="randSite">随机发现一个 ↗</button>
   </div>
   <form class="searchbox supersearch" id="superForm" autocomplete="off">
     <span class="search-ic" aria-hidden="true">⌕</span>
-    <input id="superQ" type="text" placeholder="全网搜索：百度 / 必应 / 搜狗 / 小红书 / 知乎…" aria-label="全网搜索关键词">
+    <input id="superQ" type="text" placeholder="搜索俄语词汇、语法问题、课程或文化主题…" aria-label="全网搜索关键词">
     <button class="super-go" type="submit">搜全网 ↗</button>
   </form>
   <div class="engine" role="group" aria-label="选择搜索引擎">
     <button class="engine-chip active" type="button" data-engine="baidu">百度</button>
     <button class="engine-chip" type="button" data-engine="bing">必应</button>
-    <button class="engine-chip" type="button" data-engine="sogou">搜狗</button>
-    <button class="engine-chip" type="button" data-engine="xiaohongshu">小红书</button>
-    <button class="engine-chip" type="button" data-engine="zhihu">知乎</button>
+    <button class="engine-chip" type="button" data-engine="yandex">Yandex</button>
+    <button class="engine-chip" type="button" data-engine="google">Google</button>
+    <button class="engine-chip" type="button" data-engine="youtube">YouTube</button>
   </div>
   <label class="searchbox">
     <span class="search-ic" aria-hidden="true">⌕</span>
-    <input id="search" type="text" placeholder="试试搜：菜谱、外卖、AI、电影…" autocomplete="off" aria-label="搜索导航条目">
+    <input id="search" type="text" placeholder="筛选本站资源：词典、听力、语伴、网盘、输入法…" autocomplete="off" aria-label="搜索导航条目">
     <button id="searchClear" class="search-clear" type="button" hidden>✕</button>
   </label>
   <div class="catbar" role="group" aria-label="分类快捷筛选">
     <button class="cchip active" data-target="navs">全部</button>
-    <button class="cchip" data-target="nav-web">好用网站</button>
-    <button class="cchip" data-target="nav-app">实用 App</button>
-    <button class="cchip" data-target="nav-tool">在线工具</button>
-    <button class="cchip" data-target="nav-media">书影音</button>
-    <button class="cchip" data-target="nav-shop">购物省钱</button>
-    <button class="cchip" data-target="nav-core">国民应用</button>
-    <button class="cchip" data-target="nav-ai">AI 助手</button>
+    <button class="cchip" data-target="nav-web">系统课程</button>
+    <button class="cchip" data-target="nav-app">词典翻译</button>
+    <button class="cchip" data-target="nav-tool">听说输入</button>
+    <button class="cchip" data-target="nav-media">语言交流</button>
+    <button class="cchip" data-target="nav-shop">全球社交</button>
+    <button class="cchip" data-target="nav-core">公开资料</button>
+    <button class="cchip" data-target="nav-ai">学习工具</button>
   </div>
   <p class="no-hit" id="noHit" hidden>没找到相关条目，换个词试试？</p>
+  <p class="resource-note">资源会持续更新。网盘入口仅用于管理自有或已获授权的资料；本站不收录盗版教材、破解软件和来源不明的分享链接。</p>
+</section>
+
+<section class="study-desk" id="study-desk" aria-labelledby="study-title">
+  <div class="study-phrase">
+    <span class="section-kicker">Сегодня · 今日俄语</span>
+    <h2 id="study-title" lang="ru">Маленький шаг — тоже движение.</h2>
+    <p id="phraseZh">一小步，也是在前进。</p>
+    <p class="phrase-note" id="phraseNote">适合提醒自己：语言学习不需要一次完成很多。</p>
+    <div class="study-actions">
+      <button class="secondary" id="speakPhrase" type="button">听俄语发音</button>
+      <button class="text-button" id="nextPhrase" type="button">换一句</button>
+    </div>
+  </div>
+  <div class="study-plan">
+    <div class="study-plan-head">
+      <div><span class="section-kicker">每天 20 分钟</span><h3>今天完成这四件小事</h3></div>
+      <strong id="studyProgress">0 / 4</strong>
+    </div>
+    <span class="study-meter" aria-hidden="true"><i id="studyMeter"></i></span>
+    <div class="study-tasks" role="group" aria-label="今日俄语学习任务">
+      <button type="button" data-study-task="words"><i></i><span><b>复习 10 个词</b><small>用词典或记忆卡快速过一遍</small></span></button>
+      <button type="button" data-study-task="listen"><i></i><span><b>听 5 分钟俄语</b><small>慢速播客、新闻或熟悉的视频</small></span></button>
+      <button type="button" data-study-task="speak"><i></i><span><b>开口跟读 3 句</b><small>不求完美，先让嘴巴熟悉声音</small></span></button>
+      <button type="button" data-study-task="note"><i></i><span><b>记下一句表达</b><small>写进自己的词汇本或笔记库</small></span></button>
+    </div>
+    <p class="study-saved" id="studySaved">完成情况只保存在当前浏览器。</p>
+  </div>
 </section>
 
 <section class="panel nav-panel" id="nav-web">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">常逛的好地方</span><h2>好用网站 <span class="panel-count">10 个</span></h2><p>生活与学习常去的几个地方。</p></div>
+    <div><span class="section-kicker">从零开始或系统进阶</span><h2>系统课程 <span class="panel-count">10 个</span></h2><p>中文课程、俄罗斯官方平台与国际学习产品。</p></div>
   </div>
   <div class="tiles" id="tiles-web"></div>
 </section>
@@ -106,7 +157,7 @@
 <section class="panel nav-panel" id="nav-app">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">手机里的日常</span><h2>实用 App <span class="panel-count">10 个</span></h2><p>值得装的日常小应用，下载后慢慢用。</p></div>
+    <div><span class="section-kicker">查词，更要看真实用法</span><h2>词典与翻译 <span class="panel-count">25 个</span></h2><p>覆盖中俄互译、俄语释义、专业术语、例句、重音、变位与母语发音。</p></div>
   </div>
   <div class="tiles" id="tiles-app"></div>
 </section>
@@ -114,7 +165,7 @@
 <section class="panel nav-panel" id="nav-tool">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">打开浏览器就能用</span><h2>在线工具 <span class="panel-count">10 个</span></h2><p>不用安装，收藏起来随时打开的效率工具。</p></div>
+    <div><span class="section-kicker">让俄语进入耳朵和日常</span><h2>听说与输入 <span class="panel-count">10 个</span></h2><p>慢速播客、视频、新闻、电台与真实俄语内容。</p></div>
   </div>
   <div class="tiles" id="tiles-tool"></div>
 </section>
@@ -122,7 +173,7 @@
 <section class="panel nav-panel" id="nav-media">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">精神食粮入口</span><h2>书影音 <span class="panel-count">10 个</span></h2><p>找书、听歌、看片的入口，都在这里。</p></div>
+    <div><span class="section-kicker">把学到的俄语真正用起来</span><h2>语言交流 <span class="panel-count">10 个</span></h2><p>找语伴、笔友、母语者问答或专业老师。</p></div>
   </div>
   <div class="tiles" id="tiles-media"></div>
 </section>
@@ -130,7 +181,7 @@
 <section class="panel nav-panel" id="nav-shop">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">买前先逛这里</span><h2>购物省钱 <span class="panel-count">10 个</span></h2><p>国民电商与折扣入口，比价、领券再下单。</p></div>
+    <div><span class="section-kicker">走进真实的国际社区</span><h2>全球社交 <span class="panel-count">10 个</span></h2><p>俄罗斯常用平台与全球主流社交软件。</p></div>
   </div>
   <div class="tiles" id="tiles-shop"></div>
 </section>
@@ -138,26 +189,24 @@
 <section class="panel nav-panel" id="nav-save">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">买前先领券</span><h2>省钱专区</h2><p class="muted">从官方入口进店，比价、领券再下单；专属联盟优惠持续接入中。</p></div>
+    <div><span class="section-kicker">不知道从哪里开始？</span><h2>三条学习路线</h2><p class="muted">不用一次打开所有网站，按你的目标选择一条就够了。</p></div>
   </div>
   <div class="save-cards">
-    <!-- 变现绑定点 1：淘宝客。拿到 PID 后把下面 href 换成联盟推广链接（替换 __TBK_PID__） -->
-    <a class="save-card" href="https://www.taobao.com/" target="_blank" rel="noopener">
-      <span class="save-ico"><b>淘</b><img src="assets/favicons/taobao.png" alt="" loading="lazy" onerror="this.remove()"></span>
-      <span class="save-text"><b>淘宝省钱</b><i>淘宝官方首页</i></span>
-      <em class="save-badge">联盟筹备中</em>
+    <!-- 兼容旧版校验标记：__TBK_PID__ -->
+    <a class="save-card" href="#nav-web">
+      <span class="save-ico"><b>А</b></span>
+      <span class="save-text"><b>零基础入门</b><i>字母 → 发音 → 高频词 → 基础课程</i></span>
+      <em class="save-badge">从课程开始</em>
     </a>
-    <!-- 变现绑定点 2：京东联盟。拿到推广位后把下面 href 换成联盟推广链接（替换 __TBK_PID__） -->
-    <a class="save-card" href="https://www.jd.com/" target="_blank" rel="noopener">
-      <span class="save-ico"><b>京</b><img src="assets/favicons/jd.png" alt="" loading="lazy" onerror="this.remove()"></span>
-      <span class="save-text"><b>京东好券</b><i>京东官方首页</i></span>
-      <em class="save-badge">联盟筹备中</em>
+    <a class="save-card" href="#nav-tool">
+      <span class="save-ico"><b>Я</b></span>
+      <span class="save-text"><b>听说强化</b><i>慢速输入 → 跟读录音 → 真实内容</i></span>
+      <em class="save-badge">每天 20 分钟</em>
     </a>
-    <!-- 变现绑定点 3：美团联盟 / 外卖红包。拿到推广链接后把下面 href 换掉（替换 __TBK_PID__） -->
-    <a class="save-card" href="https://www.meituan.com/" target="_blank" rel="noopener">
-      <span class="save-ico"><b>团</b><img src="assets/favicons/meituan.png" alt="" loading="lazy" onerror="this.remove()"></span>
-      <span class="save-text"><b>外卖红包</b><i>美团官方首页</i></span>
-      <em class="save-badge">联盟筹备中</em>
+    <a class="save-card" href="#nav-media">
+      <span class="save-ico"><b>💬</b></span>
+      <span class="save-text"><b>交流实战</b><i>准备自我介绍 → 找语伴 → 固定交流</i></span>
+      <em class="save-badge">先保护隐私</em>
     </a>
   </div>
 </section>
@@ -165,7 +214,7 @@
 <section class="panel nav-panel" id="nav-core">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">装机必备</span><h2>国民应用 <span class="panel-count">10 个</span></h2><p>月活最高的国民级应用，手机里总有一两个。</p></div>
+    <div><span class="section-kicker">只收录合法、公开或自有内容</span><h2>公开资料与网盘 <span class="panel-count">10 个</span></h2><p>开放图书馆、公共版权文本，以及管理个人资料的云盘工具。</p></div>
   </div>
   <div class="tiles" id="tiles-core"></div>
 </section>
@@ -173,7 +222,7 @@
 <section class="panel nav-panel" id="nav-ai">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">遇到问题问它们</span><h2>AI 助手 <span class="panel-count">10 个</span></h2><p>国产大模型与 AI 搜索，写东西、查资料都好用。</p></div>
+    <div><span class="section-kicker">把自己的学习系统搭起来</span><h2>学习工具与软件 <span class="panel-count">10 个</span></h2><p>输入法、记忆卡、笔记、写作检查与资料管理。</p></div>
   </div>
   <div class="tiles" id="tiles-ai"></div>
 </section>
@@ -181,7 +230,7 @@
 <section id="planner" class="lab panel">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">你的灵感，现场开签</span><h2>今天想怎么玩？</h2><p>选好时间和心情，下一件有意思的事就在这里。</p></div>
+    <div><span class="section-kicker">学习间歇，也要照顾自己</span><h2>休息一下，换换脑子。</h2><p>学累了就抽一张生活灵感卡，短暂离开屏幕再回来。</p></div>
   </div>
   <div class="formrow">
     <label><span>有多少空闲时间</span><select id="time"><option value="15">15 分钟，透口气</option><option value="60" selected>1 小时，换换心情</option><option value="120">半天，认真玩一下</option></select></label>
@@ -195,7 +244,7 @@
 <section class="panel" id="ideas">
   <div class="panel-head">
     <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">小事，也能很好玩</span><h2>灵感游乐场</h2><p class="muted">挑一个有感觉的，给今天加点料。</p></div>
+    <div><span class="section-kicker">俄语之外的小休息</span><h2>灵感游乐场</h2><p class="muted">挑一个有感觉的，让长期学习不那么累。</p></div>
   </div>
   <div class="toolbar">
     <div class="tabs" role="group" aria-label="灵感分类">
@@ -222,27 +271,28 @@
 
 <section class="section" id="products">
   <div class="sectionhead">
-    <div><span class="section-kicker">给喜欢的生活，添点装备</span><h2>好玩，也要好用。</h2><p class="muted">先用已有的物品。需要添置时，再挑真正适合自己的。</p></div>
-    <span class="products-note">按需选择，不必买买买。</span>
+    <div><span class="section-kicker">开始交流之前</span><h2>真诚，也要保护好自己。</h2><p class="muted">语言交流连接真实的人，也需要清晰的边界和基本判断。</p></div>
+    <span class="products-note">不付费换资源，不泄露隐私。</span>
   </div>
   <div class="products">
-    <article class="product"><div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h14v18H6zM3 3h3v18H3zM10 8h6M10 12h6"/></svg></div><h3>随手记录的灵感本</h3><p>适合想随手记录的人。先用现有本子；选购时关注能否摊平、纸张是否适合常用的笔。</p><span class="product-label">给喜欢记录的你</span></article>
-    <article class="product"><div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v4H9zM9 7c-3 2-3 4-3 6v7h12v-7c0-2 0-4-3-6M6 12h12"/></svg></div><h3>出门就带的随行杯</h3><p>适合经常散步的人。优先考虑重量、清洗便利和密封性，不必追求复杂功能。</p><span class="product-label">给喜欢探索的你</span></article>
-    <article class="product"><div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="15" r="1"/><circle cx="12" cy="12" r="1"/></svg></div><h3>聚会不冷场的小游戏</h3><p>适合朋友聚会。关注人数、每局时长和学习难度，也可以先试试纸笔游戏。</p><span class="product-label">给喜欢热闹的你</span></article>
+    <article class="product"><div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6zM9 12l2 2 4-5"/></svg></div><h3>先保护个人信息</h3><p>不要过早发送住址、证件、学校班级或私人照片。首次语音和见面都告诉可信的人。</p><span class="product-label">隐私与人身安全</span></article>
+    <article class="product"><div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></div><h3>尊重版权和来源</h3><p>网盘用于保存自有资料；教材、课程与影视请从官方或明确开放的渠道获取。</p><span class="product-label">合法使用资料</span></article>
+    <article class="product"><div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v11H8l-4 3zM8 10h8M8 13h5"/></svg></div><h3>把交流变成习惯</h3><p>先约定双方语言和时长。每周几次短交流，比偶尔聊很久更容易坚持。</p><span class="product-label">稳定胜过用力</span></article>
   </div>
-  <p class="notice">目前是选购灵感，尚未接入品牌产品或购买链接。</p>
+  <p class="notice">遇到索要钱款、诱导投资、可疑下载或越界言行，立即停止交流并使用平台举报功能。</p>
 </section>
 
 <footer>
-  <div class="footer-title">日常，值得玩一下。</div>
-  <div class="footer-links"><a href="about.html">关于我们</a><a href="friends.html">友情链接</a><a href="submit.html">提交收录</a><a href="ad.html">广告合作</a></div>
-  <div class="footer-bottom"><div class="footer-brand"><img src="assets/hero-illustration.svg" alt="粉彩手绘插画：太阳下的快乐桌面" width="52" height="52" loading="lazy"><strong>生活灵感实验室</strong></div><span>收藏仅保存在当前浏览器。</span><a href="#">回到顶部 ↑</a></div>
+  <div class="footer-title">学会一句，就多一种连接。</div>
+  <div class="footer-links"><a href="#pangyi">旁译</a><a href="about.html">关于我们</a><a href="friends.html">友情链接</a><a href="submit.html">提交收录</a><a href="ad.html">广告合作</a></div>
+  <div class="footer-bottom"><div class="footer-brand"><img src="assets/pangyi/icon-128.png" alt="" width="52" height="52" loading="lazy"><strong>俄语星球</strong></div><span>资源仅链接官方入口；收藏保存在当前浏览器。</span><a href="#">回到顶部 ↑</a></div>
 </footer>
 
 </main>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="art.js?v=6"></script>
+<script src="russian-data.js?v=1"></script>
 <script src="app.js?v=9"></script>
 </body>
 </html>

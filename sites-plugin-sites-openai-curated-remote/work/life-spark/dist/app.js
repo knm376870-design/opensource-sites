@@ -10,7 +10,7 @@ const ideas=[
 {id:8,title:'看一场随机的电影',icon:'🎬',type:'connect',time:120,cost:150,desc:'不看预告，把两个小时交给运气。',steps:['约一位朋友，一个人去也很好。','随机选一部正在上映的片子。','散场后聊聊彼此最喜欢的一刻。']}
 ];
 
-const sites=[
+const legacySites=[
 {cat:'web',key:'zhihu',name:'知乎',desc:'问答社区，找生活经验',url:'https://www.zhihu.com',ico:'zhihu.png'},
 {cat:'web',key:'sspai',name:'少数派',desc:'高效工作与品质生活',url:'https://sspai.com',ico:'sspai.png',tag:'推荐'},
 {cat:'web',key:'xiachufang',name:'下厨房',desc:'家常菜谱与烘焙灵感',url:'https://www.xiachufang.com',ico:'xiachufang.png'},
@@ -82,6 +82,7 @@ const sites=[
 {cat:'ai',key:'xinghuo',name:'讯飞星火',desc:'语音与认知大模型',url:'https://xinghuo.xfyun.cn',ico:'xinghuo.png'},
 {cat:'ai',key:'metaso',name:'秘塔 AI 搜索',desc:'学术级 AI 搜索',url:'https://metaso.cn',ico:'metaso.png'}
 ];
+const sites=window.RUSSIAN_SITES||legacySites;
 
 let saved=[];
 try{saved=JSON.parse(localStorage.getItem('sparkSaved')||'[]');if(!Array.isArray(saved))saved=[]}catch{}
@@ -190,7 +191,7 @@ $('#generate').onclick=()=>{
   show(pool[Math.floor(Math.random()*pool.length)]);
 };
 
-$('#start').onclick=()=>{$('#planner').scrollIntoView({behavior:'smooth'});$('#generate').click()};
+$('#start').onclick=()=>{$('#navs').scrollIntoView({behavior:'smooth'});$('#search').focus({preventScroll:true})};
 
 $('#shuffle').onclick=()=>{show(ideas[Math.floor(Math.random()*ideas.length)]);$('#planner').scrollIntoView({behavior:'smooth'})};
 
@@ -233,9 +234,18 @@ function quiz(){
 const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media'],shop:['#tiles-shop','#nav-shop'],core:['#tiles-core','#nav-core'],ai:['#tiles-ai','#nav-ai']};
 const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
 const hotCount=s=>hotMap[s.key]||0;
+const siteIcon=(s,className='site-icon')=>{
+  let host='';
+  try{host=new URL(s.url).hostname.replace(/^www\./,'')}catch{}
+  const initial=(s.name.trim()[0]||'·').toUpperCase();
+  if(!host)return `<span class="${className}"><b>${initial}</b></span>`;
+  const icon=`https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=64`;
+  const fallback=`https://${host}/favicon.ico`;
+  return `<span class="${className}"><b>${initial}</b><img src="${icon}" alt="" loading="lazy" decoding="async" data-fallback="${fallback}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;delete this.dataset.fallback}else{this.remove()}"></span>`;
+};
 const siteTile=s=>{
   const c=hotCount(s);
-  return `<a class="site${c>=2?' hot':''}" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}"><span class="site-icon"><b>${s.name[0]}</b><img src="assets/favicons/${s.ico}" alt="" loading="lazy" onerror="this.remove()"></span>${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a>`;
+  return `<a class="site${c>=2?' hot':''}" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a>`;
 };
 
 function renderSites(q){
@@ -252,9 +262,9 @@ function renderSites(q){
 }
 
 function renderHeroCats(){
-  $('#heroApplist').innerHTML=[['web','好用网站','#nav-web'],['app','实用 App','#nav-app'],['tool','在线工具','#nav-tool'],['media','书影音','#nav-media'],['shop','购物省钱','#nav-shop'],['core','国民应用','#nav-core'],['ai','AI 助手','#nav-ai']].map(([c,n,h])=>{
+  $('#heroApplist').innerHTML=[['web','系统课程','#nav-web'],['app','词典翻译','#nav-app'],['tool','听说输入','#nav-tool'],['media','语言交流','#nav-media'],['shop','全球社交','#nav-shop'],['core','公开资料','#nav-core'],['ai','学习工具','#nav-ai']].map(([c,n,h])=>{
     const s=sites.find(x=>x.cat===c);
-    return `<a class="hap" href="${h}"><span class="hap-ico"><b>${n[0]}</b><img src="assets/favicons/${s.ico}" alt="" onerror="this.remove()"></span><b>${n}</b><i>${sites.filter(x=>x.cat===c).length} 个入口</i></a>`;
+    return `<a class="hap" href="${h}">${siteIcon(s,'hap-ico')}<b>${n}</b><i>${sites.filter(x=>x.cat===c).length} 个入口</i></a>`;
   }).join('');
 }
 
@@ -277,7 +287,7 @@ renderSites();
 renderHeroCats();
 $('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;renderSites(v)};
 $('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
-const ENGINES={baidu:'https://www.baidu.com/s?wd=',bing:'https://cn.bing.com/search?q=',sogou:'https://www.sogou.com/web?query=',xiaohongshu:'https://www.xiaohongshu.com/search_result?keyword=',zhihu:'https://www.zhihu.com/search?type=content&q='};
+const ENGINES={baidu:'https://www.baidu.com/s?wd=',bing:'https://cn.bing.com/search?q=',yandex:'https://yandex.com/search/?text=',google:'https://www.google.com/search?q=',youtube:'https://www.youtube.com/results?search_query='};
 let curEngine='baidu';
 document.querySelectorAll('.engine-chip').forEach(b=>b.onclick=()=>{curEngine=b.dataset.engine;document.querySelectorAll('.engine-chip').forEach(x=>x.classList.toggle('active',x===b))});
 $('#superForm').onsubmit=e=>{e.preventDefault();const q=$('#superQ').value.trim();if(!q)return;window.open(ENGINES[curEngine]+encodeURIComponent(q),'_blank','noopener')};
@@ -296,5 +306,43 @@ const spy=new IntersectionObserver(es=>{
 },{rootMargin:'-35% 0px -55% 0px'});
 ['navs','nav-web','nav-app','nav-tool','nav-media','nav-shop','nav-core','nav-ai'].forEach(id=>spy.observe(document.getElementById(id)));
 
+const DAILY_PHRASES=[
+  {ru:'Маленький шаг — тоже движение.',zh:'一小步，也是在前进。',note:'适合提醒自己：语言学习不需要一次完成很多。'},
+  {ru:'Я учусь говорить свободнее.',zh:'我正在学习说得更自如。',note:'учусь + 动词不定式：表示“正在学习做某事”。'},
+  {ru:'Ошибки помогают мне расти.',zh:'错误帮助我成长。',note:'ошибка 是“错误”，复数主格是 ошибки。'},
+  {ru:'Давайте говорить по-русски.',zh:'让我们说俄语吧。',note:'Давайте + 动词不定式：一起做某事的常用邀请。'},
+  {ru:'Сегодня я узнаю что-то новое.',zh:'今天我会学到一点新东西。',note:'что-то 表示“某个东西、某件事”。'},
+  {ru:'Повторение — мать учения.',zh:'重复是学习之母。',note:'常见俄语谚语，强调复习的重要性。'},
+  {ru:'Не бойтесь задавать вопросы.',zh:'不要害怕提问题。',note:'не бойтесь 是礼貌或复数形式的“不要害怕”。'}
+];
+const studyNow=new Date();
+const studyDay=[studyNow.getFullYear(),String(studyNow.getMonth()+1).padStart(2,'0'),String(studyNow.getDate()).padStart(2,'0')].join('-');
+const studyKey='russianStudy:'+studyDay;
+let phraseOffset=0;
+let studyDone=[];
+try{studyDone=JSON.parse(localStorage.getItem(studyKey)||'[]');if(!Array.isArray(studyDone))studyDone=[]}catch{}
+function renderPhrase(){
+  const base=Math.floor(new Date(studyDay+'T00:00:00Z').getTime()/86400000);
+  const p=DAILY_PHRASES[(base+phraseOffset)%DAILY_PHRASES.length];
+  $('#study-title').textContent=p.ru;$('#phraseZh').textContent=p.zh;$('#phraseNote').textContent=p.note;
+}
+function renderStudy(){
+  document.querySelectorAll('[data-study-task]').forEach(b=>{const on=studyDone.includes(b.dataset.studyTask);b.classList.toggle('done',on);b.setAttribute('aria-pressed',on)});
+  $('#studyProgress').textContent=`${studyDone.length} / 4`;
+  $('#studyMeter').style.width=(studyDone.length*25)+'%';
+  $('#studySaved').textContent=studyDone.length===4?'今天的学习完成了。做得很好，明天再继续。':'完成情况只保存在当前浏览器。';
+}
+document.querySelectorAll('[data-study-task]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.studyTask;studyDone=studyDone.includes(k)?studyDone.filter(x=>x!==k):[...studyDone,k];
+  try{localStorage.setItem(studyKey,JSON.stringify(studyDone))}catch{}renderStudy();
+});
+$('#nextPhrase').onclick=()=>{phraseOffset=(phraseOffset+1)%DAILY_PHRASES.length;renderPhrase()};
+$('#speakPhrase').onclick=()=>{
+  if(!('speechSynthesis' in window)){toast('当前浏览器不支持语音朗读');return}
+  window.speechSynthesis.cancel();const u=new window.SpeechSynthesisUtterance($('#study-title').textContent);u.lang='ru-RU';u.rate=.82;window.speechSynthesis.speak(u);
+};
+
 render();
 quiz();
+renderPhrase();
+renderStudy();
