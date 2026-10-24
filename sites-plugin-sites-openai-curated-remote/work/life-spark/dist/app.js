@@ -239,9 +239,13 @@ const siteIcon=(s,className='site-icon')=>{
   try{host=new URL(s.url).hostname.replace(/^www\./,'')}catch{}
   const initial=(s.name.trim()[0]||'·').toUpperCase();
   if(!host)return `<span class="${className}"><b>${initial}</b></span>`;
-  const icon=`https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=64`;
-  const fallback=`https://${host}/favicon.ico`;
-  return `<span class="${className}"><b>${initial}</b><img src="${icon}" alt="" loading="lazy" decoding="async" data-fallback="${fallback}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;delete this.dataset.fallback}else{this.remove()}"></span>`;
+  const remote=`https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=64`;
+  const origin=`https://${host}/favicon.ico`;
+  const local=(s.cat==='job'||s.cat==='parttime')?`assets/job-icons/${s.key}.png`:'';
+  const icon=local||remote;
+  const fallback=local?remote:origin;
+  const last=local?origin:'';
+  return `<span class="${className}"><b>${initial}</b><img src="${icon}" alt="" loading="lazy" decoding="async" data-fallback="${fallback}" data-last="${last}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;delete this.dataset.fallback}else if(this.dataset.last){this.src=this.dataset.last;delete this.dataset.last}else{this.remove()}"></span>`;
 };
 const siteTile=s=>{
   const c=hotCount(s);
