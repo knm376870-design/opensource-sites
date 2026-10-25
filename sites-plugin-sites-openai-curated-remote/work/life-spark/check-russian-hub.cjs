@@ -19,7 +19,7 @@ assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS')
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
 assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
-assert(html.includes('russian-data.js?v=4')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=14'),'resource data must load before app');
+assert(html.includes('russian-data.js?v=5')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=14'),'resource data must load before app');
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
@@ -58,5 +58,8 @@ assert(status.includes('公开运营状态')&&status.includes('0 / 3')&&status.i
 assert(html.includes('href="status.html"')&&sitemap.includes('/status.html'),'expect linked and indexed operations status page');
 assert(fs.existsSync('../../../.github/workflows/link-audit.yml')&&fs.existsSync('../../../.github/ISSUE_TEMPLATE/user-test.yml')&&fs.existsSync('../../../docs/user-testing.md'),'expect scheduled audit and real-user testing evidence');
 assert(app.includes('assets/resource-icons/${s.key}.png')&&fs.existsSync('resource-icons-missing.json'),'expect local icon pipeline with documented fallbacks');
+assert(data.includes("url:'https://www.rbth.com/'")&&!data.includes('cn.rbth.com'),'expect current official Russia Beyond domain after link audit');
+assert(status.includes('98个正常、19个限制自动访问、4个待人工复核')&&status.includes('40187485463'),'expect published first audit evidence');
+assert(status.includes('<strong>117</strong>')&&JSON.parse(fs.readFileSync('resource-icons-missing.json','utf8')).length===4,'expect current local-icon and fallback metrics');
 for(const [name,page] of [['about',about],['submit',submit]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

@@ -22,14 +22,14 @@
 
   <section class="status-metrics" aria-label="当前指标">
     <article><strong>121</strong><span>资源入口</span><small>全部HTTPS，9个分类</small></article>
-    <article><strong>116</strong><span>本地图标</span><small>5项使用首字母降级</small></article>
+    <article><strong>117</strong><span>本地图标</span><small>4项使用首字母降级</small></article>
     <article><strong>0</strong><span>第三方分析脚本</span><small>当前不采集访问行为</small></article>
     <article><strong>0 / 3</strong><span>真实用户验收</span><small>方案已就绪，等待参与者</small></article>
   </section>
 
   <section class="status-block" aria-labelledby="quality-title"><div class="subpage-heading"><h2 id="quality-title">自动质量门</h2><p>每次上线前必须全部通过，否则GitHub Pages不会部署。</p></div><ul class="evidence-list"><li><b>资源数据</b><span>数量、分类、唯一键、HTTPS和重复URL</span></li><li><b>公开文件</b><span>类型白名单、单文件体积和必需资源</span></li><li><b>功能一致性</b><span>收藏、图标、静态目录、PWA和无障碍断言</span></li><li><b>构建同步</b><span>121项静态目录与资源数据必须完全一致</span></li></ul><a class="evidence-link" href="https://github.com/knm376870-design/opensource-sites/actions/workflows/pages.yml" target="_blank" rel="noopener">查看最近发布检查 ↗</a></section>
 
-  <section class="status-block" aria-labelledby="audit-title"><div class="subpage-heading"><h2 id="audit-title">每周外链巡检</h2><p>自动请求只能发现线索；地区网络、登录墙和反爬可能产生假失败。</p></div><p class="status-copy">每周一运行121个链接的巡检，将“正常”“限制自动访问”“待人工复核”分开，并保留30天JSON报告。只有人工确认后才删除资源。</p><a class="evidence-link" href="https://github.com/knm376870-design/opensource-sites/actions/workflows/link-audit.yml" target="_blank" rel="noopener">查看外链巡检记录 ↗</a></section>
+  <section class="status-block" aria-labelledby="audit-title"><div class="subpage-heading"><h2 id="audit-title">每周外链巡检</h2><p>自动请求只能发现线索；地区网络、登录墙和反爬可能产生假失败。</p></div><p class="status-copy">首次云端巡检（2026-10-25）：98个正常、19个限制自动访问、4个待人工复核。巡检发现的Russia Beyond旧中文域名已按官方主站修正；其余异常等待人工确认。每次报告保留30天，只有人工确认后才删除资源。</p><a class="evidence-link" href="https://github.com/knm376870-design/opensource-sites/actions/runs/40187485463" target="_blank" rel="noopener">查看首次巡检与JSON证据 ↗</a></section>
 
   <section class="status-block" aria-labelledby="privacy-status-title"><div class="subpage-heading"><h2 id="privacy-status-title">匿名指标与隐私</h2><p>当前没有后端，也没有接入第三方访问分析。</p></div><p class="status-copy">我们只公开不涉及个人行为的运营指标：资源数量、自动检查、失效报告和用户测试完成数。收藏、学习任务与连续天数只存在当前浏览器。若未来接入匿名统计，必须先在这里公开服务商、字段、保留期和退出方式。</p></section>
 

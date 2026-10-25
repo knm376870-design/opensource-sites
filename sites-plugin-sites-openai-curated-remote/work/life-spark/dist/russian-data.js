@@ -26,7 +26,7 @@ window.RUSSIAN_SITES=[
   {cat:'tool',key:'russian-with-max',name:'Russian with Max',desc:'清晰慢速俄语播客与沉浸式视频',url:'https://www.russianwithmax.com'},
   {cat:'tool',key:'arzamas',name:'Arzamas',desc:'俄罗斯历史、文学与文化音频课程',url:'https://arzamas.academy'},
   {cat:'tool',key:'gramota',name:'Грамота.ру',desc:'权威俄语规范、拼写与重音查询',url:'https://gramota.ru',tag:'推荐'},
-  {cat:'tool',key:'russiabeyond',name:'Russia Beyond 中文',desc:'用中文了解俄罗斯社会与文化',url:'https://cn.rbth.com'},
+  {cat:'tool',key:'russiabeyond',name:'Russia Beyond',desc:'通过英文内容了解俄罗斯文化、历史与社会',url:'https://www.rbth.com/'},
   {cat:'tool',key:'tass-ru',name:'ТАСС',desc:'俄罗斯通讯社，适合进阶新闻阅读',url:'https://tass.ru'},
   {cat:'tool',key:'ria-ru',name:'РИА Новости',desc:'俄语时事新闻与图片报道',url:'https://ria.ru'},
   {cat:'tool',key:'radiogarden',name:'Radio Garden',desc:'在地图上收听俄罗斯各地直播电台',url:'https://radio.garden'},
