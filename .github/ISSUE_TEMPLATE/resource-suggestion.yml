@@ -1,0 +1,30 @@
+name: 推荐俄语资源
+description: 推荐课程、词典、交流、求职、兼职、资料或学习工具
+title: "[资源推荐] "
+labels: []
+body:
+  - type: input
+    id: name
+    attributes: {label: 资源名称}
+    validations: {required: true}
+  - type: input
+    id: url
+    attributes: {label: 官方网址, placeholder: "https://example.com/"}
+    validations: {required: true}
+  - type: dropdown
+    id: category
+    attributes:
+      label: 建议分类
+      options: [系统课程, 词典与翻译, 听说与输入, 语言交流, 俄语求职, 留学生兼职, 全球社交, 公开资料, 学习工具]
+    validations: {required: true}
+  - type: textarea
+    id: reason
+    attributes: {label: 推荐理由, description: 请说明适用人群、用途和收费情况。}
+    validations: {required: true}
+  - type: checkboxes
+    id: source
+    attributes:
+      label: 来源确认
+      options:
+        - label: 我确认该地址为官方或可信公开来源，不包含盗版、破解或来源不明下载。
+          required: true

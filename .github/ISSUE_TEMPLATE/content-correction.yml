@@ -1,0 +1,21 @@
+name: 纠正页面内容
+description: 报告名称、简介、分类、来源或政策说明错误
+title: "[内容纠错] "
+labels: []
+body:
+  - type: input
+    id: page
+    attributes: {label: 页面或资源, placeholder: 请填写页面地址或资源名称}
+    validations: {required: true}
+  - type: textarea
+    id: current
+    attributes: {label: 当前内容, description: 请说明目前哪里不准确。}
+    validations: {required: true}
+  - type: textarea
+    id: correction
+    attributes: {label: 建议修改, description: 请给出准确内容。}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: 证明来源, placeholder: 官方页面或其他可核验地址}
+    validations: {required: true}

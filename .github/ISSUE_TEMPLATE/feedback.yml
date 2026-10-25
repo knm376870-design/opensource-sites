@@ -1,0 +1,17 @@
+name: 产品建议
+description: 提出搜索、收藏、学习体验、排版或新功能建议
+title: "[产品建议] "
+labels: []
+body:
+  - type: textarea
+    id: situation
+    attributes: {label: 使用场景, description: 你当时想完成什么？}
+    validations: {required: true}
+  - type: textarea
+    id: problem
+    attributes: {label: 遇到的问题, description: 哪一步让你感到困难或不方便？}
+    validations: {required: true}
+  - type: textarea
+    id: suggestion
+    attributes: {label: 你的建议, description: 希望网站如何改进？}
+    validations: {required: true}

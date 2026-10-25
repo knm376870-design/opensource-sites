@@ -3,72 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#3f6ff0">
-<meta name="description" content="提交收录：把你的好站加进生活灵感实验室的生活导航。">
-<title>提交收录 · 生活灵感实验室</title>
-<script>try{var m=localStorage.getItem('sparkMode')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.mode=m}catch(e){document.documentElement.dataset.mode='light'}</script>
+<meta name="theme-color" content="#173653">
+<meta name="description" content="向俄语星球推荐资源、纠正内容、报告风险或提出产品建议。">
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/submit.html">
+<title>反馈与投稿 · 俄语星球</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){document.documentElement.dataset.mode='dark'}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=25">
 </head>
-<body>
+<body class="feedback-page">
+<a class="skip-link" href="#feedback-main">跳到反馈表单</a>
 <div class="window">
+<nav aria-label="主要导航"><a class="brand" href="./"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a><div class="links"><a href="./">首页</a><a href="resources.html">完整目录</a><a href="about.html">关于</a></div></nav>
+<main class="wrap subpage-main" id="feedback-main" tabindex="-1">
+  <header class="subpage-hero">
+    <a class="back-link" href="./">← 返回首页</a>
+    <p>反馈与投稿</p>
+    <h1>让每一个入口，<br>都更可靠一点。</h1>
+    <p class="subpage-intro">资源推荐、内容纠错、失效报告和产品建议都会进入公开待办。提交需要GitHub账号，处理过程和结果可追踪。</p>
+  </header>
 
-<nav>
-  <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-  <a class="brand" href="index.html"><span aria-hidden="true">✳</span><div>生活灵感<br><b>实验室</b></div></a>
-  <div class="links"><a href="index.html#navs">生活导航</a><a href="index.html#ideas">灵感游乐场</a><a href="index.html#quiz">测测我的颜色</a></div>
-  <div class="nav-right">
-    <button id="modeToggle" class="mode-toggle" aria-label="切换明暗模式">
-      <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 13.6A8.4 8.4 0 0 1 10.4 3.8a8.4 8.4 0 1 0 9.8 9.8Z"/></svg>
-    </button>
-    <a class="nav-go" href="index.html#planner">开始玩 <span aria-hidden="true">↗</span></a>
-  </div>
-</nav>
+  <section class="feedback-channels" aria-labelledby="channel-title">
+    <div class="subpage-heading"><h2 id="channel-title">选择反馈类型</h2><p>请不要在公开问题中填写手机号、账号、密码、证件或其他隐私信息。</p></div>
+    <div class="channel-grid">
+      <a href="https://github.com/knm376870-design/opensource-sites/issues/new?template=resource-suggestion.yml" target="_blank" rel="noopener"><b>推荐俄语资源</b><span>课程、词典、交流、求职、兼职或工具</span></a>
+      <a href="https://github.com/knm376870-design/opensource-sites/issues/new?template=content-correction.yml" target="_blank" rel="noopener"><b>纠正页面内容</b><span>名称、简介、分类、来源或政策信息不准确</span></a>
+      <a href="https://github.com/knm376870-design/opensource-sites/issues/new?template=broken-link.yml" target="_blank" rel="noopener"><b>报告失效或风险</b><span>打不开、跳转异常、疑似诈骗或钓鱼</span></a>
+      <a href="https://github.com/knm376870-design/opensource-sites/issues/new?template=feedback.yml" target="_blank" rel="noopener"><b>提出产品建议</b><span>搜索、收藏、学习体验、排版或新功能</span></a>
+    </div>
+  </section>
 
-<main class="wrap">
+  <section class="submission-panel" aria-labelledby="resource-form-title">
+    <div class="subpage-heading"><h2 id="resource-form-title">快速生成资源推荐</h2><p>填写后会在新窗口打开GitHub，并预填完整内容；提交前仍可修改。</p></div>
+    <form id="resourceForm" novalidate>
+      <label><span>资源名称</span><input class="text-input" id="resourceName" required maxlength="80" autocomplete="off" placeholder="例如：某个俄语词典"></label>
+      <label><span>官方网址</span><input class="text-input" id="resourceUrl" type="url" required inputmode="url" placeholder="https://…"></label>
+      <label><span>分类</span><select id="resourceCategory" required><option value="">请选择</option><option>系统课程</option><option>词典与翻译</option><option>听说与输入</option><option>语言交流</option><option>俄语求职</option><option>留学生兼职</option><option>全球社交</option><option>公开资料</option><option>学习工具</option></select></label>
+      <label class="wide"><span>推荐理由</span><textarea class="text-input" id="resourceReason" rows="4" maxlength="600" placeholder="它适合谁、解决什么问题、是否收费？"></textarea></label>
+      <label class="consent wide"><input id="resourceConsent" type="checkbox" required><span>我已检查该地址为官方或可信公开来源，且没有提交盗版、破解或来源不明的下载。</span></label>
+      <div class="wide form-actions"><button class="primary" type="submit">在 GitHub 提交推荐 ↗</button><span id="formStatus" role="status" aria-live="polite"></span></div>
+    </form>
+  </section>
 
-<section class="page-head">
-  <a class="back-link" href="index.html">← 回到首页</a>
-  <h1 class="page-title">提交收录</h1>
-</section>
-
-<section class="panel">
-  <div class="panel-head">
-    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">把你的好站加进来</span><h2>提交收录</h2><p class="muted">填好下面的信息，生成申请模板，发送到合作邮箱即可；内容健康、访问正常的站点都会优先收录。</p></div>
-  </div>
-  <div class="formrow">
-    <label><span>网站名称</span><input class="text-input" id="f-name" type="text" placeholder="例如：生活灵感实验室"></label>
-    <label><span>网址</span><input class="text-input" id="f-url" type="text" placeholder="https://…"></label>
-    <label><span>一句话简介（选填）</span><input class="text-input" id="f-desc" type="text" placeholder="这个站是做什么的？"></label>
-    <button class="primary" id="makeTpl" type="button">生成申请模板 ↗</button>
-  </div>
-  <!-- 变现绑定点：将 __OWNER_EMAIL__ 替换为真实邮箱后，更新下方占位文案 -->
-  <p class="form-note">点击后自动复制申请模板，粘贴发送到合作邮箱即可；邮箱地址即将公布。</p>
-  <p class="form-note" id="tplNote" hidden></p>
-</section>
-
-<footer>
-  <div class="footer-title">日常，值得玩一下。</div>
-  <div class="footer-links"><a href="about.html">关于我们</a><a href="friends.html">友情链接</a><a href="submit.html">提交收录</a><a href="ad.html">广告合作</a></div>
-  <div class="footer-bottom"><div class="footer-brand"><img src="assets/hero-illustration.svg" alt="粉彩手绘插画：太阳下的快乐桌面" width="52" height="52" loading="lazy"><strong>生活灵感实验室</strong></div><span>收藏仅保存在当前浏览器。</span><a href="#">回到顶部 ↑</a></div>
-</footer>
-
+  <section class="review-policy" aria-labelledby="review-title">
+    <div class="subpage-heading"><h2 id="review-title">我们如何处理</h2><p>公开、可核验，不承诺所有推荐都会收录。</p></div>
+    <ol><li><b>检查来源</b><span>核对官方域名、HTTPS、用途和重复项。</span></li><li><b>检查风险</b><span>排除盗版、破解、诱导付费、钓鱼和不透明下载。</span></li><li><b>记录结果</b><span>收录、补充信息或拒绝时，在公开问题中说明原因。</span></li></ol>
+  </section>
 </main>
+<footer><div class="footer-title">问题被看见，平台才会变好。</div><div class="footer-links"><a href="about.html">关于我们</a><a href="resources.html">完整目录</a><a href="https://github.com/knm376870-design/opensource-sites/issues" target="_blank" rel="noopener">公开待办</a></div><div class="footer-bottom"><strong>俄语星球</strong><span>请勿公开提交个人隐私或登录信息。</span><a href="#">回到顶部 ↑</a></div></footer>
 </div>
 <script>
-document.getElementById('modeToggle').onclick=function(){var d=document.documentElement.dataset.mode,m=d==='dark'?'light':'dark';document.documentElement.dataset.mode=m;try{localStorage.setItem('sparkMode',m)}catch(e){}};
-document.getElementById('makeTpl').onclick=function(){
-  var name=document.getElementById('f-name').value.trim(),url=document.getElementById('f-url').value.trim(),desc=document.getElementById('f-desc').value.trim(),note=document.getElementById('tplNote');
-  if(!name||!url){note.hidden=false;note.textContent='请先填写网站名称和网址。';return;}
-  var tpl='【提交收录】\n网站名称：'+name+'\n网址：'+url+'\n一句话简介：'+(desc||'（未填写）')+'\n—— 来自生活灵感实验室收录申请';
-  function ok(){note.hidden=false;note.textContent='申请模板已复制，粘贴发送到合作邮箱即可。'}
-  function fail(){note.hidden=false;note.textContent='复制失败，请手动复制：\n'+tpl;}
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(tpl).then(ok,fail);}else{fail();}
-};
+document.getElementById('resourceForm').addEventListener('submit',function(event){
+  event.preventDefault();
+  var name=document.getElementById('resourceName').value.trim();
+  var rawUrl=document.getElementById('resourceUrl').value.trim();
+  var category=document.getElementById('resourceCategory').value;
+  var reason=document.getElementById('resourceReason').value.trim();
+  var consent=document.getElementById('resourceConsent').checked;
+  var status=document.getElementById('formStatus');
+  var parsed;
+  try{parsed=new URL(rawUrl)}catch(e){status.textContent='请输入完整网址，例如 https://example.com/';return}
+  if(!name||!category){status.textContent='请填写资源名称并选择分类。';return}
+  if(parsed.protocol!=='https:'){status.textContent='为保护访问安全，只接受 HTTPS 官方地址。';return}
+  if(!consent){status.textContent='请先确认来源和版权声明。';return}
+  var title='[资源推荐] '+name;
+  var body='资源名称：'+name+'\n官方网址：'+parsed.href+'\n建议分类：'+category+'\n推荐理由：'+(reason||'未填写')+'\n\n提交者确认：已检查为官方或可信公开来源。';
+  status.textContent='正在打开 GitHub 提交页面…';
+  window.open('https://github.com/knm376870-design/opensource-sites/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body),'_blank','noopener');
+});
 </script>
 </body>
 </html>
