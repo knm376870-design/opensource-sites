@@ -8,6 +8,11 @@
   "display": "standalone",
   "background_color": "#f4f6f8",
   "theme_color": "#173653",
+  "shortcuts": [
+    {"name": "完整资源目录", "short_name": "资源目录", "url": "./resources.html"},
+    {"name": "俄语求职", "short_name": "俄语求职", "url": "./#nav-job"},
+    {"name": "留学生兼职", "short_name": "留学兼职", "url": "./#nav-parttime"}
+  ],
   "icons": [
     {"src": "pwa-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
     {"src": "pwa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
