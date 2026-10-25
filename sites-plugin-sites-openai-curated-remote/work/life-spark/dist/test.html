@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173653">
+<meta name="description" content="参加俄语星球5分钟匿名可用性测试。">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/test.html">
+<title>5分钟用户测试 · 俄语星球</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){document.documentElement.dataset.mode='dark'}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=27">
+</head>
+<body class="user-test-page">
+<a class="skip-link" href="#test-main">跳到测试任务</a>
+<div class="window">
+<nav aria-label="主要导航"><a class="brand" href="./"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a><div class="links"><a href="status.html">运营状态</a><a href="about.html">关于</a></div></nav>
+<main class="wrap subpage-main" id="test-main" tabindex="-1">
+  <header class="subpage-hero"><a class="back-link" href="status.html">← 返回运营状态</a><p>真实用户验收</p><h1>用5分钟，<br>帮我们发现盲点。</h1><p class="subpage-intro">不需要填写姓名、联系方式或账号。计时和选择只存在当前页面，只有点击“在GitHub提交”才会打开公开报告页面。</p></header>
+
+  <section class="test-start" aria-labelledby="start-title"><div class="subpage-heading"><h2 id="start-title">准备开始</h2><p>请先选择你正在使用的设备，然后从网站首页独立寻找入口。</p></div><div class="test-start-row"><label><span>使用设备</span><select id="testDevice"><option value="">请选择</option><option>手机</option><option>平板</option><option>电脑</option></select></label><button class="primary" id="startTest" type="button">开始计时并打开首页 ↗</button><strong id="testTimer" aria-live="polite">尚未开始</strong></div></section>
+
+  <section class="test-tasks" aria-labelledby="tasks-title"><div class="subpage-heading"><h2 id="tasks-title">依次完成三项任务</h2><p>请从首页自行寻找，不要使用浏览器页面内搜索。</p></div><ol><li><b>找到并收藏一个俄语词典</b><span>完成后回到本页记录结果。</span><label><input type="checkbox" data-test-task="词典收藏"> 已完成</label></li><li><b>找到一个留学生兼职平台</b><span>同时读出页面上的一条风险提醒。</span><label><input type="checkbox" data-test-task="留学兼职"> 已完成</label></li><li><b>找到报告失效资源的入口</b><span>无需真的提交报告。</span><label><input type="checkbox" data-test-task="失效报告"> 已完成</label></li></ol></section>
+
+  <section class="test-result" aria-labelledby="result-title"><div class="subpage-heading"><h2 id="result-title">记录体验</h2><p>请只写操作感受，不要填写个人身份信息。</p></div><div class="test-form-grid"><label><span>整体难度</span><select id="testDifficulty"><option value="">请选择</option><option>非常容易</option><option>比较容易</option><option>一般</option><option>比较困难</option><option>无法完成</option></select></label><label class="wide"><span>最困惑的地方</span><textarea class="text-input" id="testConfusion" rows="4" maxlength="600" placeholder="哪一步卡住了？你原本期待看到什么？"></textarea></label><label class="wide"><span>最希望优先改进的一件事</span><textarea class="text-input" id="testImprovement" rows="3" maxlength="400"></textarea></label><label class="consent wide"><input id="testPrivacy" type="checkbox"><span>我确认报告中没有账号、密码、电话、证件、学校或精确位置等个人信息。</span></label><div class="wide form-actions"><button class="primary" id="submitTest" type="button">在 GitHub 提交 ↗</button><button class="secondary" id="copyTest" type="button">复制匿名报告</button><span id="testStatus" role="status" aria-live="polite"></span></div></div></section>
+</main>
+<footer><div class="footer-title">真实反馈，比猜测更有价值。</div><div class="footer-links"><a href="status.html">运营状态</a><a href="submit.html">其他反馈</a><a href="./">返回首页</a></div><div class="footer-bottom"><strong>俄语星球</strong><span>测试数据不会自动上传。</span><a href="#">回到顶部 ↑</a></div></footer>
+</div>
+<script>
+(function(){
+  var startedAt=0;
+  var startButton=document.getElementById('startTest');
+  var timer=document.getElementById('testTimer');
+  var status=document.getElementById('testStatus');
+  startButton.addEventListener('click',function(){
+    if(!document.getElementById('testDevice').value){status.textContent='请先选择设备。';return}
+    if(!startedAt)startedAt=Date.now();
+    timer.textContent='计时已开始';status.textContent='网站已在新窗口打开，完成任务后回到这里。';
+    window.open('./','_blank','noopener');
+  });
+  function buildReport(){
+    if(!startedAt)return {error:'请先开始计时。'};
+    var device=document.getElementById('testDevice').value;
+    var difficulty=document.getElementById('testDifficulty').value;
+    var privacy=document.getElementById('testPrivacy').checked;
+    if(!difficulty)return {error:'请选择整体难度。'};
+    if(!privacy)return {error:'请确认隐私声明。'};
+    var tasks=Array.from(document.querySelectorAll('[data-test-task]')).map(function(input){return '- ['+(input.checked?'x':' ')+'] '+input.dataset.testTask}).join('\n');
+    var seconds=Math.max(1,Math.round((Date.now()-startedAt)/1000));
+    var confusion=document.getElementById('testConfusion').value.trim()||'未填写';
+    var improvement=document.getElementById('testImprovement').value.trim()||'未填写';
+    return {title:'[用户测试] '+device+' · '+difficulty,body:'设备：'+device+'\n用时：'+seconds+' 秒\n整体难度：'+difficulty+'\n\n完成任务：\n'+tasks+'\n\n最困惑的地方：\n'+confusion+'\n\n最希望优先改进：\n'+improvement+'\n\n隐私确认：未填写个人身份信息。'};
+  }
+  document.getElementById('submitTest').addEventListener('click',function(){var report=buildReport();if(report.error){status.textContent=report.error;return}status.textContent='正在打开GitHub报告页面…';window.open('https://github.com/knm376870-design/opensource-sites/issues/new?title='+encodeURIComponent(report.title)+'&body='+encodeURIComponent(report.body),'_blank','noopener')});
+  document.getElementById('copyTest').addEventListener('click',function(){var report=buildReport();if(report.error){status.textContent=report.error;return}var text=report.title+'\n\n'+report.body;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){status.textContent='匿名报告已复制。'},function(){status.textContent='复制失败，请使用GitHub提交。'})}else{status.textContent='当前浏览器不支持复制，请使用GitHub提交。'}});
+})();
+</script>
+</body>
+</html>
