@@ -25,6 +25,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Validate website
+        working-directory: sites-plugin-sites-openai-curated-remote/work/life-spark
+        run: |
+          node --check dist/app.js
+          node --check dist/sw.js
+          node check-russian-hub.cjs
+          node audit-site.cjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

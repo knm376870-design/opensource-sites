@@ -99,7 +99,7 @@ window.RUSSIAN_SITES=[
   {cat:'job',key:'iguopin',name:'国聘',desc:'查询国企、央企和公共部门的俄语及国际业务岗位',url:'https://www.iguopin.com/'},
   {cat:'job',key:'hh-ru',name:'HeadHunter · hh.ru',desc:'俄罗斯大型招聘平台，可按城市、行业和语言筛选',url:'https://hh.ru/search/vacancy?text=%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9',tag:'俄罗斯招聘'},
   {cat:'job',key:'trudvsem',name:'Работа России',desc:'俄罗斯官方就业与人才服务平台',url:'https://trudvsem.ru/',tag:'官方平台'},
-  {cat:'job',key:'superjob',name:'SuperJob',desc:'俄罗斯综合招聘、薪资信息与职业服务',url:'https://www.superjob.ru/'},
+  {cat:'job',key:'superjob',name:'SuperJob',desc:'俄罗斯综合招聘、薪资信息与职业服务',url:'https://www.superjob.ru/vacancy/search/'},
   {cat:'job',key:'rabota-ru',name:'Работа.ру',desc:'俄罗斯全职、兼职与服务行业职位搜索',url:'https://www.rabota.ru/'},
   {cat:'job',key:'avito-jobs',name:'Avito Работа',desc:'俄罗斯本地岗位、兼职和区域招聘信息',url:'https://www.avito.ru/rossiya/vakansii'},
   {cat:'job',key:'habr-career',name:'Хабр Карьера',desc:'俄罗斯技术、产品、设计与远程数字岗位',url:'https://career.habr.com/vacancies'},
