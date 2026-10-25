@@ -1,0 +1,40 @@
+name: 5分钟用户测试记录
+description: 记录搜索、收藏和寻找兼职三项真实任务的使用体验
+title: "[用户测试] "
+labels: []
+body:
+  - type: dropdown
+    id: device
+    attributes:
+      label: 使用设备
+      options: [手机, 平板, 电脑]
+    validations: {required: true}
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: 完成的任务
+      options:
+        - label: 找到一个俄语词典并收藏
+        - label: 找到一个留学生兼职平台
+        - label: 找到报告失效资源的入口
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: 整体难度
+      options: [非常容易, 比较容易, 一般, 比较困难, 无法完成]
+    validations: {required: true}
+  - type: textarea
+    id: confusion
+    attributes: {label: 最困惑的地方, description: 请说明卡住的位置和你原本期待看到什么。}
+    validations: {required: true}
+  - type: textarea
+    id: improvement
+    attributes: {label: 最希望优先改进的一件事}
+    validations: {required: true}
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我没有在这份公开记录中填写账号、密码、电话或证件等个人信息。
+          required: true

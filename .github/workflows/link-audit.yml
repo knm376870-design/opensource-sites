@@ -1,0 +1,28 @@
+name: Weekly resource link audit
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Audit 121 resource links
+        working-directory: sites-plugin-sites-openai-curated-remote/work/life-spark
+        run: node audit-site.cjs --live --output=link-audit-report.json
+
+      - name: Upload audit evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: resource-link-audit
+          path: sites-plugin-sites-openai-curated-remote/work/life-spark/link-audit-report.json
+          retention-days: 30

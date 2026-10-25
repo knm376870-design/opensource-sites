@@ -5,6 +5,7 @@ const app=fs.readFileSync('dist/app.js','utf8');
 const data=fs.readFileSync('dist/russian-data.js','utf8');
 const about=fs.readFileSync('dist/about.html','utf8');
 const submit=fs.readFileSync('dist/submit.html','utf8');
+const status=fs.readFileSync('dist/status.html','utf8');
 const sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
 const box={window:{}};vm.createContext(box);vm.runInContext(data,box);
 const sites=box.window.RUSSIAN_SITES;
@@ -22,7 +23,7 @@ assert(html.includes('russian-data.js?v=4')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=25')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=26')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -53,5 +54,9 @@ assert(submit.includes('反馈与投稿')&&submit.includes('resourceForm')&&subm
 assert(about.includes('关于俄语星球')&&about.includes('隐私与本地数据')&&!about.includes('占位'),'expect accurate trust and privacy page without placeholders');
 assert(!submit.includes('合作邮箱')&&!submit.includes('生活灵感实验室'),'feedback page must not use dead email flow or legacy identity');
 assert(sitemap.includes('/about.html')&&sitemap.includes('/submit.html'),'expect trust and feedback pages in sitemap');
+assert(status.includes('公开运营状态')&&status.includes('0 / 3')&&status.includes('当前不采集访问行为'),'expect honest public operations metrics and uncompleted user-test status');
+assert(html.includes('href="status.html"')&&sitemap.includes('/status.html'),'expect linked and indexed operations status page');
+assert(fs.existsSync('../../../.github/workflows/link-audit.yml')&&fs.existsSync('../../../.github/ISSUE_TEMPLATE/user-test.yml')&&fs.existsSync('../../../docs/user-testing.md'),'expect scheduled audit and real-user testing evidence');
+assert(app.includes('assets/resource-icons/${s.key}.png')&&fs.existsSync('resource-icons-missing.json'),'expect local icon pipeline with documented fallbacks');
 for(const [name,page] of [['about',about],['submit',submit]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

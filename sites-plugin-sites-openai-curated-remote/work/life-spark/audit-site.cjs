@@ -66,6 +66,14 @@ async function liveAudit(){
   const summary=results.reduce((out,item)=>(out[item.state]=(out[item.state]||0)+1,out),{});
   console.log('Live link audit:',summary);
   for(const item of results.filter(item=>item.state==='failed'))console.log(`  ${item.key}: ${item.status||item.error} ${item.url}`);
+  const report={generatedAt:new Date().toISOString(),total:sites.length,summary,results:results.sort((a,b)=>a.key.localeCompare(b.key))};
+  const outputArg=process.argv.find(arg=>arg.startsWith('--output='));
+  if(outputArg)fs.writeFileSync(path.resolve(root,outputArg.slice(9)),JSON.stringify(report,null,2)+'\n','utf8');
+  if(process.env.GITHUB_STEP_SUMMARY){
+    const lines=[`## 俄语星球外链巡检`,``,`- 时间：${report.generatedAt}` ,`- 正常：${summary.ok||0}` ,`- 限制自动访问：${summary.restricted||0}` ,`- 待人工复核：${summary.failed||0}`,'',`> 自动请求会受地区网络、登录墙和反爬策略影响；失败项必须人工复核后才能删除。`];
+    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join('\n')+'\n','utf8');
+  }
+  return report;
 }
 
 console.log(`Audit passed: ${sites.length} HTTPS resources and ${tracked.length} tracked public files.`);
