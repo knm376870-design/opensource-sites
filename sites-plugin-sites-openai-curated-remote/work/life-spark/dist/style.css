@@ -916,6 +916,9 @@ h1 .outlined{-webkit-text-stroke:0;color:var(--accent);font-style:normal}
 .catbar{gap:4px;padding:8px;border:1px solid var(--line);border-radius:7px;background:var(--win-2)}
 .resource-note{margin-top:26px}
 .resource-tools{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px;min-height:36px}
+.resource-toolside{display:flex;align-items:center;gap:14px}
+.resource-toolside a{border-bottom:1px solid var(--line-2);color:var(--ink-2);font-size:10.5px}
+.resource-toolside a:hover{border-color:var(--accent);color:var(--accent)}
 .favorite-toggle{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border:1px solid var(--line);border-radius:5px;background:transparent;color:var(--ink-2);font-size:11.5px}
 .favorite-toggle span{color:var(--ink-3)}
 .favorite-toggle strong{display:grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--win-2);color:var(--ink);font-size:10px}
@@ -924,12 +927,18 @@ h1 .outlined{-webkit-text-stroke:0;color:var(--accent);font-style:normal}
 .resource-status{color:var(--ink-3);font-size:10.5px}
 .nav-panel{padding-top:66px;padding-bottom:66px}
 .tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:34px;border-top:1px solid var(--line)}
-.site{min-height:88px;padding:18px 14px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none}
+.site{min-height:104px;padding:16px 12px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none}
 .site-main{display:flex;align-items:center;gap:13px;min-width:0;flex:1}
+.site-meta{display:flex;align-items:center;gap:7px;margin-top:5px;color:var(--ink-3);font-size:9px;line-height:1.3;white-space:nowrap;overflow:hidden}
+.site-meta span{max-width:120px;overflow:hidden;text-overflow:ellipsis}
+.site-meta time{padding-left:7px;border-left:1px solid var(--line)}
+.site-actions{display:flex;align-items:center;flex-direction:column;gap:2px;flex:none}
 .site-favorite{display:grid;place-items:center;width:32px;height:32px;flex:none;border:0;border-radius:50%;background:transparent;color:var(--ink-3);font-size:15px;transition:color .18s ease,background .18s ease,transform .18s ease}
+.site-report{display:grid;place-items:center;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--ink-3);font:700 11px/1 Georgia,serif}
 .site-favorite:hover{background:var(--accent-soft);color:var(--accent);transform:scale(1.06)}
+.site-report:hover{background:var(--accent-soft);color:var(--ru-red)}
 .site-favorite[aria-pressed="true"]{color:var(--ru-red)}
-.site-favorite:focus-visible,.favorite-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.site-favorite:focus-visible,.site-report:focus-visible,.favorite-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .site:nth-child(3n+2){border-left:1px solid var(--line);border-right:1px solid var(--line)}
 .site:hover{z-index:1;border-color:var(--line);background:var(--win-2);box-shadow:none;transform:none}
 .site-icon{width:40px;height:40px;border-radius:8px;background:var(--card-2)}
@@ -1106,7 +1115,7 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 .parttime-rules p{max-width:940px;margin:0;color:var(--ink-2);font-size:12px;line-height:1.8}
 .parttime-rules a{display:inline-block;margin-top:10px;border-bottom:1px solid var(--accent);color:var(--accent);font-size:11.5px}
 .parttime-rules small{display:block;margin-top:12px;color:var(--ru-red);font-size:10.5px;line-height:1.7}
-@media(max-width:760px){.parttime-rules{padding:18px}.site-favorite,.search-clear,.mode-toggle{width:44px;height:44px}.engine-chip,.cchip,.tab{min-height:44px}}
+@media(max-width:760px){.parttime-rules{padding:18px}.site-favorite,.site-report,.search-clear,.mode-toggle{width:44px;height:44px}.engine-chip,.cchip,.tab{min-height:44px}.site-actions{gap:0}.site-meta{align-items:flex-start;flex-direction:column;gap:3px}.site-meta time{padding-left:0;border-left:0}}
 
 /* ---------- v21 资源收藏 ---------- */
-@media(max-width:460px){.resource-tools{align-items:flex-start;flex-direction:column-reverse;gap:9px}.favorite-toggle{width:100%;justify-content:center}}
+@media(max-width:460px){.resource-tools{align-items:stretch;flex-direction:column-reverse;gap:9px}.resource-toolside{justify-content:space-between}.favorite-toggle{width:100%;justify-content:center}}

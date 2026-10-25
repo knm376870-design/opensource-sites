@@ -1,0 +1,39 @@
+name: 报告失效或异常资源
+description: 报告打不开、跳转错误、内容变化或存在风险的资源
+title: "[失效资源] "
+labels: []
+body:
+  - type: input
+    id: resource
+    attributes:
+      label: 资源名称
+      placeholder: 例如：SuperJob
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 当前网址
+      placeholder: https://example.com/
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: 遇到的问题
+      options:
+        - 无法打开或长期超时
+        - 页面不存在或跳转错误
+        - 平台已经停止服务
+        - 内容与本站描述不符
+        - 疑似诈骗、钓鱼或其他安全风险
+        - 其他问题
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 补充说明
+      description: 请说明发现日期、所在地区和看到的错误；不要填写账号、密码或其他隐私信息。
+    validations:
+      required: true

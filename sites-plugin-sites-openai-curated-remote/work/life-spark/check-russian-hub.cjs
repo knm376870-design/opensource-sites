@@ -15,11 +15,11 @@ assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS')
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
 assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
-assert(html.includes('russian-data.js?v=4')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=12'),'resource data must load before app');
+assert(html.includes('russian-data.js?v=4')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=13'),'resource data must load before app');
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=22')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=23')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -39,4 +39,7 @@ assert(app.includes("localStorage.getItem('russianFavorites')")&&app.includes('d
 assert(html.includes('class="skip-link"')&&html.includes('id="main-content"')&&html.includes('aria-label="主要导航"'),'expect keyboard skip navigation and named primary nav');
 assert(app.includes("prefers-reduced-motion: reduce")&&app.includes('syncModeToggle')&&app.includes("setAttribute('aria-pressed'"),'expect reduced-motion scrolling and programmatic toggle states');
 assert(css.includes('input:focus-visible')&&css.includes('@media(forced-colors:active)')&&css.includes('min-height:44px'),'expect visible focus, forced colors and mobile touch targets');
+assert(app.includes("RESOURCE_REVIEW_DATE='2026-10-25'")&&app.includes('class="site-meta"')&&app.includes('data-report="${s.key}"'),'expect source domains, review dates and per-resource reports');
+assert(html.includes('报告失效资源')&&html.includes('基础核验')&&html.includes('不代表平台始终可用'),'expect visible reporting and verification-scope disclosure');
+assert(fs.existsSync('../../../.github/ISSUE_TEMPLATE/broken-link.yml'),'expect structured broken-link issue template');
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

@@ -241,10 +241,11 @@ const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],too
 const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
 const favoriteKeys=new Set((()=>{try{const value=JSON.parse(localStorage.getItem('russianFavorites')||'[]');return Array.isArray(value)?value:[]}catch{return []}})());
 let favoritesOnly=false;
+const RESOURCE_REVIEW_DATE='2026-10-25';
 const hotCount=s=>hotMap[s.key]||0;
+const siteHost=s=>{try{return new URL(s.url).hostname.replace(/^www\./,'')}catch{return ''}};
 const siteIcon=(s,className='site-icon')=>{
-  let host='';
-  try{host=new URL(s.url).hostname.replace(/^www\./,'')}catch{}
+  const host=siteHost(s);
   const initial=(s.name.trim()[0]||'·').toUpperCase();
   if(!host)return `<span class="${className}"><b>${initial}</b></span>`;
   const remote=`https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=64`;
@@ -258,7 +259,8 @@ const siteIcon=(s,className='site-icon')=>{
 const siteTile=s=>{
   const c=hotCount(s);
   const favored=favoriteKeys.has(s.key);
-  return `<article class="site${c>=2?' hot':''}${favored?' is-favorite':''}"><a class="site-main" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}" aria-label="${s.name}：${s.desc}（在新窗口打开）">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a><button class="site-favorite" type="button" data-favorite="${s.key}" aria-label="${favored?'取消收藏':'收藏'} ${s.name}" aria-pressed="${favored}"><span aria-hidden="true">★</span></button></article>`;
+  const host=siteHost(s);
+  return `<article class="site${c>=2?' hot':''}${favored?' is-favorite':''}"><a class="site-main" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}" aria-label="${s.name}：${s.desc}。来源 ${host}，基础核验 ${RESOURCE_REVIEW_DATE}，在新窗口打开">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i><small class="site-meta"><span>${host}</span><time datetime="${RESOURCE_REVIEW_DATE}">基础核验 ${RESOURCE_REVIEW_DATE}</time></small></span><span class="site-go" aria-hidden="true">↗</span></a><span class="site-actions"><button class="site-favorite" type="button" data-favorite="${s.key}" aria-label="${favored?'取消收藏':'收藏'} ${s.name}" aria-pressed="${favored}"><span aria-hidden="true">★</span></button><button class="site-report" type="button" data-report="${s.key}" aria-label="报告 ${s.name} 链接失效"><span aria-hidden="true">!</span></button></span></article>`;
 };
 
 function renderSites(q){
@@ -288,6 +290,16 @@ function renderHeroCats(){
 
 function hot(s){hotMap[s.key]=(hotMap[s.key]||0)+1;try{localStorage.setItem('sparkHot',JSON.stringify(hotMap))}catch{}}
 document.addEventListener('click',e=>{
+  const report=e.target.closest('[data-report]');
+  if(report){
+    const s=sites.find(item=>item.key===report.dataset.report);
+    if(s){
+      const title=`[失效资源] ${s.name}`;
+      const body=`资源名称：${s.name}\n当前地址：${s.url}\n发现日期：\n问题说明：`;
+      window.open(`https://github.com/knm376870-design/opensource-sites/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,'_blank','noopener');
+    }
+    return;
+  }
   const favorite=e.target.closest('[data-favorite]');
   if(favorite){
     const key=favorite.dataset.favorite;
