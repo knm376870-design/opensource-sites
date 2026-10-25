@@ -233,6 +233,8 @@ function quiz(){
 
 const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media'],job:['#tiles-job','#nav-job'],parttime:['#tiles-parttime','#nav-parttime'],shop:['#tiles-shop','#nav-shop'],core:['#tiles-core','#nav-core'],ai:['#tiles-ai','#nav-ai']};
 const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
+const favoriteKeys=new Set((()=>{try{const value=JSON.parse(localStorage.getItem('russianFavorites')||'[]');return Array.isArray(value)?value:[]}catch{return []}})());
+let favoritesOnly=false;
 const hotCount=s=>hotMap[s.key]||0;
 const siteIcon=(s,className='site-icon')=>{
   let host='';
@@ -249,20 +251,26 @@ const siteIcon=(s,className='site-icon')=>{
 };
 const siteTile=s=>{
   const c=hotCount(s);
-  return `<a class="site${c>=2?' hot':''}" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a>`;
+  const favored=favoriteKeys.has(s.key);
+  return `<article class="site${c>=2?' hot':''}${favored?' is-favorite':''}"><a class="site-main" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a><button class="site-favorite" type="button" data-favorite="${s.key}" aria-label="${favored?'取消收藏':'收藏'} ${s.name}" aria-pressed="${favored}"><span aria-hidden="true">★</span></button></article>`;
 };
 
 function renderSites(q){
   q=(q||'').trim().toLowerCase();
   let total=0;
   for(const cat in SITE_CATS){
-    const list=sites.filter(s=>s.cat===cat&&(!q||(s.name+s.desc).toLowerCase().includes(q)));
+    const list=sites.filter(s=>s.cat===cat&&(!favoritesOnly||favoriteKeys.has(s.key))&&(!q||(s.name+s.desc).toLowerCase().includes(q)));
     const [el,panel]=SITE_CATS[cat];
     $(el).innerHTML=list.map(siteTile).join('');
     $(panel).hidden=!list.length;
     total+=list.length;
   }
   $('#noHit').hidden=total>0;
+  $('#noHit').textContent=favoritesOnly?'还没有收藏资源。点击资源右侧的星标，就能在这里快速找到。':'没找到相关条目，换个词试试？';
+  $('#favoriteCount').textContent=favoriteKeys.size;
+  $('#favoriteToggle').classList.toggle('active',favoritesOnly);
+  $('#favoriteToggle').setAttribute('aria-pressed',String(favoritesOnly));
+  $('#resourceStatus').textContent=`${favoritesOnly?'收藏中 ':''}${total} 个入口`;
 }
 
 function renderHeroCats(){
@@ -274,6 +282,15 @@ function renderHeroCats(){
 
 function hot(s){hotMap[s.key]=(hotMap[s.key]||0)+1;try{localStorage.setItem('sparkHot',JSON.stringify(hotMap))}catch{}}
 document.addEventListener('click',e=>{
+  const favorite=e.target.closest('[data-favorite]');
+  if(favorite){
+    const key=favorite.dataset.favorite;
+    favoriteKeys.has(key)?favoriteKeys.delete(key):favoriteKeys.add(key);
+    try{localStorage.setItem('russianFavorites',JSON.stringify([...favoriteKeys]))}catch{}
+    renderSites($('#search').value);
+    toast(favoriteKeys.has(key)?'已加入我的收藏':'已取消收藏');
+    return;
+  }
   const t=e.target.closest('[data-site]');
   if(t){
     const s=sites.find(x=>x.key===t.dataset.site);
@@ -289,6 +306,7 @@ document.addEventListener('click',e=>{
 
 renderSites();
 renderHeroCats();
+$('#favoriteToggle').onclick=()=>{favoritesOnly=!favoritesOnly;renderSites($('#search').value)};
 $('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;renderSites(v)};
 $('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
 const ENGINES={baidu:'https://www.baidu.com/s?wd=',bing:'https://cn.bing.com/search?q=',yandex:'https://yandex.com/search/?text=',google:'https://www.google.com/search?q=',youtube:'https://www.youtube.com/results?search_query='};
