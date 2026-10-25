@@ -9,7 +9,7 @@ vm.createContext(sandbox);
 vm.runInContext(source,sandbox);
 const sites=sandbox.window.RUSSIAN_SITES;
 const output=path.join(root,'dist/assets/resource-icons');
-const missingFile=path.join(output,'_missing.json');
+const missingFile=path.join(root,'resource-icons-missing.json');
 const checkOnly=process.argv.includes('--check');
 fs.mkdirSync(output,{recursive:true});
 
