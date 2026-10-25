@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173653">
+<meta name="description" content="俄语 A1 至 C1 学习路线：按阶段查看能力目标、练习重点与推荐资源，并在本地记录进度。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/roadmap.html">
+<title>俄语学习路线 · 从 A1 到 C1</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=29">
+</head>
+<body class="roadmap-page">
+<a class="skip-link" href="#roadmap-main">跳到学习路线</a>
+<div class="window">
+<nav aria-label="主要导航">
+  <a class="brand" href="index.html"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
+  <div class="links"><a href="index.html#navs">资源库</a><a href="roadmap.html" aria-current="page">学习路线</a><a href="index.html#study-desk">今日学习</a><a href="resources.html">完整目录</a></div>
+  <div class="nav-right"><a class="test-nav" href="test.html"><i aria-hidden="true"></i><span>参与测试</span></a><a class="nav-go" href="index.html">返回首页</a></div>
+</nav>
+
+<main class="roadmap-main" id="roadmap-main" tabindex="-1">
+  <header class="roadmap-hero">
+    <p lang="ru">Маршрут изучения русского языка</p>
+    <h1>知道下一步，<br>比一次学很多更重要。</h1>
+    <div class="roadmap-intro"><p>从 A1 到 C1，选择最接近自己的阶段，完成四个关键里程碑。进度只保存在当前浏览器。</p><span>自我规划工具，不是官方等级测试</span></div>
+  </header>
+
+  <section class="roadmap-workspace" aria-labelledby="roadmap-title">
+    <div class="level-rail">
+      <h2 id="roadmap-title">选择当前阶段</h2>
+      <div class="level-tabs" role="group" aria-label="俄语学习阶段">
+        <button type="button" data-level="a1" aria-pressed="true"><b>A1</b><span>开始生存表达</span></button>
+        <button type="button" data-level="a2" aria-pressed="false"><b>A2</b><span>处理日常场景</span></button>
+        <button type="button" data-level="b1" aria-pressed="false"><b>B1</b><span>实现独立交流</span></button>
+        <button type="button" data-level="b2" aria-pressed="false"><b>B2</b><span>讨论复杂话题</span></button>
+        <button type="button" data-level="c1" aria-pressed="false"><b>C1</b><span>形成深度表达</span></button>
+      </div>
+      <p class="roadmap-local">选择与勾选记录不会上传。</p>
+    </div>
+
+    <article class="level-detail" aria-live="polite">
+      <div class="level-detail-head"><div><span id="levelCode">A1</span><h2 id="levelName">开始生存表达</h2></div><strong id="levelProgress">0 / 4</strong></div>
+      <p id="levelAbility" class="level-ability"></p>
+      <span class="level-meter" aria-hidden="true"><i id="levelMeter"></i></span>
+      <div class="milestone-list" id="milestoneList"></div>
+      <div class="level-next"><div><small>完成本级后</small><b id="levelNext"></b></div><div class="level-links" id="levelLinks"></div></div>
+    </article>
+  </section>
+
+  <aside class="roadmap-note">
+    <strong>怎样选择阶段？</strong>
+    <p>先看“我能做到什么”，选择大约能完成一半的阶段。觉得太难就退一级，四项都稳定做到后再前进。</p>
+  </aside>
+</main>
+
+<footer class="directory-footer"><span>俄语星球 · 学习路线</span><div><a href="index.html">首页</a><a href="resources.html">资源目录</a><a href="about.html">关于本站</a></div></footer>
+</div>
+<script>
+const LEVELS={
+ a1:{name:'开始生存表达',ability:'能读西里尔字母，完成问候、自我介绍、数字、时间和简单购物表达。',next:'进入 A2：把短句连接成日常对话。',tasks:['熟悉字母、重音和基础发音','掌握约 500 个高频词与固定表达','完成自我介绍、问路和点餐对话','听懂语速较慢的简短指令'],links:[['从系统课程开始','index.html#nav-web'],['查词与发音','index.html#nav-app']]},
+ a2:{name:'处理日常场景',ability:'能谈论家庭、学习、工作和旅行，在熟悉场景中进行简短交流。',next:'进入 B1：围绕经历和观点连续表达。',tasks:['掌握常见格变化和动词体基础','积累约 1500 个常用词','完成三分钟日常主题对话','听懂慢速播客的主要信息'],links:[['练听说输入','index.html#nav-tool'],['寻找语伴','index.html#nav-media']]},
+ b1:{name:'实现独立交流',ability:'能在旅行、校园和工作场景独立处理问题，并说明经历、计划和理由。',next:'进入 B2：理解抽象观点并自然讨论。',tasks:['稳定使用六格与常见运动动词','围绕一个主题连续表达五分钟','读懂新闻或故事的核心内容','写出结构清楚的短文或邮件'],links:[['阅读公开资料','index.html#nav-core'],['建立学习工具箱','index.html#nav-ai']]},
+ b2:{name:'讨论复杂话题',ability:'能理解较复杂文本，与母语者较自然地交流，并清晰支持自己的观点。',next:'进入 C1：提升语域、精度和文化理解。',tasks:['掌握常用连接结构和语体差异','不依赖字幕理解一般访谈','就社会或专业话题展开讨论','修改文章中的表达与逻辑问题'],links:[['寻找真实交流','index.html#nav-media'],['使用写作工具','index.html#nav-ai']]},
+ c1:{name:'形成深度表达',ability:'能灵活准确地处理学习、工作和公共讨论中的复杂信息与细微含义。',next:'继续以专业领域、文学和真实项目深化语言。',tasks:['识别正式、口语和文学表达差异','理解长篇访谈与隐含态度','完成结构严谨的专业陈述','在真实项目中持续使用俄语'],links:[['探索原文资料','index.html#nav-core'],['查看求职入口','index.html#nav-job']]}
+};
+let state={level:'a1',done:{}};
+try{const saved=JSON.parse(localStorage.getItem('russianRoadmap')||'{}');if(saved&&LEVELS[saved.level])state={level:saved.level,done:saved.done&&typeof saved.done==='object'&&!Array.isArray(saved.done)?saved.done:{}}}catch(e){}
+const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
+function save(){try{localStorage.setItem('russianRoadmap',JSON.stringify(state))}catch(e){}}
+function render(){const d=LEVELS[state.level],raw=state.done[state.level],done=Array.isArray(raw)?raw.filter(x=>Number.isInteger(x)&&x>=0&&x<4):[];state.done[state.level]=done;q('#levelCode').textContent=state.level.toUpperCase();q('#levelName').textContent=d.name;q('#levelAbility').textContent=d.ability;q('#levelNext').textContent=d.next;q('#levelProgress').textContent=`${done.length} / 4`;q('#levelMeter').style.width=`${done.length*25}%`;q('#milestoneList').innerHTML=d.tasks.map((x,i)=>`<button type="button" data-task="${i}" aria-pressed="${done.includes(i)}" class="${done.includes(i)?'done':''}"><i aria-hidden="true"></i><span><b>${x}</b><small>${done.includes(i)?'已完成':'标记为已完成'}</small></span></button>`).join('');q('#levelLinks').innerHTML=d.links.map(x=>`<a href="${x[1]}">${x[0]} <span aria-hidden="true">→</span></a>`).join('');qa('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.level===state.level)));qa('[data-task]').forEach(b=>b.onclick=()=>{const n=Number(b.dataset.task),list=state.done[state.level];state.done[state.level]=list.includes(n)?list.filter(x=>x!==n):[...list,n];save();render()})}
+qa('[data-level]').forEach(b=>b.onclick=()=>{state.level=b.dataset.level;save();render()});render();
+</script>
+</body>
+</html>
