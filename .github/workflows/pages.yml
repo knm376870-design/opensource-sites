@@ -30,6 +30,7 @@ jobs:
         run: |
           node --check dist/app.js
           node --check dist/sw.js
+          node build-resource-directory.cjs --check
           node check-russian-hub.cjs
           node audit-site.cjs
 

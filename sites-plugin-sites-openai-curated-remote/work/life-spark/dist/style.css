@@ -1119,3 +1119,28 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 
 /* ---------- v21 资源收藏 ---------- */
 @media(max-width:460px){.resource-tools{align-items:stretch;flex-direction:column-reverse;gap:9px}.resource-toolside{justify-content:space-between}.favorite-toggle{width:100%;justify-content:center}}
+
+/* ---------- v24 静态资源目录 ---------- */
+.directory-page{background:#09121c;color:var(--ink)}
+.directory-page .window{min-height:100vh;margin-top:0;margin-bottom:0}
+.directory-main{display:block;padding-top:76px;padding-bottom:70px}
+.directory-hero{padding:68px 0 74px;border-bottom:1px solid var(--line)}
+.directory-hero>p{margin:0 0 18px;color:var(--ru-red);font-size:11px;font-weight:700}
+.directory-hero h1{max-width:900px;margin:0;font-size:clamp(44px,7vw,78px);line-height:1.04}
+.directory-hero>small{display:block;max-width:850px;margin-top:26px;color:var(--ink-3);font-size:11px;line-height:1.8}
+.directory-jumps{display:flex;flex-wrap:wrap;gap:6px;margin-top:32px}
+.directory-jumps a{padding:8px 11px;border:1px solid var(--line);border-radius:4px;color:var(--ink-2);font-size:11px}
+.directory-jumps a:hover{border-color:var(--accent);color:var(--accent)}
+.directory-section{padding:54px 0;border-bottom:1px solid var(--line)}
+.directory-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:22px}
+.directory-heading h2{margin:0;font-size:28px}
+.directory-heading span{color:var(--ink-3);font-size:11px}
+.directory-section ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;border-top:1px solid var(--line);list-style:none}
+.directory-section li{min-width:0;border-bottom:1px solid var(--line)}
+.directory-section li:nth-child(3n+2){border-right:1px solid var(--line);border-left:1px solid var(--line)}
+.directory-section li a{display:flex;min-height:118px;padding:20px;flex-direction:column}
+.directory-section li a:hover{background:var(--win-2)}
+.directory-section strong{font-size:14px}
+.directory-section li span{margin-top:5px;color:var(--ink-2);font-size:11px;line-height:1.6}
+.directory-section li small{margin-top:auto;padding-top:12px;color:var(--ink-3);font-size:9px}
+@media(max-width:760px){.directory-main{padding-top:44px}.directory-hero{padding:48px 0 58px}.directory-section ul{grid-template-columns:1fr}.directory-section li:nth-child(3n+2){border-right:0;border-left:0}.directory-section li a{min-height:108px;padding:18px 8px}.directory-jumps{flex-wrap:nowrap;overflow-x:auto}.directory-jumps a{display:flex;align-items:center;min-height:44px;white-space:nowrap}}

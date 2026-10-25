@@ -19,7 +19,7 @@ assert(html.includes('russian-data.js?v=4')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=23')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=24')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -42,4 +42,6 @@ assert(css.includes('input:focus-visible')&&css.includes('@media(forced-colors:a
 assert(app.includes("RESOURCE_REVIEW_DATE='2026-10-25'")&&app.includes('class="site-meta"')&&app.includes('data-report="${s.key}"'),'expect source domains, review dates and per-resource reports');
 assert(html.includes('报告失效资源')&&html.includes('基础核验')&&html.includes('不代表平台始终可用'),'expect visible reporting and verification-scope disclosure');
 assert(fs.existsSync('../../../.github/ISSUE_TEMPLATE/broken-link.yml'),'expect structured broken-link issue template');
+assert(fs.existsSync('dist/resources.html')&&html.includes('href="resources.html"'),'expect linked static resource directory');
+assert(fs.readFileSync('dist/resources.html','utf8').includes('numberOfItems":121'),'expect complete ItemList structured data');
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

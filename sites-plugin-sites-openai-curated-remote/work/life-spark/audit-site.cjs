@@ -9,6 +9,7 @@ const assert=(condition,message)=>{if(!condition)throw new Error(message)};
 const html=read('dist/index.html');
 const app=read('dist/app.js');
 const data=read('dist/russian-data.js');
+const directory=read('dist/resources.html');
 const sandbox={window:{}};
 vm.createContext(sandbox);
 vm.runInContext(data,sandbox);
@@ -18,6 +19,7 @@ assert(Array.isArray(sites)&&sites.length>0,'resource data is missing');
 assert(!/javascript:/i.test(html+app+data),'javascript: URLs are forbidden');
 assert(!/http:\/\//i.test(data),'resource URLs must use HTTPS');
 assert(html.includes('name="referrer"'),'referrer policy meta is required');
+assert(directory.includes('"@type":"ItemList"'),'static resource directory needs ItemList structured data');
 
 for(const tag of html.match(/<a\b[^>]*target="_blank"[^>]*>/gi)||[]){
   assert(/rel="[^"]*noopener/i.test(tag),`external link is missing rel=noopener: ${tag}`);
@@ -41,6 +43,7 @@ for(const site of sites){
   else normalized.set(key,site.key);
 }
 assert(!duplicates.length,`duplicate resource URLs: ${duplicates.join(', ')}`);
+assert(sites.every(site=>directory.includes(site.url)),'static resource directory must contain every resource URL');
 
 async function liveAudit(){
   const results=[];
