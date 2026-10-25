@@ -26,7 +26,7 @@ assert(html.includes('russian-data.js?v=5')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=27')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=28')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -69,5 +69,7 @@ assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OW
 assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');
 assert(userTest.includes('5分钟用户测试')&&userTest.includes('buildReport')&&userTest.includes('数据不会自动上传')&&userTest.includes('noindex,follow'),'expect guided, privacy-preserving real-user test');
 assert(status.includes('href="test.html"')&&fs.readFileSync('dist/sw.js','utf8').includes("'./test.html'"),'expect discoverable offline-capable test page');
+assert(html.includes('class="test-nav" href="test.html"')&&html.includes('class="user-test-callout" href="test.html"')&&html.includes('约5分钟 · 无需登录 · 数据不会自动上传'),'expect user test to be plainly discoverable in homepage navigation and first content');
+assert(html.indexOf('class="user-test-callout"')<html.indexOf('<section class="hero">')&&css.includes('order:-4'),'expect user-test callout before other ordered homepage content');
 for(const [name,page] of [['about',about],['submit',submit],['test',userTest]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');
