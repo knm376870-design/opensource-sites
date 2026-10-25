@@ -112,7 +112,7 @@ function render(){
   const list=ideas.filter(i=>filter==='all'||(filter==='saved'?saved.includes(i.id):i.type===filter));
   $('#count').textContent=saved.length;
   $('#cards').innerHTML=list.length?list.map(i=>`<article class="tile"><div class="tile-icon" aria-hidden="true"><div class="tile-badges"><b>${timeText(i)}</b><b>${costText(i)}</b></div>${ideaArt(i.id)}</div><div class="tile-body"><h3>${i.title}</h3><p>${i.desc}</p><div class="actions"><button class="save" data-view="${i.id}">查看行动清单 ↗</button><button class="save" data-save="${i.id}" aria-pressed="${saved.includes(i.id)}">${saved.includes(i.id)?'♥ 已收藏':'♡ 收藏'}</button></div></div></article>`).join(''):'<p class="empty">还没有收藏。先在灵感卡片上点一下“收藏”，以后可以回来找。</p>';
-  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
+  document.querySelectorAll('[data-filter]').forEach(b=>{const active=b.dataset.filter===filter;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
 }
 
 function show(i){
@@ -191,24 +191,30 @@ $('#generate').onclick=()=>{
   show(pool[Math.floor(Math.random()*pool.length)]);
 };
 
-$('#start').onclick=()=>{$('#navs').scrollIntoView({behavior:'smooth'});$('#search').focus({preventScroll:true})};
+const reduceMotion=()=>window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const scrollToSection=element=>element.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
 
-$('#shuffle').onclick=()=>{show(ideas[Math.floor(Math.random()*ideas.length)]);$('#planner').scrollIntoView({behavior:'smooth'})};
+$('#start').onclick=()=>{scrollToSection($('#navs'));$('#search').focus({preventScroll:true})};
+
+$('#shuffle').onclick=()=>{show(ideas[Math.floor(Math.random()*ideas.length)]);scrollToSection($('#planner'))};
 
 $('#cards').onclick=e=>{
   const s=e.target.closest('[data-save]'),v=e.target.closest('[data-view]');
   if(s)save(+s.dataset.save);
-  if(v){show(ideas[+v.dataset.view]);$('#planner').scrollIntoView({behavior:'smooth'})}
+  if(v){show(ideas[+v.dataset.view]);scrollToSection($('#planner'))}
 };
 
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});
 
 $('#savedLink').onclick=()=>{filter='saved';render()};
 
+const syncModeToggle=()=>{const dark=document.documentElement.dataset.mode==='dark';$('#modeToggle').setAttribute('aria-pressed',String(dark));$('#modeToggle').setAttribute('aria-label',dark?'切换到浅色模式':'切换到深色模式')};
+syncModeToggle();
 $('#modeToggle').onclick=()=>{
   const next=document.documentElement.dataset.mode==='dark'?'light':'dark';
   document.documentElement.dataset.mode=next;
   try{localStorage.setItem('sparkMode',next)}catch{}
+  syncModeToggle();
 };
 
 const questions=['突然多出一小时，你更想……','什么时刻让你觉得今天很值得？','下个周末，你想给自己安排……'];
@@ -252,7 +258,7 @@ const siteIcon=(s,className='site-icon')=>{
 const siteTile=s=>{
   const c=hotCount(s);
   const favored=favoriteKeys.has(s.key);
-  return `<article class="site${c>=2?' hot':''}${favored?' is-favorite':''}"><a class="site-main" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a><button class="site-favorite" type="button" data-favorite="${s.key}" aria-label="${favored?'取消收藏':'收藏'} ${s.name}" aria-pressed="${favored}"><span aria-hidden="true">★</span></button></article>`;
+  return `<article class="site${c>=2?' hot':''}${favored?' is-favorite':''}"><a class="site-main" href="${s.url}" target="_blank" rel="noopener" data-site="${s.key}" aria-label="${s.name}：${s.desc}（在新窗口打开）">${siteIcon(s)}${c>=2?'<span class="site-hot">常逛</span>':''}<span class="site-text"><b class="site-name">${s.name}</b>${s.tag?`<em class="site-badge">${s.tag}</em>`:''}<i class="site-desc">${s.desc}</i></span><span class="site-go" aria-hidden="true">↗</span></a><button class="site-favorite" type="button" data-favorite="${s.key}" aria-label="${favored?'取消收藏':'收藏'} ${s.name}" aria-pressed="${favored}"><span aria-hidden="true">★</span></button></article>`;
 };
 
 function renderSites(q){
@@ -311,7 +317,7 @@ $('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;rend
 $('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
 const ENGINES={baidu:'https://www.baidu.com/s?wd=',bing:'https://cn.bing.com/search?q=',yandex:'https://yandex.com/search/?text=',google:'https://www.google.com/search?q=',youtube:'https://www.youtube.com/results?search_query='};
 let curEngine='baidu';
-document.querySelectorAll('.engine-chip').forEach(b=>b.onclick=()=>{curEngine=b.dataset.engine;document.querySelectorAll('.engine-chip').forEach(x=>x.classList.toggle('active',x===b))});
+document.querySelectorAll('.engine-chip').forEach(b=>{b.setAttribute('aria-pressed',String(b.classList.contains('active')));b.onclick=()=>{curEngine=b.dataset.engine;document.querySelectorAll('.engine-chip').forEach(x=>{const active=x===b;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))})}});
 $('#superForm').onsubmit=e=>{e.preventDefault();const q=$('#superQ').value.trim();if(!q)return;window.open(ENGINES[curEngine]+encodeURIComponent(q),'_blank','noopener')};
 $('#randSite').onclick=()=>{
   const s=sites[Math.floor(Math.random()*sites.length)];
@@ -319,11 +325,11 @@ $('#randSite').onclick=()=>{
   toast('正在打开：'+s.name);
   window.open(s.url,'_blank','noopener');
 };
-document.querySelectorAll('.cchip').forEach(b=>b.onclick=()=>{document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth'})});
+document.querySelectorAll('.cchip').forEach(b=>b.onclick=()=>scrollToSection(document.getElementById(b.dataset.target)));
 const spy=new IntersectionObserver(es=>{
   es.forEach(en=>{
     if(!en.isIntersecting)return;
-    document.querySelectorAll('.cchip').forEach(b=>b.classList.toggle('active',b.dataset.target===en.target.id));
+    document.querySelectorAll('.cchip').forEach(b=>{const active=b.dataset.target===en.target.id;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
   });
 },{rootMargin:'-35% 0px -55% 0px'});
 ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai'].forEach(id=>spy.observe(document.getElementById(id)));

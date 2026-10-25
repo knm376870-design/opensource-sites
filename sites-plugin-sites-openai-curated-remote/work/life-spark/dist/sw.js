@@ -1,5 +1,5 @@
-const CACHE='russian-world-v23';
-const CORE=['./','./index.html','./style.css?v=21','./app.js?v=11','./art.js','./russian-data.js?v=4','./favicon.svg','./pwa-192.png','./pwa-512.png','./assets/pangyi/icon-128.png','./assets/pangyi/candidate-window.png'];
+const CACHE='russian-world-v24';
+const CORE=['./','./index.html','./style.css?v=22','./app.js?v=12','./art.js','./russian-data.js?v=4','./favicon.svg','./pwa-192.png','./pwa-512.png','./assets/pangyi/icon-128.png','./assets/pangyi/candidate-window.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
