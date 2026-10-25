@@ -7,6 +7,8 @@ const about=fs.readFileSync('dist/about.html','utf8');
 const submit=fs.readFileSync('dist/submit.html','utf8');
 const status=fs.readFileSync('dist/status.html','utf8');
 const sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
+const friends=fs.readFileSync('dist/friends.html','utf8');
+const ad=fs.readFileSync('dist/ad.html','utf8');
 const box={window:{}};vm.createContext(box);vm.runInContext(data,box);
 const sites=box.window.RUSSIAN_SITES;
 assert(Array.isArray(sites),'resource data must be an array');
@@ -61,5 +63,8 @@ assert(app.includes('assets/resource-icons/${s.key}.png')&&fs.existsSync('resour
 assert(data.includes("url:'https://www.rbth.com/'")&&!data.includes('cn.rbth.com'),'expect current official Russia Beyond domain after link audit');
 assert(status.includes('98个正常、19个限制自动访问、4个待人工复核')&&status.includes('40187485463'),'expect published first audit evidence');
 assert(status.includes('<strong>117</strong>')&&JSON.parse(fs.readFileSync('resource-icons-missing.json','utf8')).length===4,'expect current local-icon and fallback metrics');
+const publicHtml=fs.readdirSync('dist').filter(file=>file.endsWith('.html')).map(file=>fs.readFileSync(`dist/${file}`,'utf8')).join('\n');
+assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OWNER_')&&!publicHtml.includes('邮箱地址即将公布'),'public pages must not retain legacy identity or placeholders');
+assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');
 for(const [name,page] of [['about',about],['submit',submit]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');
