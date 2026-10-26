@@ -8,6 +8,7 @@ const submit=fs.readFileSync('dist/submit.html','utf8');
 const status=fs.readFileSync('dist/status.html','utf8');
 const userTest=fs.readFileSync('dist/test.html','utf8');
 const roadmap=fs.readFileSync('dist/roadmap.html','utf8');
+const vocabulary=fs.readFileSync('dist/vocabulary.html','utf8');
 const sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
 const friends=fs.readFileSync('dist/friends.html','utf8');
 const ad=fs.readFileSync('dist/ad.html','utf8');
@@ -27,7 +28,7 @@ assert(html.includes('russian-data.js?v=5')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=29')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=30')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -74,5 +75,9 @@ assert(html.includes('class="test-nav" href="test.html"')&&html.includes('class=
 assert(html.indexOf('class="user-test-callout"')<html.indexOf('<section class="hero">')&&css.includes('order:-4'),'expect user-test callout before other ordered homepage content');
 assert(html.includes('href="roadmap.html"')&&roadmap.includes('从 A1 到 C1')&&roadmap.includes("localStorage.setItem('russianRoadmap'")&&roadmap.includes('不是官方等级测试'),'expect discoverable local-first A1-C1 learning roadmap');
 assert(sitemap.includes('/roadmap.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./roadmap.html'"),'expect indexed and offline-capable roadmap');
-for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
+assert(html.includes('href="vocabulary.html"')&&vocabulary.includes("STORAGE_KEY='russianVocabularyV1'")&&vocabulary.includes('还不熟')&&vocabulary.includes('已掌握'),'expect discoverable local spaced-review vocabulary notebook');
+assert(vocabulary.includes('MAX_WORDS=2000')&&vocabulary.includes('file.size>1048576')&&vocabulary.includes('JSON.stringify')&&vocabulary.includes('textContent')&&!vocabulary.includes('.innerHTML'),'expect bounded, exportable and injection-resistant vocabulary data handling');
+assert(about.includes('学习路线、生词本')&&about.includes('生词本支持导出备份'),'expect complete local-data privacy disclosure');
+assert(sitemap.includes('/vocabulary.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./vocabulary.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./vocabulary.html'),'expect indexed, offline-capable and installable vocabulary notebook');
+for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

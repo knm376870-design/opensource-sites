@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173653">
+<meta name="description" content="本地保存的俄语生词本：记录单词、中文含义和例句，按熟悉程度安排复习，并可导出备份。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/vocabulary.html">
+<title>俄语生词本 · 本地记录与复习</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=30">
+</head>
+<body class="vocab-page">
+<a class="skip-link" href="#vocab-main">跳到生词本</a>
+<div class="window">
+<nav aria-label="主要导航">
+  <a class="brand" href="index.html"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
+  <div class="links"><a href="index.html#navs">资源库</a><a href="roadmap.html">学习路线</a><a href="vocabulary.html" aria-current="page">生词本</a><a href="index.html#study-desk">今日学习</a></div>
+  <div class="nav-right"><a class="test-nav" href="test.html"><i aria-hidden="true"></i><span>参与测试</span></a><a class="nav-go" href="index.html">返回首页</a></div>
+</nav>
+
+<main class="vocab-main" id="vocab-main" tabindex="-1">
+  <header class="vocab-hero">
+    <div><p lang="ru">Мои русские слова</p><h1>把遇见的词，<br>变成自己的俄语。</h1></div>
+    <div class="vocab-stats" aria-label="生词本统计"><span><b id="wordCount">0</b>全部词条</span><span><b id="dueCount">0</b>今天待复习</span></div>
+  </header>
+
+  <section class="vocab-grid" aria-label="生词记录与列表">
+    <aside class="vocab-compose">
+      <div><span>添加生词</span><h2>刚刚遇到了什么？</h2></div>
+      <form id="wordForm" autocomplete="off">
+        <label><span>俄语单词或短语</span><input id="wordTerm" name="term" lang="ru" maxlength="80" required placeholder="например: возможность"></label>
+        <label><span>中文含义</span><input id="wordMeaning" name="meaning" maxlength="120" required placeholder="例如：可能性、机会"></label>
+        <label><span>例句或备注（选填）</span><textarea id="wordNote" name="note" maxlength="240" rows="3" placeholder="记录它出现的完整句子"></textarea></label>
+        <button class="primary" type="submit">保存到生词本</button>
+        <p id="wordFormStatus" class="vocab-status" aria-live="polite">数据仅保存在当前浏览器。</p>
+      </form>
+      <div class="vocab-data-actions">
+        <button id="exportWords" type="button">导出备份</button>
+        <label for="importWords">导入备份</label><input id="importWords" type="file" accept="application/json,.json" hidden>
+      </div>
+    </aside>
+
+    <div class="vocab-library">
+      <div class="vocab-toolbar">
+        <label><span class="sr-only">搜索生词</span><input id="wordSearch" type="search" maxlength="80" placeholder="搜索俄语、含义或例句…"></label>
+        <button id="startReview" class="primary" type="button">开始复习 <span id="reviewBadge">0</span></button>
+      </div>
+      <div id="reviewPanel" class="review-panel" hidden aria-live="polite">
+        <div class="review-head"><span>今日复习</span><button id="closeReview" type="button">结束复习</button></div>
+        <div class="review-card"><small id="reviewPosition"></small><h2 id="reviewTerm" lang="ru"></h2><div id="reviewAnswer" hidden><strong id="reviewMeaning"></strong><p id="reviewNote"></p></div><button id="revealAnswer" class="primary" type="button">显示答案</button><div id="reviewChoices" hidden><button type="button" data-grade="again">还不熟</button><button type="button" data-grade="known">已掌握</button></div></div>
+      </div>
+      <div id="wordList" class="word-list"></div>
+      <div id="wordEmpty" class="vocab-empty"><b>生词本还是空的</b><p>把阅读、听力或聊天中遇到的词记下来，今天就从第一个开始。</p></div>
+    </div>
+  </section>
+
+  <aside class="vocab-privacy"><strong>本地优先</strong><p>本站不建立账号，也不上传你的词条。清除浏览器数据前，请先导出 JSON 备份；导入只接受最多 2000 条、1MB 以内的本站备份。</p></aside>
+</main>
+<footer class="directory-footer"><span>俄语星球 · 生词本</span><div><a href="index.html">首页</a><a href="roadmap.html">学习路线</a><a href="resources.html">资源目录</a></div></footer>
+</div>
+
+<script>
+const STORAGE_KEY='russianVocabularyV1',MAX_WORDS=2000,DAY=86400000;
+const q=s=>document.querySelector(s),now=()=>Date.now();let words=[],reviewQueue=[],reviewIndex=0;
+const clean=(v,n)=>String(v??'').trim().slice(0,n);
+function validWord(x){return x&&typeof x==='object'&&clean(x.term,80)&&clean(x.meaning,120)}
+function normalize(x){return{id:clean(x.id,80)||`${now()}-${Math.random().toString(36).slice(2,8)}`,term:clean(x.term,80),meaning:clean(x.meaning,120),note:clean(x.note,240),created:Number.isFinite(Number(x.created))?Number(x.created):now(),stage:Math.max(0,Math.min(4,Number.isInteger(Number(x.stage))?Number(x.stage):0)),due:Number.isFinite(Number(x.due))?Number(x.due):0}}
+try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');if(Array.isArray(saved))words=saved.filter(validWord).slice(0,MAX_WORDS).map(normalize)}catch(e){}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(words));return true}catch(e){status('浏览器存储空间不足，请先导出备份并删除部分词条。');return false}}
+function status(text){q('#wordFormStatus').textContent=text}
+function dueWords(){return words.filter(x=>x.due<=now())}
+function make(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el}
+function render(){const query=clean(q('#wordSearch').value,80).toLocaleLowerCase('ru');const shown=words.filter(x=>!query||`${x.term} ${x.meaning} ${x.note}`.toLocaleLowerCase('ru').includes(query)).sort((a,b)=>b.created-a.created);q('#wordCount').textContent=words.length;q('#dueCount').textContent=dueWords().length;q('#reviewBadge').textContent=dueWords().length;q('#startReview').disabled=!dueWords().length;const list=q('#wordList');list.replaceChildren();shown.forEach(x=>{const row=make('article','word-row'),main=make('div','word-main'),term=make('b','word-term',x.term),meaning=make('span','word-meaning',x.meaning),meta=make('small','word-meta',x.due<=now()?'待复习':`下次：${new Date(x.due).toLocaleDateString('zh-CN')}`),actions=make('div','word-actions'),speak=make('button','', '发音'),remove=make('button','','删除');term.lang='ru';main.append(term,meaning);if(x.note)main.append(make('p','word-note',x.note));main.append(meta);speak.type=remove.type='button';speak.onclick=()=>speakWord(x.term);remove.onclick=()=>{if(confirm(`删除“${x.term}”吗？`)){words=words.filter(w=>w.id!==x.id);save();render()}};actions.append(speak,remove);row.append(main,actions);list.append(row)});q('#wordEmpty').hidden=words.length>0||Boolean(query);if(!shown.length&&words.length&&query){const no=make('p','vocab-no-result','没有找到相关词条。');list.append(no)}}
+function speakWord(text){if(!('speechSynthesis' in window)){status('当前浏览器不支持语音朗读。');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ru-RU';u.rate=.82;speechSynthesis.speak(u)}
+q('#wordForm').onsubmit=e=>{e.preventDefault();const term=clean(q('#wordTerm').value,80),meaning=clean(q('#wordMeaning').value,120),note=clean(q('#wordNote').value,240);if(!term||!meaning){status('请填写俄语词条和中文含义。');return}if(words.length>=MAX_WORDS){status('已达到 2000 条上限，请先导出备份并整理词条。');return}if(words.some(x=>x.term.toLocaleLowerCase('ru')===term.toLocaleLowerCase('ru')&&x.meaning===meaning)){status('这条内容已经在生词本里。');return}words.push(normalize({term,meaning,note,created:now(),due:0,stage:0}));if(save()){e.target.reset();status(`已保存“${term}”。`);render()}};
+q('#wordSearch').oninput=render;
+function startReview(){reviewQueue=dueWords().sort((a,b)=>a.due-b.due);reviewIndex=0;if(!reviewQueue.length)return;q('#reviewPanel').hidden=false;q('#wordList').hidden=true;q('#wordEmpty').hidden=true;showReview()}
+function showReview(){if(reviewIndex>=reviewQueue.length){closeReview();status('今天的复习完成了，下一批词会按熟悉程度重新出现。');return}const x=reviewQueue[reviewIndex];q('#reviewPosition').textContent=`${reviewIndex+1} / ${reviewQueue.length}`;q('#reviewTerm').textContent=x.term;q('#reviewMeaning').textContent=x.meaning;q('#reviewNote').textContent=x.note||'没有例句或备注';q('#reviewAnswer').hidden=true;q('#revealAnswer').hidden=false;q('#reviewChoices').hidden=true}
+function closeReview(){q('#reviewPanel').hidden=true;q('#wordList').hidden=false;render()}
+q('#startReview').onclick=startReview;q('#closeReview').onclick=closeReview;q('#revealAnswer').onclick=()=>{q('#reviewAnswer').hidden=false;q('#revealAnswer').hidden=true;q('#reviewChoices').hidden=false};
+q('#reviewChoices').onclick=e=>{const grade=e.target.dataset.grade;if(!grade)return;const x=reviewQueue[reviewIndex],live=words.find(w=>w.id===x.id);if(live){if(grade==='again'){live.stage=0;live.due=now()+10*60*1000}else{live.stage=Math.min(4,live.stage+1);live.due=now()+[1,3,7,14][live.stage-1]*DAY}save()}reviewIndex++;showReview()};
+q('#exportWords').onclick=()=>{const blob=new Blob([JSON.stringify({format:'russian-vocabulary-v1',exported:new Date().toISOString(),words},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`俄语生词本-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+q('#importWords').onchange=async e=>{const file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>1048576){status('备份文件超过 1MB，未导入。');return}try{const data=JSON.parse(await file.text()),incoming=Array.isArray(data)?data:data.words;if(!Array.isArray(incoming)){status('这不是有效的生词本备份。');return}const valid=incoming.filter(validWord).slice(0,MAX_WORDS).map(normalize),known=new Set(words.map(x=>`${x.term.toLocaleLowerCase('ru')}\n${x.meaning}`));let added=0;for(const x of valid){const key=`${x.term.toLocaleLowerCase('ru')}\n${x.meaning}`;if(!known.has(key)&&words.length<MAX_WORDS){x.id=`${now()}-${added}-${Math.random().toString(36).slice(2,8)}`;words.push(x);known.add(key);added++}}save();render();status(`已导入 ${added} 条新词，重复内容已跳过。`)}catch(err){status('无法读取这个备份文件，请确认它是有效的 JSON。')}};
+render();
+</script>
+</body>
+</html>
