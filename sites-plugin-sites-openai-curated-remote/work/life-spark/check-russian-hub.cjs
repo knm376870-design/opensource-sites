@@ -9,6 +9,7 @@ const status=fs.readFileSync('dist/status.html','utf8');
 const userTest=fs.readFileSync('dist/test.html','utf8');
 const roadmap=fs.readFileSync('dist/roadmap.html','utf8');
 const vocabulary=fs.readFileSync('dist/vocabulary.html','utf8');
+const practice=fs.readFileSync('dist/practice.html','utf8');
 const sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
 const friends=fs.readFileSync('dist/friends.html','utf8');
 const ad=fs.readFileSync('dist/ad.html','utf8');
@@ -28,7 +29,7 @@ assert(html.includes('russian-data.js?v=5')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=30')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=31')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -79,5 +80,12 @@ assert(html.includes('href="vocabulary.html"')&&vocabulary.includes("STORAGE_KEY
 assert(vocabulary.includes('MAX_WORDS=2000')&&vocabulary.includes('file.size>1048576')&&vocabulary.includes('JSON.stringify')&&vocabulary.includes('textContent')&&!vocabulary.includes('.innerHTML'),'expect bounded, exportable and injection-resistant vocabulary data handling');
 assert(about.includes('学习路线、生词本')&&about.includes('生词本支持导出备份'),'expect complete local-data privacy disclosure');
 assert(sitemap.includes('/vocabulary.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./vocabulary.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./vocabulary.html'),'expect indexed, offline-capable and installable vocabulary notebook');
-for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
+const practiceBankMatch=practice.match(/const QUESTION_BANK=([\s\S]*?);\r?\nconst BEST_KEY/);
+assert(practiceBankMatch,'expect parseable grammar question bank');
+const practiceBank=vm.runInNewContext(`(${practiceBankMatch[1]})`);
+for(const level of ['a1','a2','b1']){assert.equal(practiceBank[level].length,6,`${level} practice count`);assert(practiceBank[level].every(item=>item.o.length===3&&Number.isInteger(item.a)&&item.a>=0&&item.a<item.o.length&&item.e),'expect valid answer and explanation for every practice item')}
+assert(html.includes('href="practice.html"')&&practice.includes("BEST_KEY='russianPracticeBestV1'")&&practice.includes('基础巩固工具，不是正式等级考试'),'expect discoverable local A1-B1 grammar practice with honest scope');
+assert(practice.includes('textContent')&&!practice.includes('.innerHTML')&&about.includes('语法练习成绩'),'expect local, injection-resistant practice and complete privacy disclosure');
+assert(sitemap.includes('/practice.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./practice.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./practice.html'),'expect indexed, offline-capable and installable grammar practice');
+for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary],['practice',practice]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

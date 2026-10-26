@@ -12,6 +12,7 @@
     {"name": "完整资源目录", "short_name": "资源目录", "url": "./resources.html"},
     {"name": "俄语学习路线", "short_name": "学习路线", "url": "./roadmap.html"},
     {"name": "俄语生词本", "short_name": "生词本", "url": "./vocabulary.html"},
+    {"name": "俄语语法练习", "short_name": "语法练习", "url": "./practice.html"},
     {"name": "俄语求职", "short_name": "俄语求职", "url": "./#nav-job"},
     {"name": "留学生兼职", "short_name": "留学兼职", "url": "./#nav-parttime"}
   ],

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173653">
+<meta name="description" content="A1、A2、B1 俄语基础语法练习：单题作答、即时中文解释与本地最佳成绩。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/practice.html">
+<title>俄语语法练习 · A1 到 B1</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=31">
+</head>
+<body class="practice-page">
+<a class="skip-link" href="#practice-main">跳到语法练习</a>
+<div class="window">
+<nav aria-label="主要导航">
+  <a class="brand" href="index.html"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
+  <div class="links"><a href="index.html#navs">资源库</a><a href="roadmap.html">学习路线</a><a href="vocabulary.html">生词本</a><a href="practice.html" aria-current="page">语法练习</a></div>
+  <div class="nav-right"><a class="test-nav" href="test.html"><i aria-hidden="true"></i><span>参与测试</span></a><a class="nav-go" href="index.html">返回首页</a></div>
+</nav>
+
+<main class="practice-main" id="practice-main" tabindex="-1">
+  <header class="practice-hero">
+    <p lang="ru">Практика русской грамматики</p>
+    <h1>一次一道题，<br>把规则变成直觉。</h1>
+    <div><p>选择阶段，完成6道基础题。每次作答后立即查看解释，成绩只保存在当前浏览器。</p><span>基础巩固工具，不是正式等级考试</span></div>
+  </header>
+
+  <section class="practice-workspace" aria-labelledby="practice-title">
+    <aside class="practice-side">
+      <h2 id="practice-title">选择练习阶段</h2>
+      <div class="practice-levels" role="group" aria-label="语法练习阶段">
+        <button type="button" data-practice-level="a1" aria-pressed="true"><b>A1</b><span>句子基础</span></button>
+        <button type="button" data-practice-level="a2" aria-pressed="false"><b>A2</b><span>日常语法</span></button>
+        <button type="button" data-practice-level="b1" aria-pressed="false"><b>B1</b><span>复杂表达</span></button>
+      </div>
+      <dl class="practice-score"><div><dt>当前进度</dt><dd id="practiceProgress">1 / 6</dd></div><div><dt>本机最佳</dt><dd id="practiceBest">—</dd></div></dl>
+    </aside>
+
+    <article class="practice-sheet" aria-live="polite">
+      <div id="questionView">
+        <div class="question-meta"><span id="questionLevel">A1</span><span id="questionTopic">基础表达</span></div>
+        <h2 id="questionText" lang="ru"></h2>
+        <p id="questionHint"></p>
+        <div id="answerOptions" class="answer-options" role="group" aria-label="答案选项"></div>
+        <div id="answerFeedback" class="answer-feedback" hidden><strong id="feedbackTitle"></strong><p id="feedbackText"></p></div>
+        <button id="nextQuestion" class="primary" type="button" hidden>下一题</button>
+      </div>
+      <div id="practiceResult" class="practice-result" hidden>
+        <small>本轮完成</small><strong id="resultScore"></strong><h2 id="resultTitle"></h2><p id="resultAdvice"></p><button id="restartPractice" class="primary" type="button">再练一次</button>
+      </div>
+    </article>
+  </section>
+
+  <aside class="practice-note"><strong>怎样使用解释？</strong><p>先判断句子里需要什么语法功能，再看词尾或结构。不要只记正确选项；把完整句子大声读两遍，效果更好。</p></aside>
+</main>
+<footer class="directory-footer"><span>俄语星球 · 语法练习</span><div><a href="index.html">首页</a><a href="roadmap.html">学习路线</a><a href="vocabulary.html">生词本</a></div></footer>
+</div>
+
+<script>
+const QUESTION_BANK={
+ a1:[
+  {topic:'自我介绍',q:'Меня ___ Анна.',hint:'“我叫安娜。”',o:['зовут','зовёт','звать'],a:0,e:'Меня зовут… 是介绍自己姓名的固定结构，字面意思是“人们叫我……”。'},
+  {topic:'前置词与地点',q:'Я живу ___ Москве.',hint:'“我住在莫斯科。”',o:['на','в','из'],a:1,e:'表示“在城市里”通常使用 в + 前置格：в Москве。'},
+  {topic:'物主代词',q:'Это ___ книга.',hint:'说话者为女性：“这是我的书。”',o:['мой','моя','моё'],a:1,e:'книга 是阴性名词，因此“我的”使用阴性形式 моя。'},
+  {topic:'领有结构',q:'У меня ___ брат.',hint:'“我有一个兄弟。”',o:['есть','быть','имею'],a:0,e:'口语中表达“有”最常用 У меня есть…；У меня 后接名词主格。'},
+  {topic:'语言表达',q:'Мы говорим ___-русски.',hint:'“我们说俄语。”',o:['на','по','в'],a:1,e:'表示“用某种语言说”可用 по-русски、по-китайски 等副词形式。'},
+  {topic:'数词',q:'Сейчас два ___.',hint:'“现在两点。”',o:['час','часа','часов'],a:1,e:'2、3、4 后的 час 使用单数第二格形式 часа：два часа。'}
+ ],
+ a2:[
+  {topic:'方向与地点',q:'Каждое утро я иду ___ университет.',hint:'“每天早晨我去大学。”',o:['в','на','из'],a:0,e:'表示进入或前往大学使用 в + 第四格：в университет。'},
+  {topic:'过去时',q:'Вчера мы ___ новый фильм.',hint:'“昨天我们看了一部新电影。”',o:['смотрим','смотрели','посмотрим'],a:1,e:'Вчера 表示过去；主语 мы 要求过去时复数形式 смотрели。'},
+  {topic:'第五格',q:'Он интересуется ___.',hint:'“他对音乐感兴趣。”',o:['музыка','музыкой','музыку'],a:1,e:'интересоваться 要求第五格；музыка 的第五格是 музыкой。'},
+  {topic:'否定与第二格',q:'У меня нет ___.',hint:'“我没有时间。”',o:['время','времени','временем'],a:1,e:'нет 后通常使用第二格；время 的第二格是 времени。'},
+  {topic:'时间从句',q:'Я позвоню тебе, когда ___.',hint:'“我到了以后给你打电话。”',o:['прихожу','пришёл','приду'],a:2,e:'主句表示将来，когда 从句也用完成体将来时：когда приду。'},
+  {topic:'比较结构',q:'Она говорит по-русски лучше, ___ я.',hint:'“她俄语说得比我好。”',o:['как','чем','что'],a:1,e:'比较级后表示“比……”常用 чем：лучше, чем я。'}
+ ],
+ b1:[
+  {topic:'假设语气',q:'Если бы я знал, я ___ тебе.',hint:'“如果我知道，我就会帮助你。”',o:['помогу','помог бы','помог'],a:1,e:'非真实条件使用过去时 + бы：если бы знал, помог бы。'},
+  {topic:'关系代词',q:'Книга, ___ я читаю, очень интересная.',hint:'“我正在读的那本书很有趣。”',o:['которая','которую','которой'],a:1,e:'关系代词作 читать 的直接宾语，阴性单数第四格是 которую。'},
+  {topic:'让步结构',q:'Несмотря ___ дождь, мы пошли гулять.',hint:'“尽管下雨，我们还是去散步了。”',o:['на','в','из-за'],a:0,e:'несмотря на 是固定让步结构，后接第四格：несмотря на дождь。'},
+  {topic:'间接引语',q:'Он сказал, что ___ завтра.',hint:'“他说他明天会来。”',o:['приходит','придёт','пришёл'],a:1,e:'说话内容指向将来，因此使用完成体将来时 придёт。'},
+  {topic:'支配关系',q:'Результат зависит ___ обстоятельств.',hint:'“结果取决于具体情况。”',o:['от','из','с'],a:0,e:'зависеть от 是固定搭配，от 后接第二格：от обстоятельств。'},
+  {topic:'动词不定式',q:'Я привык ___ рано.',hint:'“我习惯早起。”',o:['встаю','вставать','встал'],a:1,e:'привыкнуть / привык 后接不定式表示“习惯做某事”：привык вставать。'}
+ ]
+};
+const BEST_KEY='russianPracticeBestV1',q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];let level='a1',index=0,score=0,answered=false,best={};
+try{const saved=JSON.parse(localStorage.getItem(BEST_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))for(const key of ['a1','a2','b1'])if(Number.isInteger(saved[key])&&saved[key]>=0&&saved[key]<=6)best[key]=saved[key]}catch(e){}
+function saveBest(){try{localStorage.setItem(BEST_KEY,JSON.stringify(best))}catch(e){}}
+function updateSide(){q('#practiceProgress').textContent=`${Math.min(index+1,6)} / 6`;q('#practiceBest').textContent=Number.isInteger(best[level])?`${best[level]} / 6`:'—';qa('[data-practice-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.practiceLevel===level)))}
+function renderQuestion(){const item=QUESTION_BANK[level][index];answered=false;q('#practiceResult').hidden=true;q('#questionView').hidden=false;q('#questionLevel').textContent=level.toUpperCase();q('#questionTopic').textContent=item.topic;q('#questionText').textContent=item.q;q('#questionHint').textContent=item.hint;q('#answerFeedback').hidden=true;q('#nextQuestion').hidden=true;const options=q('#answerOptions');options.replaceChildren();item.o.forEach((text,i)=>{const b=document.createElement('button');b.type='button';b.textContent=text;b.onclick=()=>answer(i);options.append(b)});updateSide()}
+function answer(choice){if(answered)return;answered=true;const item=QUESTION_BANK[level][index],correct=choice===item.a;if(correct)score++;qa('#answerOptions button').forEach((b,i)=>{b.disabled=true;if(i===item.a)b.classList.add('correct');else if(i===choice)b.classList.add('wrong')});q('#feedbackTitle').textContent=correct?'回答正确':'再看一下这个规则';q('#feedbackText').textContent=item.e;q('#answerFeedback').className=`answer-feedback ${correct?'is-correct':'is-wrong'}`;q('#answerFeedback').hidden=false;q('#nextQuestion').hidden=false;q('#nextQuestion').focus()}
+function finish(){best[level]=Math.max(Number(best[level])||0,score);saveBest();q('#questionView').hidden=true;q('#practiceResult').hidden=false;q('#resultScore').textContent=`${score} / 6`;q('#resultTitle').textContent=score===6?'这一阶段很稳':score>=4?'基础已经形成':'回看解释，再练一轮';q('#resultAdvice').textContent=score===6?'可以进入学习路线的下一阶段，或换一级继续练习。':score>=4?'把答错的完整句子读两遍，再完成一次练习。':'建议回到对应阶段的课程与词典，先理解规则再重新作答。';q('#practiceBest').textContent=`${best[level]} / 6`}
+q('#nextQuestion').onclick=()=>{index++;if(index>=QUESTION_BANK[level].length)finish();else renderQuestion()};q('#restartPractice').onclick=()=>{index=0;score=0;renderQuestion()};qa('[data-practice-level]').forEach(b=>b.onclick=()=>{level=b.dataset.practiceLevel;index=0;score=0;renderQuestion()});renderQuestion();
+</script>
+</body>
+</html>
