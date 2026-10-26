@@ -10,6 +10,7 @@ const userTest=fs.readFileSync('dist/test.html','utf8');
 const roadmap=fs.readFileSync('dist/roadmap.html','utf8');
 const vocabulary=fs.readFileSync('dist/vocabulary.html','utf8');
 const practice=fs.readFileSync('dist/practice.html','utf8');
+const dashboard=fs.readFileSync('dist/dashboard.html','utf8');
 const sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
 const friends=fs.readFileSync('dist/friends.html','utf8');
 const ad=fs.readFileSync('dist/ad.html','utf8');
@@ -29,7 +30,7 @@ assert(html.includes('russian-data.js?v=5')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=31')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=32')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -87,5 +88,9 @@ for(const level of ['a1','a2','b1']){assert.equal(practiceBank[level].length,6,`
 assert(html.includes('href="practice.html"')&&practice.includes("BEST_KEY='russianPracticeBestV1'")&&practice.includes('基础巩固工具，不是正式等级考试'),'expect discoverable local A1-B1 grammar practice with honest scope');
 assert(practice.includes('textContent')&&!practice.includes('.innerHTML')&&about.includes('语法练习成绩'),'expect local, injection-resistant practice and complete privacy disclosure');
 assert(sitemap.includes('/practice.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./practice.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./practice.html'),'expect indexed, offline-capable and installable grammar practice');
-for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary],['practice',practice]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
+assert(html.includes('href="dashboard.html"')&&dashboard.includes('我的学习')&&dashboard.includes('noindex,follow'),'expect discoverable non-indexed personal learning dashboard');
+for(const key of ['russianRoadmap','russianVocabularyV1','russianPracticeBestV1','russianStudyHistory','russianFavorites'])assert(dashboard.includes(key),`dashboard must read ${key}`);
+assert(dashboard.includes('safeArray')&&dashboard.includes('calculateStreak')&&dashboard.includes('textContent')&&!dashboard.includes('.innerHTML'),'expect bounded and injection-resistant local dashboard aggregation');
+assert(!sitemap.includes('/dashboard.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./dashboard.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./dashboard.html'),'expect private dashboard excluded from sitemap but available offline and as PWA shortcut');
+for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary],['practice',practice],['dashboard',dashboard]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

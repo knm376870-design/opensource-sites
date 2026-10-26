@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173653">
+<meta name="description" content="在一个页面查看俄语学习阶段、今日任务、生词复习、语法练习、收藏与连续学习记录。">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/dashboard.html">
+<title>我的学习 · 俄语星球</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=32">
+</head>
+<body class="dashboard-page">
+<a class="skip-link" href="#dashboard-main">跳到我的学习</a>
+<div class="window">
+<nav aria-label="主要导航">
+  <a class="brand" href="index.html"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
+  <div class="links"><a href="index.html#navs">资源库</a><a href="dashboard.html" aria-current="page">我的学习</a><a href="roadmap.html">学习路线</a><a href="vocabulary.html">生词本</a><a href="practice.html">语法练习</a></div>
+  <div class="nav-right"><a class="test-nav" href="test.html"><i aria-hidden="true"></i><span>参与测试</span></a><a class="nav-go" href="index.html">返回首页</a></div>
+</nav>
+
+<main class="dashboard-main" id="dashboard-main" tabindex="-1">
+  <header class="dashboard-hero">
+    <div><p lang="ru">Моё обучение</p><h1>你的俄语，<br>正在这里累积。</h1></div>
+    <p>只汇总当前浏览器中的学习记录，不登录、不上传，也不会跨设备同步。</p>
+  </header>
+
+  <section class="dashboard-focus" aria-labelledby="focus-title">
+    <div class="dashboard-level"><span>当前学习阶段</span><strong id="dashLevel">—</strong><small id="dashLevelName">尚未选择</small></div>
+    <div class="dashboard-next"><span>今天下一步</span><h2 id="focus-title">开始一项学习</h2><p id="dashNextText">选择当前俄语阶段，网站才能给出更合适的学习路线。</p><a id="dashNextLink" class="primary" href="roadmap.html">选择学习阶段</a></div>
+  </section>
+
+  <section class="learning-ledger" aria-labelledby="ledger-title">
+    <div class="ledger-heading"><h2 id="ledger-title">学习档案</h2><p>页面每次打开都会重新读取本地记录。</p></div>
+    <a class="ledger-row" href="index.html#study-desk"><span>今日任务</span><strong id="dashToday">0 / 4</strong><small id="dashTodayNote">复习、听力、跟读与记录</small><i aria-hidden="true">→</i></a>
+    <a class="ledger-row" href="vocabulary.html"><span>生词复习</span><strong id="dashWords">0 待复习</strong><small id="dashWordsNote">生词本中共有 0 条</small><i aria-hidden="true">→</i></a>
+    <a class="ledger-row" href="practice.html"><span>语法练习</span><strong id="dashPractice">尚未练习</strong><small id="dashPracticeNote">A1、A2、B1 各6题</small><i aria-hidden="true">→</i></a>
+    <a class="ledger-row" href="roadmap.html"><span>路线里程碑</span><strong id="dashMilestones">0 / 4</strong><small id="dashMilestonesNote">选择阶段并标记能力目标</small><i aria-hidden="true">→</i></a>
+    <a class="ledger-row" href="index.html#navs"><span>资源收藏</span><strong id="dashFavorites">0 个</strong><small>保存在本机的常用入口</small><i aria-hidden="true">→</i></a>
+    <div class="ledger-row ledger-static"><span>连续学习</span><strong id="dashStreak">0 天</strong><small>完成四项今日任务后计入</small><i aria-hidden="true">·</i></div>
+  </section>
+
+  <aside class="dashboard-privacy"><strong>为什么看不到另一台设备的数据？</strong><p>为了不收集个人信息，学习记录只存在当前浏览器。生词本可以导出备份；其他进度不会自动同步。</p></aside>
+</main>
+<footer class="directory-footer"><span>俄语星球 · 我的学习</span><div><a href="roadmap.html">学习路线</a><a href="vocabulary.html">生词本</a><a href="practice.html">语法练习</a></div></footer>
+</div>
+
+<script>
+const readJSON=(key,fallback)=>{try{const value=JSON.parse(localStorage.getItem(key)||'null');return value??fallback}catch(e){return fallback}};
+const q=s=>document.querySelector(s),LEVEL_NAMES={a1:'开始生存表达',a2:'处理日常场景',b1:'实现独立交流',b2:'讨论复杂话题',c1:'形成深度表达'};
+const localDay=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+function safeArray(value,limit=4000){return Array.isArray(value)?value.slice(0,limit):[]}
+function calculateStreak(history){const done=new Set(safeArray(history,366).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x))),cursor=new Date();if(!done.has(localDay(cursor)))cursor.setDate(cursor.getDate()-1);let count=0;while(count<366&&done.has(localDay(cursor))){count++;cursor.setDate(cursor.getDate()-1)}return count}
+function renderDashboard(){const today=localDay(new Date()),tasks=safeArray(readJSON(`russianStudy:${today}`,[]),4).filter(x=>['words','listen','speak','note'].includes(x)),taskCount=new Set(tasks).size,history=readJSON('russianStudyHistory',[]),roadmap=readJSON('russianRoadmap',{}),level=LEVEL_NAMES[roadmap.level]?roadmap.level:null,rawDone=level&&roadmap.done&&typeof roadmap.done==='object'?roadmap.done[level]:[],milestones=new Set(safeArray(rawDone,4).filter(x=>Number.isInteger(x)&&x>=0&&x<4)).size,words=safeArray(readJSON('russianVocabularyV1',[]),2000).filter(x=>x&&typeof x==='object'&&String(x.term||'').trim()&&String(x.meaning||'').trim()),due=words.filter(x=>Number.isFinite(Number(x.due))&&Number(x.due)<=Date.now()).length,practice=readJSON('russianPracticeBestV1',{}),scores=['a1','a2','b1'].map(k=>Number.isInteger(practice[k])&&practice[k]>=0&&practice[k]<=6?practice[k]:null),practiced=scores.filter(Number.isInteger),favorites=new Set(safeArray(readJSON('russianFavorites',[]),121).filter(x=>typeof x==='string')).size;
+q('#dashLevel').textContent=level?level.toUpperCase():'—';q('#dashLevelName').textContent=level?LEVEL_NAMES[level]:'尚未选择';q('#dashToday').textContent=`${taskCount} / 4`;q('#dashWords').textContent=`${due} 待复习`;q('#dashWordsNote').textContent=`生词本中共有 ${words.length} 条`;q('#dashPractice').textContent=practiced.length?`最佳 ${Math.max(...practiced)} / 6`:'尚未练习';q('#dashPracticeNote').textContent=practiced.length?`已练习 ${practiced.length} 个阶段`:'A1、A2、B1 各6题';q('#dashMilestones').textContent=`${milestones} / 4`;q('#dashMilestonesNote').textContent=level?`${level.toUpperCase()} · ${LEVEL_NAMES[level]}`:'选择阶段并标记能力目标';q('#dashFavorites').textContent=`${favorites} 个`;q('#dashStreak').textContent=`${calculateStreak(history)} 天`;
+let title,text,href,label;if(!level){title='先确定当前阶段';text='选择最接近自己的 A1–C1 阶段，获得清晰的下一步。';href='roadmap.html';label='选择学习阶段'}else if(taskCount<4){title='完成今天的四件小事';text=`今天已完成 ${taskCount} 项，还剩 ${4-taskCount} 项轻量学习任务。`;href='index.html#study-desk';label='继续今日学习'}else if(due>0){title='复习到期生词';text=`有 ${due} 个词已经到复习时间，先把它们重新想起来。`;href='vocabulary.html';label='开始复习'}else{title='做一轮语法练习';text=`从 ${level.toUpperCase()} 附近的语法开始，用6道题检查理解。`;href='practice.html';label='开始语法练习'}q('#focus-title').textContent=title;q('#dashNextText').textContent=text;q('#dashNextLink').href=href;q('#dashNextLink').textContent=label}
+renderDashboard();window.addEventListener('pageshow',renderDashboard);
+</script>
+</body>
+</html>
