@@ -237,11 +237,11 @@ function quiz(){
   document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{scores[+b.dataset.answer]++;q++;quiz()});
 }
 
-const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media'],job:['#tiles-job','#nav-job'],parttime:['#tiles-parttime','#nav-parttime'],shop:['#tiles-shop','#nav-shop'],core:['#tiles-core','#nav-core'],ai:['#tiles-ai','#nav-ai']};
+const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media'],russia:['#tiles-russia','#nav-russia'],isu:['#tiles-isu','#nav-isu'],job:['#tiles-job','#nav-job'],parttime:['#tiles-parttime','#nav-parttime'],shop:['#tiles-shop','#nav-shop'],core:['#tiles-core','#nav-core'],ai:['#tiles-ai','#nav-ai']};
 const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
 const favoriteKeys=new Set((()=>{try{const value=JSON.parse(localStorage.getItem('russianFavorites')||'[]');return Array.isArray(value)?value:[]}catch{return []}})());
 let favoritesOnly=false;
-const RESOURCE_REVIEW_DATE='2026-10-25';
+const RESOURCE_REVIEW_DATE='2026-10-28';
 const hotCount=s=>hotMap[s.key]||0;
 const siteHost=s=>{try{return new URL(s.url).hostname.replace(/^www\./,'')}catch{return ''}};
 const siteIcon=(s,className='site-icon')=>{
@@ -282,7 +282,7 @@ function renderSites(q){
 }
 
 function renderHeroCats(){
-  $('#heroApplist').innerHTML=[['web','系统课程','#nav-web'],['app','词典翻译','#nav-app'],['tool','听说输入','#nav-tool'],['media','语言交流','#nav-media'],['job','俄语求职','#nav-job'],['parttime','留学兼职','#nav-parttime'],['shop','全球社交','#nav-shop'],['core','公开资料','#nav-core'],['ai','学习工具','#nav-ai']].map(([c,n,h])=>{
+  $('#heroApplist').innerHTML=[['web','系统课程','#nav-web'],['app','词典翻译','#nav-app'],['tool','听说输入','#nav-tool'],['media','语言交流','#nav-media'],['russia','俄罗斯留学必备','#nav-russia'],['isu','伊尔库茨克国立大学','#nav-isu'],['job','俄语求职','#nav-job'],['parttime','留学兼职','#nav-parttime'],['shop','全球社交','#nav-shop'],['core','公开资料','#nav-core'],['ai','学习工具','#nav-ai']].map(([c,n,h])=>{
     const s=sites.find(x=>x.cat===c);
     return `<a class="hap" href="${h}">${siteIcon(s,'hap-ico')}<b>${n}</b><i>${sites.filter(x=>x.cat===c).length} 个入口</i></a>`;
   }).join('');
@@ -344,7 +344,7 @@ const spy=new IntersectionObserver(es=>{
     document.querySelectorAll('.cchip').forEach(b=>{const active=b.dataset.target===en.target.id;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
   });
 },{rootMargin:'-35% 0px -55% 0px'});
-['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai'].forEach(id=>spy.observe(document.getElementById(id)));
+['navs','nav-web','nav-app','nav-tool','nav-media','nav-russia','nav-isu','nav-job','nav-parttime','nav-shop','nav-core','nav-ai'].forEach(id=>spy.observe(document.getElementById(id)));
 
 const DAILY_PHRASES=[
   {ru:'Маленький шаг — тоже движение.',zh:'一小步，也是在前进。',note:'适合提醒自己：语言学习不需要一次完成很多。'},

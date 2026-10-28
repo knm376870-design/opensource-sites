@@ -17,20 +17,20 @@ const ad=fs.readFileSync('dist/ad.html','utf8');
 const box={window:{}};vm.createContext(box);vm.runInContext(data,box);
 const sites=box.window.RUSSIAN_SITES;
 assert(Array.isArray(sites),'resource data must be an array');
-assert.equal(sites.length,121,'expect 121 curated resources');
-for(const cat of ['web','app','tool','media','job','parttime','shop','core','ai']){
-  assert.equal(sites.filter(x=>x.cat===cat).length,cat==='app'?25:cat==='job'?20:cat==='parttime'?16:10,cat+' resource count');
+assert.equal(sites.length,171,'expect 171 curated resources');
+for(const cat of ['web','app','tool','media','russia','isu','job','parttime','shop','core','ai']){
+  assert.equal(sites.filter(x=>x.cat===cat).length,cat==='app'?25:cat==='russia'?28:cat==='isu'?22:cat==='job'?20:cat==='parttime'?16:10,cat+' resource count');
 }
 assert.equal(new Set(sites.map(x=>x.key)).size,sites.length,'resource keys must be unique');
 assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS');
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
 assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
-assert(html.includes('russian-data.js?v=5')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=14'),'resource data must load before app');
-for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
+assert(html.includes('russian-data.js?v=6')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=15'),'resource data must load before app');
+for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-russia','nav-isu','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=32')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=33')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -50,11 +50,11 @@ assert(app.includes("localStorage.getItem('russianFavorites')")&&app.includes('d
 assert(html.includes('class="skip-link"')&&html.includes('id="main-content"')&&html.includes('aria-label="主要导航"'),'expect keyboard skip navigation and named primary nav');
 assert(app.includes("prefers-reduced-motion: reduce")&&app.includes('syncModeToggle')&&app.includes("setAttribute('aria-pressed'"),'expect reduced-motion scrolling and programmatic toggle states');
 assert(css.includes('input:focus-visible')&&css.includes('@media(forced-colors:active)')&&css.includes('min-height:44px'),'expect visible focus, forced colors and mobile touch targets');
-assert(app.includes("RESOURCE_REVIEW_DATE='2026-10-25'")&&app.includes('class="site-meta"')&&app.includes('data-report="${s.key}"'),'expect source domains, review dates and per-resource reports');
+assert(app.includes("RESOURCE_REVIEW_DATE='2026-10-28'")&&app.includes('class="site-meta"')&&app.includes('data-report="${s.key}"'),'expect source domains, review dates and per-resource reports');
 assert(html.includes('报告失效资源')&&html.includes('基础核验')&&html.includes('不代表平台始终可用'),'expect visible reporting and verification-scope disclosure');
 assert(fs.existsSync('../../../.github/ISSUE_TEMPLATE/broken-link.yml'),'expect structured broken-link issue template');
 assert(fs.existsSync('dist/resources.html')&&html.includes('href="resources.html"'),'expect linked static resource directory');
-assert(fs.readFileSync('dist/resources.html','utf8').includes('numberOfItems":121'),'expect complete ItemList structured data');
+assert(fs.readFileSync('dist/resources.html','utf8').includes('numberOfItems":171'),'expect complete ItemList structured data');
 assert(html.includes('og:image:alt')&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('完整资源目录'),'expect accessible share image and PWA shortcuts');
 for(const file of ['resource-suggestion.yml','content-correction.yml','broken-link.yml','feedback.yml'])assert(fs.existsSync(`../../../.github/ISSUE_TEMPLATE/${file}`),`expect ${file}`);
 assert(submit.includes('反馈与投稿')&&submit.includes('resourceForm')&&submit.includes("parsed.protocol!=='https:'")&&submit.includes('issues/new'),'expect actionable HTTPS-only feedback workflow');
@@ -67,7 +67,10 @@ assert(fs.existsSync('../../../.github/workflows/link-audit.yml')&&fs.existsSync
 assert(app.includes('assets/resource-icons/${s.key}.png')&&fs.existsSync('resource-icons-missing.json'),'expect local icon pipeline with documented fallbacks');
 assert(data.includes("url:'https://www.rbth.com/'")&&!data.includes('cn.rbth.com'),'expect current official Russia Beyond domain after link audit');
 assert(status.includes('98个正常、19个限制自动访问、4个待人工复核')&&status.includes('40187485463'),'expect published first audit evidence');
-assert(status.includes('<strong>117</strong>')&&JSON.parse(fs.readFileSync('resource-icons-missing.json','utf8')).length===4,'expect current local-icon and fallback metrics');
+assert(status.includes('<strong>171</strong>')&&JSON.parse(fs.readFileSync('resource-icons-missing.json','utf8')).length===0,'expect complete local-icon metrics');
+assert(sites.every(x=>fs.existsSync(`dist/assets/resource-icons/${x.key}.png`)),'every resource must have a local icon');
+assert(sites.filter(x=>x.cat==='russia').every(x=>x.url.startsWith('https://'))&&html.includes('先看官方，再办手续'),'expect safe Russia-study resources and official-process guidance');
+assert(sites.filter(x=>x.cat==='isu').every(x=>x.url.startsWith('https://'))&&html.includes('认准 ИГУ 与 isu.ru'),'expect verified ISU student resources and identity guidance');
 const publicHtml=fs.readdirSync('dist').filter(file=>file.endsWith('.html')).map(file=>fs.readFileSync(`dist/${file}`,'utf8')).join('\n');
 assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OWNER_')&&!publicHtml.includes('邮箱地址即将公布'),'public pages must not retain legacy identity or placeholders');
 assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');
@@ -93,4 +96,4 @@ for(const key of ['russianRoadmap','russianVocabularyV1','russianPracticeBestV1'
 assert(dashboard.includes('safeArray')&&dashboard.includes('calculateStreak')&&dashboard.includes('textContent')&&!dashboard.includes('.innerHTML'),'expect bounded and injection-resistant local dashboard aggregation');
 assert(!sitemap.includes('/dashboard.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./dashboard.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./dashboard.html'),'expect private dashboard excluded from sitemap but available offline and as PWA shortcut');
 for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary],['practice',practice],['dashboard',dashboard]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
-console.log('Passed: Russian hub identity, 121 HTTPS resources including 25 dictionaries, 20 employment links and 16 student part-time platforms, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');
+console.log('Passed: Russian hub identity, 171 HTTPS resources including 28 Russia-study and 22 ISU links, complete local icons, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');
