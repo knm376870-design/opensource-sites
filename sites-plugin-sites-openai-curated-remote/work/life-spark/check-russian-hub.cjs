@@ -21,16 +21,22 @@ assert.equal(sites.length,171,'expect 171 curated resources');
 for(const cat of ['web','app','tool','media','russia','isu','job','parttime','shop','core','ai']){
   assert.equal(sites.filter(x=>x.cat===cat).length,cat==='app'?25:cat==='russia'?28:cat==='isu'?22:cat==='job'?20:cat==='parttime'?16:10,cat+' resource count');
 }
+const resourceGroupCounts={russia:{admission:10,daily:8,connect:5,research:5},isu:{study:5,international:3,campus:3,support:5,info:6}};
+for(const [cat,groups] of Object.entries(resourceGroupCounts)){
+  const scoped=sites.filter(x=>x.cat===cat);
+  assert(scoped.every(x=>Object.hasOwn(groups,x.group)),`${cat} resources must have a recognized secondary group`);
+  for(const [group,count] of Object.entries(groups))assert.equal(scoped.filter(x=>x.group===group).length,count,`${cat}/${group} resource count`);
+}
 assert.equal(new Set(sites.map(x=>x.key)).size,sites.length,'resource keys must be unique');
 assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS');
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
 assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
-assert(html.includes('russian-data.js?v=6')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=15'),'resource data must load before app');
+assert(html.includes('russian-data.js?v=7')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=16'),'resource data must load before app');
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-russia','nav-isu','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=33')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=34')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -71,6 +77,13 @@ assert(status.includes('<strong>171</strong>')&&JSON.parse(fs.readFileSync('reso
 assert(sites.every(x=>fs.existsSync(`dist/assets/resource-icons/${x.key}.png`)),'every resource must have a local icon');
 assert(sites.filter(x=>x.cat==='russia').every(x=>x.url.startsWith('https://'))&&html.includes('先看官方，再办手续'),'expect safe Russia-study resources and official-process guidance');
 assert(sites.filter(x=>x.cat==='isu').every(x=>x.url.startsWith('https://'))&&html.includes('认准 ИГУ 与 isu.ru'),'expect verified ISU student resources and identity guidance');
+assert.equal((html.match(/data-resource-filter="russia"/g)||[]).length,5,'expect five Russia-study filter controls');
+assert.equal((html.match(/data-resource-filter="isu"/g)||[]).length,6,'expect six ISU filter controls');
+assert(html.includes('aria-controls="tiles-russia"')&&html.includes('aria-controls="tiles-isu"'),'secondary filters must identify controlled resource grids');
+assert(app.includes('RESOURCE_GROUP_STATE')&&app.includes("group==='all'||s.group===group")&&app.includes("closest('[data-resource-filter]')"),'expect working scoped secondary filters');
+assert(app.includes('alignHashTarget')&&app.includes("window.addEventListener('hashchange'"),'expect direct category links to realign after dynamic cards render');
+assert(css.includes('v34 留学资源二级筛选')&&css.includes('.resource-subfilters')&&css.includes('overflow-x:auto')&&css.includes('grid-template-columns:minmax(0,1fr)'),'expect compact mobile-scrollable secondary filters without card overflow');
+assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v38")&&fs.readFileSync('dist/sw.js','utf8').includes("'./russian-data.js?v=7'"),'expect refreshed offline cache for grouped resources');
 const publicHtml=fs.readdirSync('dist').filter(file=>file.endsWith('.html')).map(file=>fs.readFileSync(`dist/${file}`,'utf8')).join('\n');
 assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OWNER_')&&!publicHtml.includes('邮箱地址即将公布'),'public pages must not retain legacy identity or placeholders');
 assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');

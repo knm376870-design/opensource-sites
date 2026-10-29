@@ -182,3 +182,24 @@ window.RUSSIAN_SITES=[
   {cat:'isu',key:'isu-documents',name:'ИГУ 官方文件',desc:'查询校规、教学管理文件、收费规则和现行制度',url:'https://isu.ru/sveden/document/'},
   {cat:'isu',key:'isu-vacant',name:'ИГУ 转学空位',desc:'查询各专业、年级和学习形式的接收与转学空位',url:'https://isu.ru/sveden/vacant/'}
 ];
+
+(function assignResourceGroups(){
+  const groups={
+    russia:{
+      admission:['study-in-russia','education-in-russia','russia-edu','gosuslugi','mvd-russia','sfr-foreign','nalog-russia','nic-russia','frdo','minobrnauki'],
+      daily:['russian-post','rzd','yandex-maps-ru','2gis-ru','yandex-go','tutu-ru','avito-rent','cian-rent'],
+      connect:['mts-welcome','beeline-ru','megafon-ru','t2-ru','mir-cards'],
+      research:['elibrary-ru','cyberleninka','urait','lanbook','znanium']
+    },
+    isu:{
+      study:['isu-schedule','isu-lc','isu-belca','isu-educa','isu-library'],
+      international:['isu-lka','isu-foreign','isu-international'],
+      campus:['isu-dorm-rules','isu-dorm-portal','isu-campus-life'],
+      support:['isu-career','isu-psychology','isu-one-window','isu-support','isu-scholarship'],
+      info:['isu-main','isu-students','isu-faculties','isu-reception','isu-documents','isu-vacant']
+    }
+  };
+  const groupByKey={};
+  Object.keys(groups).forEach(cat=>Object.keys(groups[cat]).forEach(group=>groups[cat][group].forEach(key=>{groupByKey[key]=group})));
+  window.RUSSIAN_SITES.forEach(site=>{if(groupByKey[site.key])site.group=groupByKey[site.key]});
+})();

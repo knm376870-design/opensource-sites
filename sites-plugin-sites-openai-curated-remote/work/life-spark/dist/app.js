@@ -240,6 +240,7 @@ function quiz(){
 const SITE_CATS={web:['#tiles-web','#nav-web'],app:['#tiles-app','#nav-app'],tool:['#tiles-tool','#nav-tool'],media:['#tiles-media','#nav-media'],russia:['#tiles-russia','#nav-russia'],isu:['#tiles-isu','#nav-isu'],job:['#tiles-job','#nav-job'],parttime:['#tiles-parttime','#nav-parttime'],shop:['#tiles-shop','#nav-shop'],core:['#tiles-core','#nav-core'],ai:['#tiles-ai','#nav-ai']};
 const hotMap=(()=>{try{return JSON.parse(localStorage.getItem('sparkHot')||'{}')}catch{return {}}})();
 const favoriteKeys=new Set((()=>{try{const value=JSON.parse(localStorage.getItem('russianFavorites')||'[]');return Array.isArray(value)?value:[]}catch{return []}})());
+const RESOURCE_GROUP_STATE={russia:'all',isu:'all'};
 let favoritesOnly=false;
 const RESOURCE_REVIEW_DATE='2026-10-28';
 const hotCount=s=>hotMap[s.key]||0;
@@ -267,7 +268,8 @@ function renderSites(q){
   q=(q||'').trim().toLowerCase();
   let total=0;
   for(const cat in SITE_CATS){
-    const list=sites.filter(s=>s.cat===cat&&(!favoritesOnly||favoriteKeys.has(s.key))&&(!q||(s.name+s.desc).toLowerCase().includes(q)));
+    const group=RESOURCE_GROUP_STATE[cat]||'all';
+    const list=sites.filter(s=>s.cat===cat&&(group==='all'||s.group===group)&&(!favoritesOnly||favoriteKeys.has(s.key))&&(!q||(s.name+s.desc).toLowerCase().includes(q)));
     const [el,panel]=SITE_CATS[cat];
     $(el).innerHTML=list.map(siteTile).join('');
     $(panel).hidden=!list.length;
@@ -290,6 +292,19 @@ function renderHeroCats(){
 
 function hot(s){hotMap[s.key]=(hotMap[s.key]||0)+1;try{localStorage.setItem('sparkHot',JSON.stringify(hotMap))}catch{}}
 document.addEventListener('click',e=>{
+  const resourceFilter=e.target.closest('[data-resource-filter]');
+  if(resourceFilter){
+    const cat=resourceFilter.dataset.resourceFilter;
+    if(!(cat in RESOURCE_GROUP_STATE))return;
+    RESOURCE_GROUP_STATE[cat]=resourceFilter.dataset.resourceGroup||'all';
+    document.querySelectorAll(`[data-resource-filter="${cat}"]`).forEach(button=>{
+      const active=button===resourceFilter;
+      button.classList.toggle('active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+    renderSites($('#search').value);
+    return;
+  }
   const report=e.target.closest('[data-report]');
   if(report){
     const s=sites.find(item=>item.key===report.dataset.report);
@@ -324,6 +339,15 @@ document.addEventListener('click',e=>{
 
 renderSites();
 renderHeroCats();
+const alignHashTarget=()=>{
+  const raw=location.hash.slice(1);
+  let id=raw;
+  try{id=decodeURIComponent(raw)}catch{}
+  const target=id&&document.getElementById(id);
+  if(target)target.scrollIntoView({behavior:'auto',block:'start'});
+};
+if(location.hash)requestAnimationFrame(alignHashTarget);
+window.addEventListener('hashchange',alignHashTarget);
 $('#favoriteToggle').onclick=()=>{favoritesOnly=!favoritesOnly;renderSites($('#search').value)};
 $('#search').oninput=e=>{const v=e.target.value;$('#searchClear').hidden=!v;renderSites(v)};
 $('#searchClear').onclick=()=>{$('#search').value='';$('#searchClear').hidden=true;renderSites('');$('#search').focus()};
