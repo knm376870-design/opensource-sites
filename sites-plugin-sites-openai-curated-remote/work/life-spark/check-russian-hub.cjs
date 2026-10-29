@@ -36,7 +36,7 @@ assert(html.includes('russian-data.js?v=7')&&html.indexOf('russian-data.js')<htm
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-russia','nav-isu','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=35')&&css.includes('v35 首屏资源入口重排')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=36')&&css.includes('v35 首屏资源入口重排')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -86,7 +86,7 @@ assert(css.includes('v34 留学资源二级筛选')&&css.includes('.resource-sub
 assert(html.indexOf('data-target="nav-isu"')<html.indexOf('data-target="nav-web"'),'ISU must be the first named category shortcut');
 assert(app.includes('function arrangeHomepage()')&&app.includes("['#navs','#nav-isu','#pangyi'")&&app.includes("'#nav-ai','#study-desk','.hero','.user-test-callout'"),'expect search, ISU, Pangyi, resources and study plan in the requested order');
 assert(css.includes('.search-panel{padding-top:38px;padding-bottom:34px}')&&css.includes('.isu-panel+.pangyi-feature'),'expect compact first screen and Pangyi directly below the priority category');
-assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v39")&&fs.readFileSync('dist/sw.js','utf8').includes("'./app.js?v=17'"),'expect refreshed offline cache for homepage order');
+assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v40")&&fs.readFileSync('dist/sw.js','utf8').includes("'./app.js?v=17'"),'expect refreshed offline cache for homepage order');
 const publicHtml=fs.readdirSync('dist').filter(file=>file.endsWith('.html')).map(file=>fs.readFileSync(`dist/${file}`,'utf8')).join('\n');
 assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OWNER_')&&!publicHtml.includes('邮箱地址即将公布'),'public pages must not retain legacy identity or placeholders');
 assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');
@@ -111,5 +111,20 @@ assert(html.includes('href="dashboard.html"')&&dashboard.includes('我的学习'
 for(const key of ['russianRoadmap','russianVocabularyV1','russianPracticeBestV1','russianStudyHistory','russianFavorites'])assert(dashboard.includes(key),`dashboard must read ${key}`);
 assert(dashboard.includes('safeArray')&&dashboard.includes('calculateStreak')&&dashboard.includes('textContent')&&!dashboard.includes('.innerHTML'),'expect bounded and injection-resistant local dashboard aggregation');
 assert(!sitemap.includes('/dashboard.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./dashboard.html'")&&fs.readFileSync('dist/manifest.webmanifest','utf8').includes('./dashboard.html'),'expect private dashboard excluded from sitemap but available offline and as PWA shortcut');
+const authPage=fs.readFileSync('dist/auth.html','utf8');
+const accountPage=fs.readFileSync('dist/account.html','utf8');
+const adminPage=fs.readFileSync('dist/admin.html','utf8');
+const authConfig=fs.readFileSync('dist/auth-config.js','utf8');
+const authClient=fs.readFileSync('dist/auth-client.js','utf8');
+const authPages=fs.readFileSync('dist/auth-pages.js','utf8');
+const sql=fs.readFileSync('docs/supabase-setup.sql','utf8');
+assert(html.includes('id="accountNav"')&&html.includes('auth-client.js?v=1'),'expect optional account entry on homepage');
+assert([authPage,accountPage,adminPage].every(page=>page.includes('noindex,nofollow')),'private account pages must not be indexed');
+assert(authConfig.includes('sb_publishable_')&&!authConfig.includes('service_role')&&!authConfig.includes('sb_secret_'),'browser config must use only a publishable key');
+assert(authClient.includes('signInWithOtp')&&authClient.includes('shouldCreateUser:true')&&authClient.includes('syncLocalState'),'expect passwordless opt-in account sync');
+assert(!authClient.includes("'russianVocabularyV1'")&&about.includes('生词本不会同步'),'vocabulary must remain local-only and privacy disclosure must be accurate');
+assert(sql.includes('enable row level security')&&sql.includes('private.admin_users')&&sql.includes('auth.uid()'),'expect RLS-protected user and admin data');
+assert(fs.readFileSync('dist/sw.js','utf8').includes("'./auth.html'")&&css.includes('v36 可选登录与运营后台'),'expect offline account shell and intentional account styling');
+new vm.Script(authConfig,{filename:'auth-config.js'});new vm.Script(authClient,{filename:'auth-client.js'});new vm.Script(authPages,{filename:'auth-pages.js'});
 for(const [name,page] of [['about',about],['submit',submit],['test',userTest],['roadmap',roadmap],['vocabulary',vocabulary],['practice',practice],['dashboard',dashboard]])for(const match of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(!match[0].includes('application/ld+json'))new vm.Script(match[1],{filename:`${name}.inline.js`})}
 console.log('Passed: Russian hub identity, 171 HTTPS resources including 28 Russia-study and 22 ISU links, complete local icons, safety disclosures, Pangyi prominence, original tools and accessibility hooks.');

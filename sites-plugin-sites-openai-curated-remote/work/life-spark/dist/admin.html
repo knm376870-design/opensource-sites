@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#173653"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="strict-origin-when-cross-origin">
+<title>管理后台 · 俄语星球</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){document.documentElement.dataset.mode='dark'}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=36">
+<script defer src="auth-config.js?v=1"></script><script defer src="auth-client.js?v=1"></script><script defer src="auth-pages.js?v=1"></script>
+</head>
+<body class="auth-page" data-auth-page="admin">
+<main class="auth-shell auth-shell-wide"><a class="back-link" href="account.html">← 返回账户</a>
+  <header class="auth-header"><p class="auth-kicker">仅管理员可见</p><h1>运营后台</h1><p>查看账号活跃度与用户主动同步的汇总数据。</p></header>
+  <section id="adminLogin" class="auth-card auth-empty" hidden><h2>需要先登录</h2><a class="primary" href="auth.html">前往登录</a></section>
+  <section id="adminDenied" class="auth-card auth-empty" hidden><h2>没有访问权限</h2><p>当前账号不在管理员名单中。</p></section>
+  <section id="adminPanel" hidden>
+    <div class="admin-metrics"><article><strong id="metricUsers">0</strong><span>注册用户</span></article><article><strong id="metricActive">0</strong><span>近 7 天同步</span></article><article><strong id="metricSynced">0</strong><span>同步用户</span></article><article><strong id="metricFavorites">0</strong><span>云端收藏总数</span></article></div>
+    <div class="auth-card admin-table-card"><div class="admin-title"><div><span>最近加入</span><h2>用户概览</h2></div><a href="https://supabase.com/dashboard/project/oysjcnqglghkjjbiffzv/auth/users" target="_blank" rel="noopener">Supabase 用户后台 ↗</a></div><div class="admin-table-wrap"><table><thead><tr><th>用户</th><th>加入时间</th><th>最近活动</th></tr></thead><tbody id="recentUsers"></tbody></table></div></div>
+  </section>
+  <p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>
+</main></body></html>
