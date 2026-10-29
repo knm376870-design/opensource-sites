@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="style.css?v=37">
 <script defer src="auth-config.js?v=2"></script>
 <script defer src="auth-client.js?v=2"></script>
-<script defer src="auth-pages.js?v=2"></script>
+<script defer src="auth-pages.js?v=3"></script>
 </head>
 <body class="auth-page" data-auth-page="login">
 <main class="auth-shell">
@@ -28,7 +28,7 @@
     </form>
     <form id="otpForm" class="auth-form" hidden>
       <label for="authCode">发送至 <b id="otpEmail"></b></label>
-      <div class="auth-input-row"><input id="authCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="6 位验证码" required><button id="otpSubmit" class="primary" type="submit">验证并登录</button></div>
+      <div class="auth-input-row"><input id="authCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{6,8}" placeholder="输入邮件验证码" required><button id="otpSubmit" class="primary" type="submit">验证并登录</button></div>
       <small>验证码只能使用一次。<button id="changeEmail" type="button">更换邮箱</button></small>
     </form>
     <div id="signedIn" class="auth-signed" hidden><span>当前已登录</span><strong id="signedInEmail"></strong><a class="primary" href="account.html">进入我的账户 →</a></div>

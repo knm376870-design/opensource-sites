@@ -17,12 +17,12 @@
       const button=$('#authSubmit');const email=$('#authEmail').value.trim();
       if(!email)return;
       button.disabled=true;setStatus('正在发送验证码…');
-      try{await auth.signIn(email);sessionStorage.setItem('russianLoginEmail',email);$('#otpEmail').textContent=email;$('#authForm').hidden=true;$('#otpForm').hidden=false;$('#authCode').focus();setStatus('6 位验证码已发送，请在这台设备输入。','success')}catch(error){setStatus(auth.friendlyError(error),'error')}finally{button.disabled=false}
+      try{await auth.signIn(email);sessionStorage.setItem('russianLoginEmail',email);$('#otpEmail').textContent=email;$('#authForm').hidden=true;$('#otpForm').hidden=false;$('#authCode').focus();setStatus('验证码已发送，请在这台设备输入。','success')}catch(error){setStatus(auth.friendlyError(error),'error')}finally{button.disabled=false}
     });
     $('#otpForm').addEventListener('submit',async event=>{
       event.preventDefault();
       const button=$('#otpSubmit');const email=sessionStorage.getItem('russianLoginEmail')||$('#authEmail').value.trim();const token=$('#authCode').value.replace(/\D/g,'');
-      if(!email||token.length!==6){setStatus('请输入邮件中的 6 位验证码。','warning');return}
+      if(!email||token.length<6||token.length>8){setStatus('请输入邮件中的完整验证码。','warning');return}
       button.disabled=true;setStatus('正在验证…');
       try{await auth.verifyEmailOtp(email,token);sessionStorage.removeItem('russianLoginEmail');setStatus('验证成功，正在进入账户…','success');location.href='account.html'}catch(error){setStatus(auth.friendlyError(error),'error')}finally{button.disabled=false}
     });
