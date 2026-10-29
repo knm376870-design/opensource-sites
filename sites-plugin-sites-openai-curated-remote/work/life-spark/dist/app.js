@@ -321,7 +321,7 @@ document.addEventListener('click',e=>{
     if(s){
       const title=`[失效资源] ${s.name}`;
       const body=`资源名称：${s.name}\n当前地址：${s.url}\n发现日期：\n问题说明：`;
-      window.open(`https://github.com/knm376870-design/opensource-sites/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,'_blank','noopener');
+      window.open(`https://github.com/russianhub/opensource-sites/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,'_blank','noopener');
     }
     return;
   }
@@ -436,7 +436,7 @@ $('#sharePhrase').onclick=async()=>{
   const ru=$('#study-title').textContent;
   const zh=$('#phraseZh').textContent;
   const text=`今日俄语：${ru}\n${zh}\n\n和我一起在俄语星球每天学一点。`;
-  const url='https://knm376870-design.github.io/opensource-sites/#study-desk';
+  const url='https://russianhub.github.io/opensource-sites/#study-desk';
   try{
     if(navigator.share){await navigator.share({title:'俄语星球 · 今日俄语',text,url});return}
     await navigator.clipboard.writeText(`${text}\n${url}`);toast('今日俄语已复制，可以分享给朋友');

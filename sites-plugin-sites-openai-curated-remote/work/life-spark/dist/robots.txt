@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://knm376870-design.github.io/opensource-sites/sitemap.xml
+Sitemap: https://russianhub.github.io/opensource-sites/sitemap.xml

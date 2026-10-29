@@ -7,7 +7,7 @@
 <meta name="description" content="参加俄语星球5分钟匿名可用性测试。">
 <meta name="robots" content="noindex,follow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/test.html">
+<link rel="canonical" href="https://russianhub.github.io/opensource-sites/test.html">
 <title>5分钟用户测试 · 俄语星球</title>
 <script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){document.documentElement.dataset.mode='dark'}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -53,7 +53,7 @@
     var improvement=document.getElementById('testImprovement').value.trim()||'未填写';
     return {title:'[用户测试] '+device+' · '+difficulty,body:'设备：'+device+'\n用时：'+seconds+' 秒\n整体难度：'+difficulty+'\n\n完成任务：\n'+tasks+'\n\n最困惑的地方：\n'+confusion+'\n\n最希望优先改进：\n'+improvement+'\n\n隐私确认：未填写个人身份信息。'};
   }
-  document.getElementById('submitTest').addEventListener('click',function(){var report=buildReport();if(report.error){status.textContent=report.error;return}status.textContent='正在打开GitHub报告页面…';window.open('https://github.com/knm376870-design/opensource-sites/issues/new?title='+encodeURIComponent(report.title)+'&body='+encodeURIComponent(report.body),'_blank','noopener')});
+  document.getElementById('submitTest').addEventListener('click',function(){var report=buildReport();if(report.error){status.textContent=report.error;return}status.textContent='正在打开GitHub报告页面…';window.open('https://github.com/russianhub/opensource-sites/issues/new?title='+encodeURIComponent(report.title)+'&body='+encodeURIComponent(report.body),'_blank','noopener')});
   document.getElementById('copyTest').addEventListener('click',function(){var report=buildReport();if(report.error){status.textContent=report.error;return}var text=report.title+'\n\n'+report.body;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){status.textContent='匿名报告已复制。'},function(){status.textContent='复制失败，请使用GitHub提交。'})}else{status.textContent='当前浏览器不支持复制，请使用GitHub提交。'}});
 })();
 </script>

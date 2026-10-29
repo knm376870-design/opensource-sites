@@ -34,15 +34,15 @@ const html=`<!doctype html>
 <meta name="description" content="俄语星球完整资源目录：系统课程、词典翻译、俄罗斯留学必备、伊尔库茨克国立大学、求职兼职和学习工具。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="canonical" href="https://knm376870-design.github.io/opensource-sites/resources.html">
+<link rel="canonical" href="https://russianhub.github.io/opensource-sites/resources.html">
 <title>完整俄语资源目录 · 俄语星球</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css?v=33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="完整俄语资源目录 · 俄语星球">
 <meta property="og:description" content="${sites.length} 个经过整理的俄语课程、词典、留学、校园服务、求职与学习工具入口。">
-<meta property="og:url" content="https://knm376870-design.github.io/opensource-sites/resources.html">
-<meta property="og:image" content="https://knm376870-design.github.io/opensource-sites/og-image.jpg">
+<meta property="og:url" content="https://russianhub.github.io/opensource-sites/resources.html">
+<meta property="og:image" content="https://russianhub.github.io/opensource-sites/og-image.jpg">
 <script type="application/ld+json">${JSON.stringify(itemList).replace(/</g,'\\u003c')}</script>
 </head>
 <body class="directory-page">
@@ -53,7 +53,7 @@ const html=`<!doctype html>
 <header class="directory-hero"><p>无需 JavaScript 的完整目录</p><h1>${sites.length} 个俄语学习入口，<br>按目标一次看清。</h1><div class="directory-jumps" aria-label="跳转到资源分类">${categories.map(([key,label])=>`<a href="#${key}">${label}</a>`).join('')}</div><small>目录基础核验日期：<time datetime="${reviewed}">${reviewed}</time>。核验范围为来源域名、HTTPS 与重复项，不代表平台始终可用或为本站背书。</small></header>
 ${sections}
 </main>
-<footer><div class="footer-bottom"><span>俄语星球 · 开放资源目录</span><a href="https://github.com/knm376870-design/opensource-sites/issues/new" target="_blank" rel="noopener">报告失效资源</a></div></footer>
+<footer><div class="footer-bottom"><span>俄语星球 · 开放资源目录</span><a href="https://github.com/russianhub/opensource-sites/issues/new" target="_blank" rel="noopener">报告失效资源</a></div></footer>
 </div>
 </body>
 </html>

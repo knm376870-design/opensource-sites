@@ -65,7 +65,7 @@ window.RUSSIAN_SITES=[
   {cat:'core',key:'rusneb',name:'俄罗斯国家电子图书馆',desc:'开放馆藏、书刊、手稿与历史资料',url:'https://rusneb.ru',tag:'公开资源'},
   {cat:'core',key:'rsl',name:'俄罗斯国立图书馆',desc:'电子馆藏目录与开放数字资源',url:'https://www.rsl.ru/electronic-resources/'},
 
-  {cat:'ai',key:'pangyi',name:'旁译 Pangyi',desc:'拼音输入中文时直接查看俄语释义',url:'https://github.com/knm376870-design/pangyi',tag:'本站作品'},
+  {cat:'ai',key:'pangyi',name:'旁译 Pangyi',desc:'拼音输入中文时直接查看俄语释义',url:'https://github.com/russianhub/pangyi',tag:'本站作品'},
   {cat:'ai',key:'anki',name:'Anki',desc:'用间隔重复制作个人俄语记忆卡',url:'https://apps.ankiweb.net',tag:'推荐'},
   {cat:'ai',key:'quizlet',name:'Quizlet',desc:'词汇卡、测试和共享学习集',url:'https://quizlet.com'},
   {cat:'ai',key:'languagetool',name:'LanguageTool',desc:'检查俄语拼写、语法和写作问题',url:'https://languagetool.org'},
