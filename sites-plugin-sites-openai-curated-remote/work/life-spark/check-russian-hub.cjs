@@ -32,11 +32,11 @@ assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS')
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
 assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
-assert(html.includes('russian-data.js?v=7')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=16'),'resource data must load before app');
+assert(html.includes('russian-data.js?v=7')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=17'),'resource data must load before app');
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-russia','nav-isu','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=34')&&css.includes('v17 资源库优先首页')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
+assert(html.includes('style.css?v=35')&&css.includes('v35 首屏资源入口重排')&&css.includes('v18 俄语夜航'),'expect resource-first night theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'dark'"),'expect night theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -83,7 +83,10 @@ assert(html.includes('aria-controls="tiles-russia"')&&html.includes('aria-contro
 assert(app.includes('RESOURCE_GROUP_STATE')&&app.includes("group==='all'||s.group===group")&&app.includes("closest('[data-resource-filter]')"),'expect working scoped secondary filters');
 assert(app.includes('alignHashTarget')&&app.includes("window.addEventListener('hashchange'"),'expect direct category links to realign after dynamic cards render');
 assert(css.includes('v34 留学资源二级筛选')&&css.includes('.resource-subfilters')&&css.includes('overflow-x:auto')&&css.includes('grid-template-columns:minmax(0,1fr)'),'expect compact mobile-scrollable secondary filters without card overflow');
-assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v38")&&fs.readFileSync('dist/sw.js','utf8').includes("'./russian-data.js?v=7'"),'expect refreshed offline cache for grouped resources');
+assert(html.indexOf('data-target="nav-isu"')<html.indexOf('data-target="nav-web"'),'ISU must be the first named category shortcut');
+assert(app.includes('function arrangeHomepage()')&&app.includes("['#navs','#nav-isu','#pangyi'")&&app.includes("'#nav-ai','#study-desk','.hero','.user-test-callout'"),'expect search, ISU, Pangyi, resources and study plan in the requested order');
+assert(css.includes('.search-panel{padding-top:38px;padding-bottom:34px}')&&css.includes('.isu-panel+.pangyi-feature'),'expect compact first screen and Pangyi directly below the priority category');
+assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v39")&&fs.readFileSync('dist/sw.js','utf8').includes("'./app.js?v=17'"),'expect refreshed offline cache for homepage order');
 const publicHtml=fs.readdirSync('dist').filter(file=>file.endsWith('.html')).map(file=>fs.readFileSync(`dist/${file}`,'utf8')).join('\n');
 assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OWNER_')&&!publicHtml.includes('邮箱地址即将公布'),'public pages must not retain legacy identity or placeholders');
 assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');

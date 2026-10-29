@@ -1288,3 +1288,34 @@ footer{margin:24px -42px -48px;padding:64px 42px 30px;border-top:1px solid var(-
 .resource-subfilter:focus-visible{outline:2px solid var(--resource-filter-accent);outline-offset:3px}
 .resource-subfilters+.tiles{margin-top:0}
 @media(max-width:760px){.resource-subfilters{gap:20px;margin-top:22px}.resource-subfilter{min-height:48px;padding-bottom:10px}.tiles{grid-template-columns:minmax(0,1fr)}.site{min-width:0}}
+
+/* ---------- v35 首屏资源入口重排 ---------- */
+.search-panel,.nav-panel,.pangyi-feature,.study-desk,.hero,.user-test-callout{order:0}
+.search-panel{padding-top:38px;padding-bottom:34px}
+.search-panel .panel-head{align-items:center}
+.search-panel .panel-head h2{font-size:clamp(28px,2.8vw,38px)}
+.search-panel .panel-head p{margin-bottom:0}
+.search-panel .supersearch{margin-top:22px}
+.search-panel .searchbox{height:50px}
+.search-panel .engine{margin-top:8px}
+.search-panel .catbar{margin-top:16px}
+.search-panel .resource-note{margin-top:14px;padding-top:12px;font-size:10.5px;line-height:1.65}
+.cchip[data-target="nav-isu"]:not(.active){color:var(--ru-red)}
+#nav-isu{padding-top:52px}
+.isu-panel+.pangyi-feature{margin:28px 0 20px}
+@media(max-width:760px){
+  .search-panel{padding-top:28px;padding-bottom:24px}
+  .search-panel .panel-head{gap:12px}
+  .search-panel .panel-head h2{font-size:28px}
+  .search-panel .panel-head p{display:none}
+  .search-panel .panel-head .secondary{padding:8px 10px;font-size:10.5px}
+  .search-panel .supersearch{margin-top:18px}
+  .search-panel .searchbox{height:48px;margin-top:16px}
+  .search-panel .engine{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}
+  .search-panel .catbar{margin-top:14px}
+  .search-panel .resource-note{margin-top:12px;padding-top:10px;font-size:10px}
+  #nav-isu{padding-top:28px}
+  #nav-isu .panel-head p{display:none}
+  #nav-isu .resource-subfilters{margin-top:12px}
+  .isu-panel+.pangyi-feature{margin:18px 0 8px}
+}

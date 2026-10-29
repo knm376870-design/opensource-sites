@@ -91,6 +91,16 @@ let filter='all',last=null;
 const $=s=>document.querySelector(s);
 let timer;
 
+function arrangeHomepage(){
+  const main=$('#main-content');
+  if(!main)return;
+  const selectors=['#navs','#nav-isu','#pangyi','#nav-web','#nav-app','#nav-tool','#nav-media','#nav-russia','#nav-job','#nav-parttime','#nav-shop','#nav-save','#nav-core','#nav-ai','#study-desk','.hero','.user-test-callout'];
+  const fragment=document.createDocumentFragment();
+  selectors.forEach(selector=>{const node=main.querySelector(selector);if(node)fragment.appendChild(node)});
+  main.insertBefore(fragment,main.firstChild);
+}
+arrangeHomepage();
+
 const timeText=i=>i.time===120?'半天':i.time+' 分钟';
 const costText=i=>i.cost?('约 '+i.cost+' 元以内'):'无需额外花费';
 
@@ -284,7 +294,7 @@ function renderSites(q){
 }
 
 function renderHeroCats(){
-  $('#heroApplist').innerHTML=[['web','系统课程','#nav-web'],['app','词典翻译','#nav-app'],['tool','听说输入','#nav-tool'],['media','语言交流','#nav-media'],['russia','俄罗斯留学必备','#nav-russia'],['isu','伊尔库茨克国立大学','#nav-isu'],['job','俄语求职','#nav-job'],['parttime','留学兼职','#nav-parttime'],['shop','全球社交','#nav-shop'],['core','公开资料','#nav-core'],['ai','学习工具','#nav-ai']].map(([c,n,h])=>{
+  $('#heroApplist').innerHTML=[['isu','伊尔库茨克国立大学','#nav-isu'],['web','系统课程','#nav-web'],['app','词典翻译','#nav-app'],['tool','听说输入','#nav-tool'],['media','语言交流','#nav-media'],['russia','俄罗斯留学必备','#nav-russia'],['job','俄语求职','#nav-job'],['parttime','留学兼职','#nav-parttime'],['shop','全球社交','#nav-shop'],['core','公开资料','#nav-core'],['ai','学习工具','#nav-ai']].map(([c,n,h])=>{
     const s=sites.find(x=>x.cat===c);
     return `<a class="hap" href="${h}">${siteIcon(s,'hap-ico')}<b>${n}</b><i>${sites.filter(x=>x.cat===c).length} 个入口</i></a>`;
   }).join('');
