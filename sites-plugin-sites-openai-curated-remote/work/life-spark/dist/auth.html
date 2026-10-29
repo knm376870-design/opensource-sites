@@ -9,10 +9,10 @@
 <title>登录 · 俄语星球</title>
 <script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){document.documentElement.dataset.mode='dark'}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=36">
+<link rel="stylesheet" href="style.css?v=37">
 <script defer src="auth-config.js?v=2"></script>
-<script defer src="auth-client.js?v=1"></script>
-<script defer src="auth-pages.js?v=1"></script>
+<script defer src="auth-client.js?v=2"></script>
+<script defer src="auth-pages.js?v=2"></script>
 </head>
 <body class="auth-page" data-auth-page="login">
 <main class="auth-shell">
@@ -23,8 +23,13 @@
     <p class="auth-intro">不登录也能完整使用网站。登录后可由你主动同步收藏、学习计划和练习成绩。</p>
     <form id="authForm" class="auth-form">
       <label for="authEmail">邮箱地址</label>
-      <div class="auth-input-row"><input id="authEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required><button id="authSubmit" class="primary" type="submit">发送登录链接</button></div>
-      <small>无需密码。我们会向邮箱发送一次性登录链接。</small>
+      <div class="auth-input-row"><input id="authEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required><button id="authSubmit" class="primary" type="submit">发送验证码</button></div>
+      <small>无需密码。验证码可以在手机接收、电脑输入。</small>
+    </form>
+    <form id="otpForm" class="auth-form" hidden>
+      <label for="authCode">发送至 <b id="otpEmail"></b></label>
+      <div class="auth-input-row"><input id="authCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="6 位验证码" required><button id="otpSubmit" class="primary" type="submit">验证并登录</button></div>
+      <small>验证码只能使用一次。<button id="changeEmail" type="button">更换邮箱</button></small>
     </form>
     <div id="signedIn" class="auth-signed" hidden><span>当前已登录</span><strong id="signedInEmail"></strong><a class="primary" href="account.html">进入我的账户 →</a></div>
     <p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>

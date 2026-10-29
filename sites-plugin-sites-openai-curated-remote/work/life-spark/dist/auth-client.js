@@ -40,6 +40,12 @@
     const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:redirectTo,shouldCreateUser:true}});
     if(error)throw error;
   };
+  const verifyEmailOtp=async(email,token)=>{
+    const client=await getClient();
+    const {data,error}=await client.auth.verifyOtp({email,token,type:'email'});
+    if(error)throw error;
+    return data.session;
+  };
   const signOut=async()=>{
     const client=await getClient();
     const {error}=await client.auth.signOut();
@@ -119,6 +125,6 @@
     if(!configured()){link.textContent='游客模式';link.href='auth.html';return}
     try{const session=await getSession();link.textContent=session?'我的账户':'登录';link.href=session?'account.html':'auth.html'}catch{link.textContent='登录';link.href='auth.html'}
   };
-  window.RussianAuth={configured,getClient,getSession,signIn,signOut,syncLocalState,getCloudState,restoreCloudState,isAdmin,getAdminOverview,localSummary,friendlyError,updateNav};
+  window.RussianAuth={configured,getClient,getSession,signIn,verifyEmailOtp,signOut,syncLocalState,getCloudState,restoreCloudState,isAdmin,getAdminOverview,localSummary,friendlyError,updateNav};
   updateNav();
 })();
