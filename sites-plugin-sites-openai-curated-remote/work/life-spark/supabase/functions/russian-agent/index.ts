@@ -1,6 +1,6 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { withSupabase } from "jsr:@supabase/serve@1";
+import { withSupabase } from "jsr:@supabase/server@1";
 
 const cors = {
   "Access-Control-Allow-Origin": "https://russianhub.github.io",
