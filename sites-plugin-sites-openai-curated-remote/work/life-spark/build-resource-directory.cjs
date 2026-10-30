@@ -30,14 +30,14 @@ const html=`<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#173653">
+<meta name="theme-color" content="#f7fafb">
 <meta name="description" content="俄语星球完整资源目录：系统课程、词典翻译、俄罗斯留学必备、伊尔库茨克国立大学、求职兼职和学习工具。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://russianhub.github.io/opensource-sites/resources.html">
 <title>完整俄语资源目录 · 俄语星球</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=33">
+<link rel="stylesheet" href="style.css?v=39">
 <meta property="og:type" content="website">
 <meta property="og:title" content="完整俄语资源目录 · 俄语星球">
 <meta property="og:description" content="${sites.length} 个经过整理的俄语课程、词典、留学、校园服务、求职与学习工具入口。">
