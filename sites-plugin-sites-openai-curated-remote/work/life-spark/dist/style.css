@@ -1418,3 +1418,15 @@ nav{min-height:72px;gap:22px;padding:12px clamp(20px,4vw,58px);background:var(--
   .search-panel .panel-head{align-items:flex-start}.search-panel .panel-head h2{font-size:30px!important}.search-panel .searchbox{height:52px!important}
   .site{min-height:82px}.agent-chat-head h1{max-width:270px}.agent-message p{font-size:14px;line-height:1.7}
 }
+
+/* ---------- v40 首屏标题比例修正 ---------- */
+@media(min-width:901px){
+  .search-panel{padding:44px 56px 38px!important}
+  .search-panel .panel-head{align-items:center}
+  .search-panel .panel-head>div{max-width:none;flex:1;min-width:0}
+  .search-panel .panel-head h2{max-width:920px;white-space:nowrap;text-wrap:balance;font-size:clamp(38px,3.25vw,49px)!important;line-height:1.12}
+  .search-panel .panel-head .secondary{flex:none;align-self:center}
+  .search-panel .searchbox{margin-top:26px!important}
+  .search-panel .resource-note{margin-top:12px;padding-top:12px}
+}
+@media(max-width:900px){.search-panel .panel-head h2{text-wrap:balance;white-space:normal}}
