@@ -41,8 +41,11 @@ export default {
       });
       if (!userResponse.ok) return json({ error: "登录状态无效，请重新登录" }, 401);
 
-      const key = Deno.env.get("OPENAI_API_KEY");
-      if (!key) throw new Error("OPENAI_API_KEY is not configured");
+      const deepseekKey = Deno.env.get("DEEPSEEK_API_KEY");
+      const openaiKey = Deno.env.get("OPENAI_API_KEY");
+      const provider = (Deno.env.get("AI_PROVIDER") || (deepseekKey ? "deepseek" : "openai")).toLowerCase();
+      if (provider === "deepseek" && !deepseekKey) throw new Error("DEEPSEEK_API_KEY is not configured");
+      if (provider === "openai" && !openaiKey) throw new Error("OPENAI_API_KEY is not configured");
       const body = await req.json();
       const message = String(body?.message || "").trim().slice(0, 2000);
       if (!message) return json({ error: "Message is required" }, 400);
@@ -53,24 +56,38 @@ export default {
           }))
         : [];
       const context = JSON.stringify(body?.context || {}).slice(0, 12000);
-      const response = await fetch("https://api.openai.com/v1/responses", {
+      const userContent = `用户当前问题：${message}\n\n可用的本站资源与学习状态：${context}`;
+      const useDeepSeek = provider === "deepseek";
+      const response = await fetch(useDeepSeek ? "https://api.deepseek.com/chat/completions" : "https://api.openai.com/v1/responses", {
         method: "POST",
-        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
+        headers: {
+          Authorization: `Bearer ${useDeepSeek ? deepseekKey : openaiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(useDeepSeek ? {
+          model: Deno.env.get("DEEPSEEK_MODEL") || "deepseek-flash",
+          messages: [
+            { role: "system", content: systemPrompt },
+            ...history,
+            { role: "user", content: userContent },
+          ],
+          thinking: { type: "disabled" },
+          max_tokens: 1200,
+          stream: false,
+        } : {
           model: Deno.env.get("OPENAI_MODEL") || "gpt-5-mini",
           instructions: systemPrompt,
-          input: [
-            ...history,
-            { role: "user", content: `用户当前问题：${message}\n\n可用的本站资源与学习状态：${context}` },
-          ],
+          input: [...history, { role: "user", content: userContent }],
           max_output_tokens: 1200,
         }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error?.message || "OpenAI request failed");
-      const reply = data.output_text || data.output
-        ?.flatMap((item: any) => item.content || [])
-        .find((item: any) => item.type === "output_text")?.text;
+      const reply = useDeepSeek
+        ? data.choices?.[0]?.message?.content
+        : data.output_text || data.output
+            ?.flatMap((item: any) => item.content || [])
+            .find((item: any) => item.type === "output_text")?.text;
       if (!reply) throw new Error("Empty model response");
       return json({ reply });
     } catch (error) {

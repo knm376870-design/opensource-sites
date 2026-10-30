@@ -11,6 +11,16 @@ npx supabase link --project-ref oysjcnqglghkjjbiffzv
 
 ## 2. 保存服务端密钥
 
+推荐使用价格较低的 DeepSeek Flash：
+
+```powershell
+npx supabase secrets set DEEPSEEK_API_KEY=你的_DeepSeek_API_Key
+npx supabase secrets set DEEPSEEK_MODEL=deepseek-flash
+npx supabase secrets set AI_PROVIDER=deepseek
+```
+
+也可以保留 OpenAI 作为备用：
+
 ```powershell
 npx supabase secrets set OPENAI_API_KEY=你的_OpenAI_API_Key
 npx supabase secrets set OPENAI_MODEL=gpt-5-mini
