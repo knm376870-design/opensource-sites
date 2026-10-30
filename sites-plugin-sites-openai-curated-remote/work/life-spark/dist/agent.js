@@ -1,0 +1,24 @@
+(function(){
+  'use strict';
+  const $=s=>document.querySelector(s),messagesEl=$('#agentMessages'),input=$('#agentInput'),form=$('#agentForm'),send=$('#agentSend');
+  const STORAGE_KEY='russianAgentMessagesV1',MAX_MESSAGES=30,MAX_TEXT=2000;
+  let messages=[],busy=false,session=null,client=null;
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const safeMessages=()=>{try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(v)?v.filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.content==='string').slice(-MAX_MESSAGES):[]}catch{return[]}};
+  const save=()=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(messages.slice(-MAX_MESSAGES)))}catch{}}
+  const format=s=>esc(s).replace(/\n/g,'<br>').replace(/`([^`]+)`/g,'<code>$1</code>');
+  function bubble(role,content,pending=false){const el=document.createElement('article');el.className=`agent-message ${role}${pending?' pending':''}`;el.innerHTML=`<span class="message-avatar" aria-hidden="true">${role==='assistant'?'Я':'你'}</span><div><strong>${role==='assistant'?'AI 学习助理':'你'}</strong><p>${pending?'<i></i><i></i><i></i>':format(content)}</p></div>`;messagesEl.appendChild(el);messagesEl.scrollTop=messagesEl.scrollHeight;return el}
+  function render(){messagesEl.innerHTML='';if(!messages.length){bubble('assistant','你好！我可以陪你学俄语、修改表达、制定计划，也能从本站资源库中帮你找到合适的入口。你现在想解决什么？');return}messages.forEach(m=>bubble(m.role,m.content))}
+  function setStatus(mode,title,text){$('#agentStatusDot').className=mode;$('#agentStatusTitle').textContent=title;$('#agentStatusText').textContent=text}
+  function findResources(query){const sites=Array.isArray(window.RUSSIAN_SITES)?window.RUSSIAN_SITES:[],terms=String(query).toLowerCase().split(/[\s，。？！、]+/).filter(x=>x.length>1),map={听力:['听力','音频','播客','电台','视频'],词典:['词典','翻译','释义','例句'],igu:['isu','игу','伊尔库茨克','大学'],求职:['工作','求职','招聘','兼职'],语伴:['交流','语伴','社交','聊天'],留学:['留学','俄罗斯','学生','签证']};let expanded=[...terms];Object.entries(map).forEach(([k,v])=>{if(terms.some(t=>k.includes(t)||v.some(x=>t.includes(x))))expanded.push(...v)});return sites.map(s=>({s,score:expanded.reduce((n,t)=>n+(s.name+s.desc+s.cat+(s.tag||'')).toLowerCase().includes(t)?1:0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,6).map(x=>({name:x.s.name,description:x.s.desc,url:x.s.url,category:x.s.cat}))}
+  function localAnswer(text){const hits=findResources(text);if(hits.length){return `我先从本站资源库找到这些入口：\n\n${hits.map((x,i)=>`${i+1}. ${x.name} — ${x.description}\n${x.url}`).join('\n\n')}\n\n当前是站内检索模式。登录并配置 AI 服务后，我还能根据你的水平继续筛选和制定使用顺序。`}return '我已收到你的问题。目前 AI 云服务还未完成部署，所以我只能使用站内资源检索。你可以先尝试“帮我找俄语听力网站”或“查找 ИГУ 入口”。管理员完成 Edge Function 和模型密钥配置后，这里会自动启用完整对话能力。'}
+  async function cloudAnswer(text){const context={resources:findResources(text),learning:{roadmap:localStorage.getItem('russianRoadmap')||'{}',vocabularyCount:(()=>{try{return JSON.parse(localStorage.getItem('russianVocabularyV1')||'[]').length}catch{return 0}})()}};const {data,error}=await client.functions.invoke('russian-agent',{body:{message:text,history:messages.slice(0,-1).slice(-12),context}});if(error)throw error;if(!data||typeof data.reply!=='string')throw new Error('AI 服务返回格式不正确');return data.reply.slice(0,12000)}
+  async function submit(text){text=String(text||'').trim().slice(0,MAX_TEXT);if(!text||busy)return;busy=true;send.disabled=true;input.disabled=true;messages.push({role:'user',content:text});bubble('user',text);save();input.value='';input.style.height='auto';const wait=bubble('assistant','',true);try{const reply=session&&client?await cloudAnswer(text):localAnswer(text);wait.remove();messages.push({role:'assistant',content:reply});bubble('assistant',reply);save()}catch(e){wait.remove();const fallback=localAnswer(text);messages.push({role:'assistant',content:fallback});bubble('assistant',fallback);save();setStatus('warn','AI 服务暂不可用','已切换到站内检索模式')}finally{busy=false;send.disabled=false;input.disabled=false;input.focus()}}
+  async function init(){messages=safeMessages();render();try{client=await window.RussianAuth.getClient();session=await window.RussianAuth.getSession();if(session)setStatus('ready','账号已登录','可使用已部署的 AI 服务');else setStatus('guest','游客体验','登录后启用完整 AI 对话')}catch{setStatus('warn','站内检索模式','AI 云服务尚未配置')}input.focus()}
+  form.addEventListener('submit',e=>{e.preventDefault();submit(input.value)});
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
+  input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,160)+'px'});
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-prompt]');if(b)submit(b.dataset.prompt)});
+  $('#newChat').onclick=$('#clearChat').onclick=()=>{messages=[];save();render();input.focus()};
+  init();
+})();

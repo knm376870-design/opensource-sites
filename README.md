@@ -1,56 +1,56 @@
-# 网站开源
+# 俄语星球
 
-个人网站的开源合集。
+> **网站入口：[立即打开俄语星球 →](https://russianhub.github.io/opensource-sites/)**
 
-## 生活灵感实验室 · Life Spark
+[AI 学习助理](https://russianhub.github.io/opensource-sites/agent.html) · [资源导航](https://russianhub.github.io/opensource-sites/resources.html) · [学习路线](https://russianhub.github.io/opensource-sites/roadmap.html) · [登录](https://russianhub.github.io/opensource-sites/auth.html)
 
-把无聊玩出花：生活导航 + 灵感卡片。按时间和心情，抽一张马上能玩的生活灵感卡；趣味测试、行动清单、收藏与分享。
+面向中国俄语学习者和在俄罗斯留学生的学习、交流与生活资源平台。
 
-- **纯静态**，零依赖：HTML + CSS + 原生 JS，无框架、无构建
-- **生活导航**：70 个精选条目 7 大类（好用网站 / 实用 App / 在线工具 / 书影音 / 购物省钱 / 国民应用 / AI 助手），真实网站 logo 磁贴直达外链，搜索框实时过滤
-- **导航附加功能**：分类快捷栏（滚动高亮跟随）、随机逛一个、常逛统计（点过 2 次的站点自动标「常逛」）
-- **9 张灵感卡**：独处充电 / 探索日常 / 一起玩，含免费与付费档位
-- **手绘 SVG 插画**：全部卡片插画均为内联矢量图，主视觉小图置于页脚
-- **完整功能**：按心情/时间/预算抽卡、收藏（localStorage）、系统分享、下载 PNG 灵感卡、三题色彩小测试
-- **窗口玻璃风**：macOS 窗口框 + 毛玻璃 + 图标磁贴；灰白/暗黑双模式自动跟随系统，可手动切换；主色安静蓝 #3f6ff0
-- **细节**：响应式（760px/460px/370px 断点）、`prefers-reduced-motion`、ARIA、外链 `rel="noopener"`
+## 主要功能
+
+- 171 个经过整理的俄语课程、词典、翻译、听说输入、留学、求职、兼职、社交和 ИГУ 学生入口
+- AI 学习助理：中俄翻译、俄语纠错、学习计划、场景对话和站内资源推荐
+- A1–C1 学习路线、生词本、语法练习、每日任务和学习档案
+- 邮箱验证码登录、学习数据云同步和管理员数据后台
+- 响应式网页与 PWA，支持手机和电脑
 
 ## 目录结构
 
-```
-sites-plugin-sites-openai-curated-remote/
-├── work/life-spark/
-│   ├── dist/            # 站点（部署目录）
-│   │   ├── index.html
-│   │   ├── style.css    # 全部样式
-│   │   ├── app.js       # 交互逻辑与灵感卡数据
-│   │   ├── art.js       # 卡片 SVG 插画
-│   │   └── assets/      # 主视觉插画 + 站点 favicon 磁贴
-│   ├── assets-src/      # 原始素材归档（旧版紫色照片，未部署）
-│   ├── check-v3.cjs     # 站点校验脚本
-│   └── serve.cjs        # 本地预览服务器
-└── outputs/             # 部署快照（v2-v11）
+```text
+sites-plugin-sites-openai-curated-remote/work/life-spark/
+├── dist/                    # GitHub Pages 部署目录
+│   ├── index.html           # 首页
+│   ├── agent.html           # AI 学习助理
+│   ├── russian-data.js      # 资源目录
+│   └── ...
+├── supabase/functions/      # AI Agent 服务端函数
+├── docs/                    # Supabase 与 AI 部署说明
+├── check-russian-hub.cjs    # 功能检查
+└── audit-site.cjs           # 资源和公开文件审计
 ```
 
 ## 本地预览
 
-```bash
+```powershell
 cd sites-plugin-sites-openai-curated-remote/work/life-spark
-node serve.cjs        # 默认 http://localhost:4173
+node serve.cjs
 ```
 
-校验：`node check-v3.cjs`
+浏览器打开 `http://localhost:4173`。
 
-## 版本快照
+## 检查
 
-| 版本 | 体积 | 说明 |
-|---|---|---|
-| v2 | 12 KB | 无图初版 |
-| v3 | 2.5 MB | + 紫色照片 |
-| v4 | 369 KB | 图片压缩、favicon、社交分享卡 |
-| v5 | 67 KB | 视觉精修 + 手绘 SVG 主视觉 |
-| v6 | 68 KB | 预算卡、测试平局修正、下载卡片含插画 |
-| v7 | 70 KB | 窗口玻璃双模式 + 生活导航 32 条目 + 深色舒适化 |
-| v9 | 191 KB | 去装饰 + 紫换安静蓝 + 真实 logo 磁贴 40 条目 + 分类栏/随机逛/常逛统计 |
-| v10 | 320 KB | 新增大类：购物省钱/国民应用/AI 助手，70 条目 7 分类 + 33 个真实 logo 磁贴 |
-| v11 | 328 KB | 超级搜索（百度/知乎）+ 收藏面板 + 打赏二维码 + 4 个子页面（关于/广告/友链/投稿） |
+```powershell
+node check-russian-hub.cjs
+node audit-site.cjs
+```
+
+## AI Agent 部署
+
+网页不会保存模型密钥。真实 AI 请求通过 Supabase Edge Function 转发，配置步骤见 [`docs/ai-agent-setup.md`](sites-plugin-sites-openai-curated-remote/work/life-spark/docs/ai-agent-setup.md)。
+
+## 安全与版权
+
+- 网盘入口仅用于管理自有或获授权资料，不收录盗版、破解软件或来源不明的分享链接。
+- 浏览器只使用可公开的 Supabase publishable key；服务端密钥不得提交到仓库。
+- AI 输出可能有误，签证、法律、医疗和学校规定请以官方最新信息为准。

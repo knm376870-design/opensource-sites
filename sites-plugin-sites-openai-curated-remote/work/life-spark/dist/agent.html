@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101923">
+<meta name="description" content="俄语星球 AI 学习助理：翻译纠错、学习计划、场景对话和站内资源推荐。">
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://russianhub.github.io/opensource-sites/agent.html">
+<title>AI 学习助理 · 俄语星球</title>
+<script>try{document.documentElement.dataset.mode=localStorage.getItem('sparkMode')||'dark'}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=38">
+</head>
+<body class="agent-page">
+<a class="skip-link" href="#agent-main">跳到 AI 对话</a>
+<div class="window">
+<nav aria-label="主要导航">
+  <a class="brand" href="index.html"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
+  <div class="links"><a href="index.html#navs">资源库</a><a href="agent.html" aria-current="page">AI 助理</a><a href="dashboard.html">我的学习</a><a href="roadmap.html">学习路线</a><a href="vocabulary.html">生词本</a></div>
+  <div class="nav-right"><a class="account-nav" id="accountNav" href="auth.html">登录</a><a class="nav-go" href="index.html">返回首页</a></div>
+</nav>
+
+<main class="agent-main" id="agent-main" tabindex="-1">
+  <aside class="agent-sidebar" aria-label="AI 助理功能">
+    <div class="agent-identity"><span class="agent-orb" aria-hidden="true">Я</span><div><small>俄语星球</small><strong>AI 学习助理</strong></div></div>
+    <button class="agent-new" id="newChat" type="button"><span aria-hidden="true">＋</span> 新对话</button>
+    <section class="agent-status" aria-live="polite"><span id="agentStatusDot"></span><div><strong id="agentStatusTitle">正在检查服务</strong><small id="agentStatusText">请稍候…</small></div></section>
+    <div class="agent-abilities">
+      <p>我可以帮你</p>
+      <button type="button" data-prompt="请把这句话翻译成自然俄语，并解释重要表达：我今天下午要去学校办理学生证。">中俄翻译与讲解</button>
+      <button type="button" data-prompt="请纠正这句俄语，说明错误并给出自然表达：Я вчера ходил в университет и буду учился русский язык.">俄语纠错</button>
+      <button type="button" data-prompt="我是俄语 A1，每天有 30 分钟。请为我制定未来 7 天的具体学习计划。">制定学习计划</button>
+      <button type="button" data-prompt="我要练习在俄罗斯咖啡店点餐。请扮演店员，用适合 A2 的俄语和我对话。">场景对话陪练</button>
+      <button type="button" data-prompt="帮我找适合练俄语听力的网站，并说明各自适合什么水平。">查找站内资源</button>
+    </div>
+    <p class="agent-privacy">AI 可能出错，重要信息请再次核实。不要发送密码、证件号等敏感信息。</p>
+  </aside>
+
+  <section class="agent-chat" aria-label="AI 对话区">
+    <header class="agent-chat-head"><div><p>Русский помощник</p><h1>把俄语学习中的问题，直接交给我。</h1></div><button id="clearChat" type="button">清空记录</button></header>
+    <div class="agent-messages" id="agentMessages" aria-live="polite" aria-label="对话内容">
+      <article class="agent-message assistant"><span class="message-avatar" aria-hidden="true">Я</span><div><strong>AI 学习助理</strong><p>你好！我可以陪你学俄语、修改表达、制定计划，也能从本站资源库中帮你找到合适的入口。你现在想解决什么？</p></div></article>
+    </div>
+    <div class="agent-suggestions" id="agentSuggestions">
+      <button type="button" data-prompt="“我刚到伊尔库茨克”用俄语怎么自然表达？">翻译一句话</button>
+      <button type="button" data-prompt="给我出 5 道 A1 俄语名词性别练习题，一次只出一道。">开始小测验</button>
+      <button type="button" data-prompt="帮我找伊尔库茨克国立大学学生最常用的入口。">查找 ИГУ 入口</button>
+    </div>
+    <form class="agent-composer" id="agentForm">
+      <label class="sr-only" for="agentInput">输入你的问题</label>
+      <textarea id="agentInput" rows="1" maxlength="2000" placeholder="输入俄语问题、中文句子或学习目标…" required></textarea>
+      <div class="agent-compose-meta"><span id="agentHint">Enter 发送 · Shift + Enter 换行</span><button id="agentSend" type="submit" aria-label="发送消息"><span>发送</span><b aria-hidden="true">↑</b></button></div>
+    </form>
+  </section>
+</main>
+</div>
+<script src="auth-config.js?v=2"></script>
+<script src="auth-client.js?v=2"></script>
+<script src="russian-data.js?v=7"></script>
+<script src="agent.js?v=1"></script>
+</body>
+</html>
