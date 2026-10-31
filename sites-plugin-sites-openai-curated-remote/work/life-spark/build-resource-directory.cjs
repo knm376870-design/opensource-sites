@@ -37,7 +37,7 @@ const html=`<!doctype html>
 <link rel="canonical" href="https://russianhub.github.io/opensource-sites/resources.html">
 <title>完整俄语资源目录 · 俄语星球</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="style.css?v=41">
 <meta property="og:type" content="website">
 <meta property="og:title" content="完整俄语资源目录 · 俄语星球">
 <meta property="og:description" content="${sites.length} 个经过整理的俄语课程、词典、留学、校园服务、求职与学习工具入口。">

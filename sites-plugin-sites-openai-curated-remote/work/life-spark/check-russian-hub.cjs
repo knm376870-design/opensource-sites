@@ -31,12 +31,12 @@ assert.equal(new Set(sites.map(x=>x.key)).size,sites.length,'resource keys must 
 assert(sites.every(x=>/^https:\/\//.test(x.url)),'all resources must use HTTPS');
 assert(!data.match(/破解|盗版下载|网盘提取码/),'resource data must not advertise unauthorized copies');
 assert(html.indexOf('id="pangyi"')<html.indexOf('id="navs"'),'Pangyi should stay visible near the top');
-assert(html.includes('俄语星球')&&html.includes('俄语资源库'),'expect Russian-learning identity');
+assert(html.includes('俄语星球')&&html.includes('俄语资源导航'),'expect Russian-learning identity');
 assert(html.includes('russian-data.js?v=7')&&html.indexOf('russian-data.js')<html.indexOf('app.js?v=17'),'resource data must load before app');
 for(const id of ['navs','nav-web','nav-app','nav-tool','nav-media','nav-russia','nav-isu','nav-job','nav-parttime','nav-shop','nav-core','nav-ai','planner','ideas','quiz'])assert(html.includes(`id="${id}"`),id);
 assert(app.includes('window.RUSSIAN_SITES||legacySites'),'expect safe resource-data fallback');
 assert(css.includes('.resource-note')&&css.includes('prefers-reduced-motion'),'expect disclosure and motion accessibility');
-assert(html.includes('style.css?v=40')&&css.includes('v40 首屏标题比例修正')&&css.includes('v39 俄语星球品牌重塑'),'expect redesigned resource-first theme');
+assert(html.includes('style.css?v=41')&&css.includes('v41 资源导航工作台重构')&&css.includes('v39 俄语星球品牌重塑'),'expect redesigned resource-first theme');
 assert(html.includes("localStorage.getItem('sparkMode')||'light'"),'expect light editorial theme as first-visit default');
 assert(html.includes('id="study-desk"')&&html.includes('data-study-task="words"'),'expect daily study desk');
 assert(app.includes('russianStudy:')&&app.includes('SpeechSynthesisUtterance')&&app.includes('renderStudy()'),'expect saved daily tasks and pronunciation');
@@ -86,7 +86,7 @@ assert(css.includes('v34 留学资源二级筛选')&&css.includes('.resource-sub
 assert(html.indexOf('data-target="nav-isu"')<html.indexOf('data-target="nav-web"'),'ISU must be the first named category shortcut');
 assert(app.includes('function arrangeHomepage()')&&app.includes("['#navs','#nav-isu','#pangyi'")&&app.includes("'#nav-ai','#study-desk','.hero','.user-test-callout'"),'expect search, ISU, Pangyi, resources and study plan in the requested order');
 assert(css.includes('.search-panel{padding-top:38px;padding-bottom:34px}')&&css.includes('.isu-panel+.pangyi-feature'),'expect compact first screen and Pangyi directly below the priority category');
-assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v46")&&fs.readFileSync('dist/sw.js','utf8').includes("'./style.css?v=40'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./app.js?v=17'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./auth-config.js?v=2'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./auth-pages.js?v=3'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./agent.js?v=1'"),'expect refreshed offline cache for redesigned homepage, email OTP login and AI agent');
+assert(fs.readFileSync('dist/sw.js','utf8').includes("russian-world-v47")&&fs.readFileSync('dist/sw.js','utf8').includes("'./style.css?v=41'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./app.js?v=17'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./auth-config.js?v=2'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./auth-pages.js?v=3'")&&fs.readFileSync('dist/sw.js','utf8').includes("'./agent.js?v=1'"),'expect refreshed offline cache for redesigned homepage, email OTP login and AI agent');
 const publicHtml=fs.readdirSync('dist').filter(file=>file.endsWith('.html')).map(file=>fs.readFileSync(`dist/${file}`,'utf8')).join('\n');
 const agent=fs.readFileSync('dist/agent.html','utf8'),agentJs=fs.readFileSync('dist/agent.js','utf8');
 assert(html.includes('href="agent.html"')&&agent.includes('AI 学习助理')&&agent.includes('agent.js?v=1'),'expect a discoverable AI learning agent');
@@ -97,7 +97,7 @@ assert(!publicHtml.includes('生活灵感实验室')&&!publicHtml.includes('__OW
 assert(friends.includes('noindex,follow')&&friends.includes('url=resources.html')&&ad.includes('noindex,follow')&&ad.includes('url=submit.html'),'expect safe migration pages for legacy public URLs');
 assert(userTest.includes('5分钟用户测试')&&userTest.includes('buildReport')&&userTest.includes('数据不会自动上传')&&userTest.includes('noindex,follow'),'expect guided, privacy-preserving real-user test');
 assert(status.includes('href="test.html"')&&fs.readFileSync('dist/sw.js','utf8').includes("'./test.html'"),'expect discoverable offline-capable test page');
-assert(html.includes('class="test-nav" href="test.html"')&&html.includes('class="user-test-callout" href="test.html"')&&html.includes('约5分钟 · 无需登录 · 数据不会自动上传'),'expect user test to be plainly discoverable in homepage navigation and first content');
+assert(html.includes('class="nav-feedback" href="test.html"')&&html.includes('class="user-test-callout" href="test.html"')&&html.includes('约5分钟 · 无需登录 · 数据不会自动上传'),'expect user test to be plainly discoverable in homepage navigation and first content');
 assert(html.indexOf('class="user-test-callout"')<html.indexOf('<section class="hero">')&&css.includes('order:-4'),'expect user-test callout before other ordered homepage content');
 assert(html.includes('href="roadmap.html"')&&roadmap.includes('从 A1 到 C1')&&roadmap.includes("localStorage.setItem('russianRoadmap'")&&roadmap.includes('不是官方等级测试'),'expect discoverable local-first A1-C1 learning roadmap');
 assert(sitemap.includes('/roadmap.html')&&fs.readFileSync('dist/sw.js','utf8').includes("'./roadmap.html'"),'expect indexed and offline-capable roadmap');

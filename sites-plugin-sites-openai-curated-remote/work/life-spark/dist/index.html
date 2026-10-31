@@ -33,25 +33,25 @@
 <meta name="twitter:description" content="从第一句 Привет，到找到真正聊得来的朋友。">
 <meta name="twitter:image" content="https://russianhub.github.io/opensource-sites/og-image.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"俄语星球","url":"https://russianhub.github.io/opensource-sites/","description":"面向中文用户的俄语学习与国际交流平台","inLanguage":"zh-CN","publisher":{"@type":"Organization","name":"俄语星球"}}</script>
-<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="style.css?v=41">
 </head>
 <body>
 <a class="skip-link" href="#main-content">跳到主要内容</a>
 <div class="window">
 
 <nav aria-label="主要导航">
-  <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-  <a class="brand" href="#"><span aria-hidden="true">Я</span><div>俄语学习<br><b>交流站</b></div></a>
-  <div class="links"><a href="#navs">资源库</a><a href="agent.html">AI 助理</a><a href="roadmap.html">学习路线</a><a class="pangyi-nav" href="#pangyi"><i aria-hidden="true"></i>旁译</a><a href="dashboard.html">我的学习</a><a href="vocabulary.html">生词本</a><a href="practice.html">语法练习</a><a href="#nav-media">找语伴</a><a href="#ideas" id="savedLink">我的收藏 <b id="count">0</b></a></div>
-  <div class="nav-right">
-    <a class="account-nav" id="accountNav" href="auth.html">登录</a>
-    <a class="test-nav" href="test.html"><i aria-hidden="true"></i><span>参与测试</span></a>
-    <button id="modeToggle" class="mode-toggle" aria-label="切换明暗模式">
-      <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 13.6A8.4 8.4 0 0 1 10.4 3.8a8.4 8.4 0 1 0 9.8 9.8Z"/></svg>
-    </button>
-    <a class="nav-go" href="#navs">开始学习 <span aria-hidden="true">↗</span></a>
+  <div class="nav-top">
+    <a class="brand" href="#"><span aria-hidden="true">Я</span><div><b>俄语星球</b><small>Russian Hub</small></div></a>
+    <div class="nav-right">
+      <a class="account-nav" id="accountNav" href="auth.html">我的账户</a>
+      <button id="modeToggle" class="mode-toggle" aria-label="切换明暗模式">
+        <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 13.6A8.4 8.4 0 0 1 10.4 3.8a8.4 8.4 0 1 0 9.8 9.8Z"/></svg>
+      </button>
+      <a class="nav-go" href="#navs">开始学习</a>
+    </div>
   </div>
+  <div class="links"><a href="#navs">资源导航</a><a href="agent.html">AI 学习助理</a><a href="roadmap.html">学习路线</a><a href="dashboard.html">我的学习</a><a href="vocabulary.html">生词本</a><a href="practice.html">语法练习</a><a class="pangyi-nav" href="#pangyi">旁译输入法</a><a class="nav-feedback" href="test.html">体验反馈</a></div>
 </nav>
 
 <main class="wrap" id="main-content" tabindex="-1">
@@ -105,27 +105,31 @@
 
 <section class="panel search-panel" id="navs">
   <div class="panel-head">
-    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-    <div><span class="section-kicker">俄语资源库</span><h2>按目标，找到真正有用的入口。</h2><p class="muted">收录 171 个经过筛选的课程、词典、留学办事、校园服务、求职兼职与学习工具。</p></div>
-    <button class="secondary" id="randSite">随机发现一个 ↗</button>
+    <div><span class="section-kicker">Русский навигатор · 俄语资源导航</span><h2>想学什么，直接搜。</h2><p class="muted">课程、词典、校园服务、求职兼职与学习工具，171 个可靠入口已经替你整理好。</p></div>
+    <button class="secondary" id="randSite">随便看看</button>
   </div>
-  <form class="searchbox supersearch" id="superForm" autocomplete="off">
-    <span class="search-ic" aria-hidden="true">⌕</span>
-    <input id="superQ" type="text" placeholder="搜索俄语词汇、语法问题、课程或文化主题…" aria-label="全网搜索关键词">
-    <button class="super-go" type="submit">搜全网 ↗</button>
-  </form>
-  <div class="engine" role="group" aria-label="选择搜索引擎">
-    <button class="engine-chip active" type="button" data-engine="baidu">百度</button>
-    <button class="engine-chip" type="button" data-engine="bing">必应</button>
-    <button class="engine-chip" type="button" data-engine="yandex">Yandex</button>
-    <button class="engine-chip" type="button" data-engine="google">Google</button>
-    <button class="engine-chip" type="button" data-engine="youtube">YouTube</button>
+  <div class="search-workbench">
+    <div class="search-group web-search-group">
+      <span class="search-label">全网学习搜索</span>
+      <form class="searchbox supersearch" id="superForm" autocomplete="off">
+        <span class="search-ic" aria-hidden="true">⌕</span>
+        <input id="superQ" type="text" placeholder="输入俄语词汇、语法问题或文化主题" aria-label="全网搜索关键词">
+        <button class="super-go" type="submit">搜索</button>
+      </form>
+      <div class="engine" role="group" aria-label="选择搜索引擎">
+        <span>搜索引擎</span><button class="engine-chip active" type="button" data-engine="baidu">百度</button><button class="engine-chip" type="button" data-engine="bing">必应</button><button class="engine-chip" type="button" data-engine="yandex">Yandex</button><button class="engine-chip" type="button" data-engine="google">Google</button><button class="engine-chip" type="button" data-engine="youtube">YouTube</button>
+      </div>
+    </div>
+    <div class="search-group site-search-group">
+      <span class="search-label">筛选本站资源</span>
+      <label class="searchbox">
+        <span class="search-ic" aria-hidden="true">⌕</span>
+        <input id="search" type="text" placeholder="词典、听力、语伴、留学、输入法…" autocomplete="off" aria-label="搜索导航条目">
+        <button id="searchClear" class="search-clear" type="button" aria-label="清空资源搜索" hidden>✕</button>
+      </label>
+      <p class="search-hint">输入关键词，下面的资源分类会立即筛选。</p>
+    </div>
   </div>
-  <label class="searchbox">
-    <span class="search-ic" aria-hidden="true">⌕</span>
-    <input id="search" type="text" placeholder="筛选本站资源：词典、听力、语伴、网盘、输入法…" autocomplete="off" aria-label="搜索导航条目">
-    <button id="searchClear" class="search-clear" type="button" aria-label="清空资源搜索" hidden>✕</button>
-  </label>
   <div class="catbar" role="group" aria-label="分类快捷筛选">
     <button class="cchip active" type="button" data-target="navs" aria-pressed="true">全部</button>
     <button class="cchip" type="button" data-target="nav-isu" aria-pressed="false">伊尔库茨克国立大学</button>
